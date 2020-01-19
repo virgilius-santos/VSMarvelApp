@@ -21,6 +21,13 @@ xcuserdata/
 *.moved-aside
 *.xccheckout
 *.xcscmblueprint
+.DS_Store
+Build/
+DerivedData/
+
+VSMarvelApp.xcodeproj/
+VSMarvelApp.xcworkspace/
+
 
 ## Obj-C/Swift specific
 *.hmap
