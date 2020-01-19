@@ -1,0 +1,34 @@
+PODS:
+  - VComponents (0.0.2)
+  - VCore (0.1.0):
+    - Willow (~> 5.2.1)
+  - VService (0.1.0):
+    - VCore (~> 0.1)
+  - Willow (5.2.1)
+
+DEPENDENCIES:
+  - VComponents (from `../VSCommonSwiftLibrary`)
+  - VCore (from `../VSCommonSwiftLibrary`)
+  - VService (from `../VSCommonSwiftLibrary`)
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - Willow
+
+EXTERNAL SOURCES:
+  VComponents:
+    :path: "../VSCommonSwiftLibrary"
+  VCore:
+    :path: "../VSCommonSwiftLibrary"
+  VService:
+    :path: "../VSCommonSwiftLibrary"
+
+SPEC CHECKSUMS:
+  VComponents: 0112bc47e56064088eef4dc2d3df042c43445105
+  VCore: 7fa65bc755614ec1481aac5fcd253fdc24fe92e5
+  VService: 5af167a0a55c8636af83531a60ffd0a48e76372c
+  Willow: a6310f9aedcb6f4de8c35b94fd3416a660ae9280
+
+PODFILE CHECKSUM: 29d5112807840d0f2b2f858f907e90eb3a6759b8
+
+COCOAPODS: 1.8.4
