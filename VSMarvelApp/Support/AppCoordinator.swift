@@ -22,10 +22,22 @@ final class AppCoordinator {
     }
 }
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, NavigationBarStyleProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         apply(style: .default)
+        selected = true
         title = "Character"
+    }
+    
+    var selected: Bool = true {
+        didSet {
+            let icon = selected ? DSIcon.gridIcon : DSIcon.listIcon
+            configureRightButton(with: icon, tint: DSColor.text, target: self, action: #selector(accessibilitytes))
+        }
+    }
+    @objc func accessibilitytes() {
+        selected.toggle()
+        navigationController?.pushViewController(ViewController(), animated: true)
     }
 }

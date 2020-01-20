@@ -10,7 +10,12 @@ import UIKit
 
 protocol NavigationBarStyleProtocol {
     
-    func apply(style: NavigationBarStyle)
+    associatedtype Style
+    associatedtype Image
+    associatedtype Color
+    
+    func apply(style: Style)
+    func configureRightButton(with icon: Image, tint: Color, target: Any, action: Selector)
 }
 
 struct NavigationBarStyle {
@@ -22,10 +27,27 @@ struct NavigationBarStyle {
                                               backgroundColor: .primary)
 }
 
-extension UIViewController: NavigationBarStyleProtocol {
+extension NavigationBarStyleProtocol where Self: UIViewController {
+    
     func apply(style: NavigationBarStyle) {
         let navBar = navigationController?.navigationBar
         navBar?.barTintColor = style.backgroundColor.uiColor
         navBar?.titleTextAttributes = [.foregroundColor: style.titleColor.uiColor]
+    }
+    
+    func configureRightButton(with icon: DSIcon, tint: DSColor, target: Any, action: Selector) {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: icon.uiImage,
+                                                            style: UIBarButtonItem.Style.plain,
+                                                            target: target,
+                                                            action: action)
+    }
+}
+
+extension UINavigationItem {
+    func configureRightBarButtonItem(with icon: DSIcon,
+                                 target: Any,
+                                 action: Selector) {
+                
+        
     }
 }
