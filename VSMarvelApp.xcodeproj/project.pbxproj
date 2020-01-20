@@ -15,13 +15,13 @@
 		18C7FFDA23D5472600F023E6 /* VSNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7FFD923D5472600F023E6 /* VSNavigationController.swift */; };
 		18C7FFDD23D5483B00F023E6 /* AppCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7FFDC23D5483B00F023E6 /* AppCoordinatorTests.swift */; };
 		18C7FFDF23D549D100F023E6 /* VSNavigationControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7FFDE23D549D100F023E6 /* VSNavigationControllerTests.swift */; };
-		18C7FFE123D54C8600F023E6 /* NavigationBarStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7FFE023D54C8600F023E6 /* NavigationBarStyle.swift */; };
+		18C7FFE123D54C8600F023E6 /* DSNavigationBarStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7FFE023D54C8600F023E6 /* DSNavigationBarStyle.swift */; };
 		18C7FFE423D550BD00F023E6 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18C7FFE323D550BD00F023E6 /* Colors.xcassets */; };
 		18C7FFE923D5534300F023E6 /* DSAssets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7FFE823D5534300F023E6 /* DSAssets.swift */; };
 		18C7FFEB23D553E300F023E6 /* DSIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7FFEA23D553E300F023E6 /* DSIcon.swift */; };
 		18C7FFEC23D663FE00F023E6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 185DC04B23D4E02D0083A6D4 /* LaunchScreen.storyboard */; };
-		18C7FFEE23D66CAC00F023E6 /* WindowStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7FFED23D66CAC00F023E6 /* WindowStyle.swift */; };
 		18C7FFF023D66D4800F023E6 /* DSWindowStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7FFEF23D66D4800F023E6 /* DSWindowStyle.swift */; };
+		18C7FFF823D6729300F023E6 /* DSNavigationBarStyleProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7FFF723D6729300F023E6 /* DSNavigationBarStyleProtocol.swift */; };
 		485FB88BFC6634C87893486C /* Pods_VSMarvelAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89DBFCB564074F40733B77E8 /* Pods_VSMarvelAppTests.framework */; };
 		B5C3899D6AA5BC904857501E /* Pods_VSMarvelApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 609FDEDC29ECFD1B55051F78 /* Pods_VSMarvelApp.framework */; };
 /* End PBXBuildFile section */
@@ -51,12 +51,12 @@
 		18C7FFD923D5472600F023E6 /* VSNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VSNavigationController.swift; sourceTree = "<group>"; };
 		18C7FFDC23D5483B00F023E6 /* AppCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinatorTests.swift; sourceTree = "<group>"; };
 		18C7FFDE23D549D100F023E6 /* VSNavigationControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VSNavigationControllerTests.swift; sourceTree = "<group>"; };
-		18C7FFE023D54C8600F023E6 /* NavigationBarStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarStyle.swift; sourceTree = "<group>"; };
+		18C7FFE023D54C8600F023E6 /* DSNavigationBarStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSNavigationBarStyle.swift; sourceTree = "<group>"; };
 		18C7FFE323D550BD00F023E6 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		18C7FFE823D5534300F023E6 /* DSAssets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DSAssets.swift; sourceTree = "<group>"; };
 		18C7FFEA23D553E300F023E6 /* DSIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSIcon.swift; sourceTree = "<group>"; };
-		18C7FFED23D66CAC00F023E6 /* WindowStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowStyle.swift; sourceTree = "<group>"; };
 		18C7FFEF23D66D4800F023E6 /* DSWindowStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSWindowStyle.swift; sourceTree = "<group>"; };
+		18C7FFF723D6729300F023E6 /* DSNavigationBarStyleProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DSNavigationBarStyleProtocol.swift; sourceTree = "<group>"; };
 		31EA8AAB2974F923412E9F5C /* Pods-VSMarvelAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VSMarvelAppTests.release.xcconfig"; path = "Target Support Files/Pods-VSMarvelAppTests/Pods-VSMarvelAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		441E33463AAB819154AC69C1 /* Pods-VSMarvelAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VSMarvelAppTests.debug.xcconfig"; path = "Target Support Files/Pods-VSMarvelAppTests/Pods-VSMarvelAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5DCBA6A0F1E907DDF6B88B63 /* Pods-VSMarvelApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VSMarvelApp.release.xcconfig"; path = "Target Support Files/Pods-VSMarvelApp/Pods-VSMarvelApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -183,8 +183,6 @@
 			isa = PBXGroup;
 			children = (
 				18C7FFD923D5472600F023E6 /* VSNavigationController.swift */,
-				18C7FFE023D54C8600F023E6 /* NavigationBarStyle.swift */,
-				18C7FFED23D66CAC00F023E6 /* WindowStyle.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -204,6 +202,8 @@
 				18C7FFE823D5534300F023E6 /* DSAssets.swift */,
 				18C7FFD023D5344000F023E6 /* DSColor.swift */,
 				18C7FFEA23D553E300F023E6 /* DSIcon.swift */,
+				18C7FFF723D6729300F023E6 /* DSNavigationBarStyleProtocol.swift */,
+				18C7FFE023D54C8600F023E6 /* DSNavigationBarStyle.swift */,
 				18C7FFEF23D66D4800F023E6 /* DSWindowStyle.swift */,
 			);
 			path = Tokens;
@@ -419,10 +419,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18C7FFEE23D66CAC00F023E6 /* WindowStyle.swift in Sources */,
 				18C7FFDA23D5472600F023E6 /* VSNavigationController.swift in Sources */,
 				18C7FFF023D66D4800F023E6 /* DSWindowStyle.swift in Sources */,
-				18C7FFE123D54C8600F023E6 /* NavigationBarStyle.swift in Sources */,
+				18C7FFF823D6729300F023E6 /* DSNavigationBarStyleProtocol.swift in Sources */,
+				18C7FFE123D54C8600F023E6 /* DSNavigationBarStyle.swift in Sources */,
 				18C7FFE923D5534300F023E6 /* DSAssets.swift in Sources */,
 				18C7FFD523D5456600F023E6 /* AppCoordinator.swift in Sources */,
 				185DC06723D4E3C00083A6D4 /* AppDelegate.swift in Sources */,

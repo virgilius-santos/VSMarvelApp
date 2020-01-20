@@ -22,7 +22,7 @@ final class AppCoordinator {
     }
 }
 
-class ViewController: UIViewController, NavigationBarStyleProtocol {
+class ViewController: UIViewController, DSNavigationBarStyleProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         apply(style: .default)
@@ -33,7 +33,7 @@ class ViewController: UIViewController, NavigationBarStyleProtocol {
     var selected: Bool = true {
         didSet {
             let icon = selected ? DSIcon.gridIcon : DSIcon.listIcon
-            configureRightButton(with: icon, tint: DSColor.text, target: self, action: #selector(accessibilitytes))
+            configureRightButton(with: icon, target: self, action: #selector(accessibilitytes))
         }
     }
     @objc func accessibilitytes() {

@@ -7,9 +7,10 @@
 //
 
 import UIKit
+import VCore
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, WindowStyle {
+class AppDelegate: UIResponder, UIApplicationDelegate, WindowStyleProtocol {
     var window: UIWindow?
 
     func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {

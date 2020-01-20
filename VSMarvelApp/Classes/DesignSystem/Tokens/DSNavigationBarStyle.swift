@@ -8,34 +8,24 @@
 
 import UIKit
 
-protocol NavigationBarStyleProtocol {
-    
-    associatedtype Style
-    associatedtype Image
-    associatedtype Color
-    
-    func apply(style: Style)
-    func configureRightButton(with icon: Image, tint: Color, target: Any, action: Selector)
-}
-
-struct NavigationBarStyle {
+struct DSNavigationBarStyle {
     
     var titleColor: DSColor
     var backgroundColor: DSColor
     
-    static let `default` = NavigationBarStyle(titleColor: .text,
-                                              backgroundColor: .primary)
+    static let `default` = DSNavigationBarStyle(titleColor: .text,
+                                                backgroundColor: .primary)
 }
 
-extension NavigationBarStyleProtocol where Self: UIViewController {
+extension DSNavigationBarStyleProtocol where Self: UIViewController {
     
-    func apply(style: NavigationBarStyle) {
+    func apply(style: DSNavigationBarStyle) {
         let navBar = navigationController?.navigationBar
         navBar?.barTintColor = style.backgroundColor.uiColor
         navBar?.titleTextAttributes = [.foregroundColor: style.titleColor.uiColor]
     }
     
-    func configureRightButton(with icon: DSIcon, tint: DSColor, target: Any, action: Selector) {
+    func configureRightButton(with icon: DSIcon, target: Any, action: Selector) {
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: icon.uiImage,
                                                             style: UIBarButtonItem.Style.plain,
                                                             target: target,

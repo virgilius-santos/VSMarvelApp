@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import VCore
 
 struct DSWindowStyle {
     var tintColor: DSColor
@@ -16,7 +17,7 @@ struct DSWindowStyle {
                                          backgroundColor: DSColor.secondary)
 }
 
-extension WindowStyle where Self: UIApplicationDelegate {
+extension WindowStyleProtocol where Self: UIApplicationDelegate {
     
     func apply(style: DSWindowStyle) {
         window?.backgroundColor = style.backgroundColor.uiColor
