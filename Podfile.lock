@@ -3,6 +3,7 @@ PODS:
   - Kingfisher (5.13.0):
     - Kingfisher/Core (= 5.13.0)
   - Kingfisher/Core (5.13.0)
+  - SwiftGen (6.1.0)
   - VComponents (0.0.2)
   - VCore (0.2.0):
     - Willow (~> 5.2.1)
@@ -13,6 +14,7 @@ PODS:
 
 DEPENDENCIES:
   - Keys (from `Pods/CocoaPodsKeys`)
+  - SwiftGen (~> 6.0)
   - VComponents (from `../VSCommonSwiftLibrary`)
   - VCore (from `../VSCommonSwiftLibrary`)
   - VService (from `../VSCommonSwiftLibrary`)
@@ -20,6 +22,7 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - Kingfisher
+    - SwiftGen
     - Willow
 
 EXTERNAL SOURCES:
@@ -35,11 +38,12 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Keys: a576f4c9c1c641ca913a959a9c62ed3f215a8de9
   Kingfisher: 0d334cada987fcddbe9b5cec516406e1ee9d4748
+  SwiftGen: f872ca75cbd17bf7103c17f13dcfa0d9a15667b0
   VComponents: 0112bc47e56064088eef4dc2d3df042c43445105
   VCore: 986a5dc2cc15822beba3c92db59f3cbd59ead267
   VService: 59c4009527f5a4327f787dd7445d8a2a3438e787
   Willow: a6310f9aedcb6f4de8c35b94fd3416a660ae9280
 
-PODFILE CHECKSUM: d07370eecfd96ed200da6fbc408535117dce588e
+PODFILE CHECKSUM: 8d91ac4fc41033fc5b0faa8e9a3b24b657d5670c
 
 COCOAPODS: 1.8.4

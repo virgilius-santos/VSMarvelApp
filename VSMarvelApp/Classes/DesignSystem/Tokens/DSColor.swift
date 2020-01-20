@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import VCore
 
 enum DSColor: CaseIterable {
     case primary, text, secondary
@@ -14,11 +15,11 @@ enum DSColor: CaseIterable {
     var uiColor: UIColor {
         switch self {
         case .primary:
-            return UIColor(red: 232, green: 72, blue: 85, alpha: 1)
+            return Asset.Colors.primary.color
         case .secondary:
-            return UIColor(red: 64, green: 63, blue: 76, alpha: 1)
+            return Asset.Colors.secondary.color
         case .text:
-            return UIColor(red: 255, green: 252, blue: 249, alpha: 1)
+            return Asset.Colors.text.color
         }
     }
 }

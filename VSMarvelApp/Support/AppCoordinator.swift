@@ -17,6 +17,15 @@ final class AppCoordinator {
     }
     
     func start() {
-        self.navController.navigate(to: UIViewController())
+        let vc = ViewController()
+        self.navController.navigate(to: vc)
+    }
+}
+
+class ViewController: UIViewController {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        apply(style: .default)
+        title = "Character"
     }
 }

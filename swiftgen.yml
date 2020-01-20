@@ -1,0 +1,7 @@
+xcassets:
+  inputs:
+    - VSMarvelApp/Resources/Images.xcassets
+    - VSMarvelApp/Resources/Colors.xcassets
+  outputs:
+    - templateName: swift4
+      output: VSMarvelApp/Classes/DesignSystem/Tokens/DSAssets.swift
