@@ -7,6 +7,14 @@ use_frameworks!
 
 target 'VSMarvelApp' do
 
+  plugin 'cocoapods-keys', {
+    :project => "VSMarvelApp",
+    :target => "VSMarvelApp",
+    :keys => [
+      "MarvelApiKey",
+      "MarvelPrivateKey"
+    ]}
+
   pod "VService"                , :path => '../VSCommonSwiftLibrary'
   pod "VCore"                   , :path => '../VSCommonSwiftLibrary'
   pod "VComponents"             , :path => '../VSCommonSwiftLibrary'
