@@ -9,7 +9,7 @@
 import UIKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, WindowStyle {
     var window: UIWindow?
 
     func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -17,9 +17,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         let nav = UINavigationController()
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.backgroundColor = .red
         window?.rootViewController = nav
         window?.makeKeyAndVisible()
+        
+        apply(style: .default)
 
         let navController = VSNavigationController(nav: nav)
         let coordinator = AppCoordinator(navController: navController)
