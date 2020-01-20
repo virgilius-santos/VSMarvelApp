@@ -175,6 +175,9 @@
 		18C7FFD623D546E900F023E6 /* Elements */ = {
 			isa = PBXGroup;
 			children = (
+				18C7FFF723D6729300F023E6 /* DSNavigationBarStyleProtocol.swift */,
+				18C7FFE023D54C8600F023E6 /* DSNavigationBarStyle.swift */,
+				18C7FFEF23D66D4800F023E6 /* DSWindowStyle.swift */,
 			);
 			path = Elements;
 			sourceTree = "<group>";
@@ -202,9 +205,6 @@
 				18C7FFE823D5534300F023E6 /* DSAssets.swift */,
 				18C7FFD023D5344000F023E6 /* DSColor.swift */,
 				18C7FFEA23D553E300F023E6 /* DSIcon.swift */,
-				18C7FFF723D6729300F023E6 /* DSNavigationBarStyleProtocol.swift */,
-				18C7FFE023D54C8600F023E6 /* DSNavigationBarStyle.swift */,
-				18C7FFEF23D66D4800F023E6 /* DSWindowStyle.swift */,
 			);
 			path = Tokens;
 			sourceTree = "<group>";
