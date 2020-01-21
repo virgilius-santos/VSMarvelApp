@@ -8,12 +8,7 @@
 
 import UIKit
 
-protocol DSCellStyleProtocol {
-    
-    associatedtype Style
-    
+protocol DSCellStyleable {
     var dsLabel: UILabel { get }
     var dsImageView: UIImageView { get }
-    
-    func apply(style: Style)
 }

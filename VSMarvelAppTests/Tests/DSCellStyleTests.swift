@@ -36,7 +36,7 @@ class DSCellStyleTests: XCTestCase {
         XCTAssertEqual(sut.dsLabel.alpha, 0.5)
     }
     
-    class CellSpy: UICollectionViewCell, DSCellStyleProtocol {
+    class CellSpy: UICollectionViewCell, DSCellStyleable {
         var dsLabel: UILabel = .init()
         var dsImageView: UIImageView = .init()
     }

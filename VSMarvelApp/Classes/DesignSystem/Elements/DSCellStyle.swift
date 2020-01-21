@@ -23,7 +23,7 @@ struct DSCellStyle {
                                        shadow: DSShadow.zero)
 }
 
-extension DSCellStyleProtocol where Self: UICollectionViewCell {
+extension DSCellStyleable where Self: UICollectionViewCell {
     
     func apply(style: DSCellStyle) {
         apply(shadow: style.shadow)

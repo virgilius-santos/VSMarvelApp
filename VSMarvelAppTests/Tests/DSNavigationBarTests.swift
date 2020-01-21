@@ -46,7 +46,7 @@ class DSNavigationBarStyleTests: XCTestCase {
         XCTAssert(sut.tapped)
     }
 
-    class ViewControllerSpy: UIViewController, DSNavigationBarStyleProtocol {
+    class ViewControllerSpy: UIViewController, DSNavigationBarStyleable, DSNavigationBarConfigurable {
         
         var tapped = false
         @objc func tapAction() {

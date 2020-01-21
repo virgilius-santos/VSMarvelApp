@@ -22,7 +22,7 @@ final class AppCoordinator {
     }
 }
 
-class ViewController: UIViewController, DSNavigationBarStyleProtocol {
+class ViewController: UIViewController, DSNavigationBarStyleable, DSNavigationBarConfigurable {
     override func viewDidLoad() {
         super.viewDidLoad()
         apply(style: .default)

@@ -17,7 +17,7 @@ struct DSWindowStyle {
                                          backgroundColor: DSColor.secondary)
 }
 
-extension WindowStyleProtocol where Self: UIApplicationDelegate {
+extension WindowStyleable where Self: UIApplicationDelegate {
     
     func apply(style: DSWindowStyle) {
         window?.backgroundColor = style.backgroundColor.uiColor

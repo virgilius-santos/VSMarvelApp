@@ -12,7 +12,7 @@
 		18C7000023D675BE00F023E6 /* DSAlpha.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7FFFF23D675BE00F023E6 /* DSAlpha.swift */; };
 		18C7000223D6768200F023E6 /* DSShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7000123D6768200F023E6 /* DSShadow.swift */; };
 		18C7000623D67DB000F023E6 /* DSCellStyleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7000523D67DB000F023E6 /* DSCellStyleTests.swift */; };
-		18C7000823D6802600F023E6 /* DSNavigationBarStyleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7000723D6802600F023E6 /* DSNavigationBarStyleTests.swift */; };
+		18C7000823D6802600F023E6 /* DSNavigationBarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7000723D6802600F023E6 /* DSNavigationBarTests.swift */; };
 		18C7000A23D6861C00F023E6 /* DSWindowStyleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7000923D6861C00F023E6 /* DSWindowStyleTests.swift */; };
 		18C7FFCD23D52BC700F023E6 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7FFCC23D52BC700F023E6 /* Keys.swift */; };
 		18C7FFD123D5344000F023E6 /* DSColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7FFD023D5344000F023E6 /* DSColor.swift */; };
@@ -26,8 +26,8 @@
 		18C7FFEB23D553E300F023E6 /* DSIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7FFEA23D553E300F023E6 /* DSIcon.swift */; };
 		18C7FFEC23D663FE00F023E6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 185DC04B23D4E02D0083A6D4 /* LaunchScreen.storyboard */; };
 		18C7FFF023D66D4800F023E6 /* DSWindowStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7FFEF23D66D4800F023E6 /* DSWindowStyle.swift */; };
-		18C7FFF823D6729300F023E6 /* DSNavigationBarStyleProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7FFF723D6729300F023E6 /* DSNavigationBarStyleProtocol.swift */; };
-		18C7FFFA23D673CE00F023E6 /* DSCellStyleProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7FFF923D673CE00F023E6 /* DSCellStyleProtocol.swift */; };
+		18C7FFF823D6729300F023E6 /* DSNavigationBarProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7FFF723D6729300F023E6 /* DSNavigationBarProtocol.swift */; };
+		18C7FFFA23D673CE00F023E6 /* DSCellStyleable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7FFF923D673CE00F023E6 /* DSCellStyleable.swift */; };
 		18C7FFFC23D6747B00F023E6 /* DSCellStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7FFFB23D6747B00F023E6 /* DSCellStyle.swift */; };
 		18C7FFFE23D6751500F023E6 /* DSRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7FFFD23D6751500F023E6 /* DSRadius.swift */; };
 		485FB88BFC6634C87893486C /* Pods_VSMarvelAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89DBFCB564074F40733B77E8 /* Pods_VSMarvelAppTests.framework */; };
@@ -55,7 +55,7 @@
 		185DC06523D4E3C00083A6D4 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18C7000123D6768200F023E6 /* DSShadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSShadow.swift; sourceTree = "<group>"; };
 		18C7000523D67DB000F023E6 /* DSCellStyleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSCellStyleTests.swift; sourceTree = "<group>"; };
-		18C7000723D6802600F023E6 /* DSNavigationBarStyleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSNavigationBarStyleTests.swift; sourceTree = "<group>"; };
+		18C7000723D6802600F023E6 /* DSNavigationBarTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSNavigationBarTests.swift; sourceTree = "<group>"; };
 		18C7000923D6861C00F023E6 /* DSWindowStyleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSWindowStyleTests.swift; sourceTree = "<group>"; };
 		18C7FFCC23D52BC700F023E6 /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		18C7FFD023D5344000F023E6 /* DSColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSColor.swift; sourceTree = "<group>"; };
@@ -68,8 +68,8 @@
 		18C7FFE823D5534300F023E6 /* DSAssets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DSAssets.swift; sourceTree = "<group>"; };
 		18C7FFEA23D553E300F023E6 /* DSIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSIcon.swift; sourceTree = "<group>"; };
 		18C7FFEF23D66D4800F023E6 /* DSWindowStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSWindowStyle.swift; sourceTree = "<group>"; };
-		18C7FFF723D6729300F023E6 /* DSNavigationBarStyleProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DSNavigationBarStyleProtocol.swift; sourceTree = "<group>"; };
-		18C7FFF923D673CE00F023E6 /* DSCellStyleProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSCellStyleProtocol.swift; sourceTree = "<group>"; };
+		18C7FFF723D6729300F023E6 /* DSNavigationBarProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DSNavigationBarProtocol.swift; sourceTree = "<group>"; };
+		18C7FFF923D673CE00F023E6 /* DSCellStyleable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSCellStyleable.swift; sourceTree = "<group>"; };
 		18C7FFFB23D6747B00F023E6 /* DSCellStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSCellStyle.swift; sourceTree = "<group>"; };
 		18C7FFFD23D6751500F023E6 /* DSRadius.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSRadius.swift; sourceTree = "<group>"; };
 		18C7FFFF23D675BE00F023E6 /* DSAlpha.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSAlpha.swift; sourceTree = "<group>"; };
@@ -170,9 +170,17 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		18C7000B23D69AA900F023E6 /* Scene */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Scene;
+			sourceTree = "<group>";
+		};
 		18C7FFCE23D5342300F023E6 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				18C7000B23D69AA900F023E6 /* Scene */,
 				18C7FFCF23D5342B00F023E6 /* DesignSystem */,
 			);
 			path = Classes;
@@ -192,8 +200,8 @@
 			isa = PBXGroup;
 			children = (
 				18C7FFFB23D6747B00F023E6 /* DSCellStyle.swift */,
-				18C7FFF923D673CE00F023E6 /* DSCellStyleProtocol.swift */,
-				18C7FFF723D6729300F023E6 /* DSNavigationBarStyleProtocol.swift */,
+				18C7FFF923D673CE00F023E6 /* DSCellStyleable.swift */,
+				18C7FFF723D6729300F023E6 /* DSNavigationBarProtocol.swift */,
 				18C7FFE023D54C8600F023E6 /* DSNavigationBarStyle.swift */,
 				18C7FFEF23D66D4800F023E6 /* DSWindowStyle.swift */,
 			);
@@ -213,7 +221,7 @@
 			children = (
 				18C7FFDC23D5483B00F023E6 /* AppCoordinatorTests.swift */,
 				18C7000523D67DB000F023E6 /* DSCellStyleTests.swift */,
-				18C7000723D6802600F023E6 /* DSNavigationBarStyleTests.swift */,
+				18C7000723D6802600F023E6 /* DSNavigationBarTests.swift */,
 				18C7000923D6861C00F023E6 /* DSWindowStyleTests.swift */,
 				18C7FFDE23D549D100F023E6 /* VSNavigationControllerTests.swift */,
 			);
@@ -448,8 +456,8 @@
 				18C7000023D675BE00F023E6 /* DSAlpha.swift in Sources */,
 				18C7FFDA23D5472600F023E6 /* VSNavigationController.swift in Sources */,
 				18C7FFF023D66D4800F023E6 /* DSWindowStyle.swift in Sources */,
-				18C7FFFA23D673CE00F023E6 /* DSCellStyleProtocol.swift in Sources */,
-				18C7FFF823D6729300F023E6 /* DSNavigationBarStyleProtocol.swift in Sources */,
+				18C7FFFA23D673CE00F023E6 /* DSCellStyleable.swift in Sources */,
+				18C7FFF823D6729300F023E6 /* DSNavigationBarProtocol.swift in Sources */,
 				18C7FFE123D54C8600F023E6 /* DSNavigationBarStyle.swift in Sources */,
 				18C7FFFE23D6751500F023E6 /* DSRadius.swift in Sources */,
 				18C7FFE923D5534300F023E6 /* DSAssets.swift in Sources */,
@@ -467,7 +475,7 @@
 			files = (
 				18C7FFDF23D549D100F023E6 /* VSNavigationControllerTests.swift in Sources */,
 				18C7FFDD23D5483B00F023E6 /* AppCoordinatorTests.swift in Sources */,
-				18C7000823D6802600F023E6 /* DSNavigationBarStyleTests.swift in Sources */,
+				18C7000823D6802600F023E6 /* DSNavigationBarTests.swift in Sources */,
 				18C7000623D67DB000F023E6 /* DSCellStyleTests.swift in Sources */,
 				18C7000A23D6861C00F023E6 /* DSWindowStyleTests.swift in Sources */,
 			);

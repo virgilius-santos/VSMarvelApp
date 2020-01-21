@@ -17,13 +17,16 @@ struct DSNavigationBarStyle {
                                                 backgroundColor: .primary)
 }
 
-extension DSNavigationBarStyleProtocol where Self: UIViewController {
+extension DSNavigationBarStyleable where Self: UIViewController {
     
     func apply(style: DSNavigationBarStyle) {
         let navBar = navigationController?.navigationBar
         navBar?.barTintColor = style.backgroundColor.uiColor
         navBar?.titleTextAttributes = [.foregroundColor: style.titleColor.uiColor]
     }
+}
+
+extension DSNavigationBarConfigurable where Self: UIViewController {
     
     func configureRightButton(with icon: UIImage, target: Any, action: Selector) {
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: icon,

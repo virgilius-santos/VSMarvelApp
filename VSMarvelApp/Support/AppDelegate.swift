@@ -10,7 +10,7 @@ import UIKit
 import VCore
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, WindowStyleProtocol {
+class AppDelegate: UIResponder, UIApplicationDelegate, WindowStyleable {
     var window: UIWindow?
 
     func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {

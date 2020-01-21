@@ -29,7 +29,7 @@ class DSWindowStyleTests: XCTestCase {
         XCTAssertEqual(sut.window?.backgroundColor, Asset.Colors.secondary.color)
     }
 
-    class WindowStyleSpy: NSObject, UIApplicationDelegate, WindowStyleProtocol {
+    class WindowStyleSpy: NSObject, UIApplicationDelegate, WindowStyleable {
         var window: UIWindow? = .init(frame: .zero)
     }
 }
