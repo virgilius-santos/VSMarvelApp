@@ -33,7 +33,7 @@ class ViewController: UIViewController, DSNavigationBarStyleProtocol {
     var selected: Bool = true {
         didSet {
             let icon = selected ? DSIcon.gridIcon : DSIcon.listIcon
-            configureRightButton(with: icon, target: self, action: #selector(accessibilitytes))
+            configureRightButton(with: icon.image, target: self, action: #selector(accessibilitytes))
         }
     }
     @objc func accessibilitytes() {

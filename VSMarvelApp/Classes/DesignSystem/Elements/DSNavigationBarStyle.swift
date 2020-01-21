@@ -25,19 +25,10 @@ extension DSNavigationBarStyleProtocol where Self: UIViewController {
         navBar?.titleTextAttributes = [.foregroundColor: style.titleColor.uiColor]
     }
     
-    func configureRightButton(with icon: DSIcon, target: Any, action: Selector) {
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: icon.uiImage,
+    func configureRightButton(with icon: UIImage, target: Any, action: Selector) {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: icon,
                                                             style: UIBarButtonItem.Style.plain,
                                                             target: target,
                                                             action: action)
-    }
-}
-
-extension UINavigationItem {
-    func configureRightBarButtonItem(with icon: DSIcon,
-                                 target: Any,
-                                 action: Selector) {
-                
-        
     }
 }

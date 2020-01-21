@@ -8,15 +8,4 @@
 
 import UIKit
 
-enum DSIcon: CaseIterable {
-    case gridIcon, listIcon
-    
-    var uiImage: UIImage {
-        switch self {
-        case .listIcon:
-            return Asset.Images.listIcon.image
-        case .gridIcon:
-            return Asset.Images.gridIcon.image
-        }
-    }
-}
+typealias DSIcon = Asset.Images
