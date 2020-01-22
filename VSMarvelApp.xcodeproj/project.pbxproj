@@ -181,6 +181,25 @@
 			path = Scene;
 			sourceTree = "<group>";
 		};
+		18C7001023D7CF3100F023E6 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				18C7FFF923D673CE00F023E6 /* DSCellStyleable.swift */,
+				18C7FFF723D6729300F023E6 /* DSNavigationBarProtocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		18C7001123D7CF5B00F023E6 /* Styles */ = {
+			isa = PBXGroup;
+			children = (
+				18C7FFFB23D6747B00F023E6 /* DSCellStyle.swift */,
+				18C7FFE023D54C8600F023E6 /* DSNavigationBarStyle.swift */,
+				18C7FFEF23D66D4800F023E6 /* DSWindowStyle.swift */,
+			);
+			path = Styles;
+			sourceTree = "<group>";
+		};
 		18C7FFCE23D5342300F023E6 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -193,6 +212,8 @@
 		18C7FFCF23D5342B00F023E6 /* DesignSystem */ = {
 			isa = PBXGroup;
 			children = (
+				18C7001123D7CF5B00F023E6 /* Styles */,
+				18C7001023D7CF3100F023E6 /* Protocols */,
 				18C7FFE223D5502A00F023E6 /* Tokens */,
 				18C7FFD723D546F600F023E6 /* Components */,
 				18C7FFD623D546E900F023E6 /* Elements */,
@@ -203,12 +224,7 @@
 		18C7FFD623D546E900F023E6 /* Elements */ = {
 			isa = PBXGroup;
 			children = (
-				18C7FFFB23D6747B00F023E6 /* DSCellStyle.swift */,
-				18C7FFF923D673CE00F023E6 /* DSCellStyleable.swift */,
 				18C7000C23D69EEB00F023E6 /* DSDetailView.swift */,
-				18C7FFF723D6729300F023E6 /* DSNavigationBarProtocol.swift */,
-				18C7FFE023D54C8600F023E6 /* DSNavigationBarStyle.swift */,
-				18C7FFEF23D66D4800F023E6 /* DSWindowStyle.swift */,
 			);
 			path = Elements;
 			sourceTree = "<group>";
