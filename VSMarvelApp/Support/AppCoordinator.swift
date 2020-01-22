@@ -23,7 +23,14 @@ final class AppCoordinator {
     }
 }
 
-class ViewController: UIViewController, DSNavigationBarStyleable, DSNavigationBarConfigurable {
+class ViewController: UIViewController, DSNavigationBarStyleable, DSNavigationBarConfigurable, UISearchResultsUpdating {
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        let searchBar = searchController.searchBar
+        let t = searchBar.text ?? ""
+        print(t)
+    }
+    
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,8 +43,10 @@ class ViewController: UIViewController, DSNavigationBarStyleable, DSNavigationBa
         desc.snp.makeConstraints {
             $0.edges.equalTo(self.view)
         }
-        
         desc.setup()
+        
+        addSearchBar(placeholder: "Type something here...",
+                     scopeButtonTitles: "Title", "Genre", "Rating", "Actor")
     }
     
     var selected: Bool = true {
