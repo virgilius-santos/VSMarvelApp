@@ -19,6 +19,7 @@ target 'VSMarvelApp' do
   pod "VCore"                   , :path => '../VSCommonSwiftLibrary'
   pod "VComponents"             , :path => '../VSCommonSwiftLibrary'
   pod 'SwiftGen'                , '~> 6.0'
+  pod 'SnapKit'                 , '~> 5.0'
 
   target 'VSMarvelAppTests' do
     inherit! :search_paths

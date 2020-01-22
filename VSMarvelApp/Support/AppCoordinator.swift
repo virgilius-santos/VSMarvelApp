@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SnapKit
 
 final class AppCoordinator {
     
@@ -23,11 +24,20 @@ final class AppCoordinator {
 }
 
 class ViewController: UIViewController, DSNavigationBarStyleable, DSNavigationBarConfigurable {
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         apply(style: .default)
         selected = true
         title = "Character"
+        
+        let desc = DSDetailView()
+        view.addSubview(desc)
+        desc.snp.makeConstraints {
+            $0.edges.equalTo(self.view)
+        }
+        
+        desc.setup()
     }
     
     var selected: Bool = true {
