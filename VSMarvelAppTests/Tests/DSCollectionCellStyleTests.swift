@@ -11,7 +11,7 @@ import XCTest
 
 class DSCollectionCellStyleTests: XCTestCase {
 
-    var sut: CollectionCellSpy!
+    var sut: DSCharacterGridCollectionViewCell!
     
     override func setUp() {
         sut = .init()
@@ -32,8 +32,7 @@ class DSCollectionCellStyleTests: XCTestCase {
         XCTAssertEqual(sut.layer.cornerRadius, 8)
         
         XCTAssertEqual(sut.dsLabel.tintColor, Asset.Colors.text.color)
-        XCTAssertEqual(sut.dsLabel.backgroundColor, Asset.Colors.secondary.color)
-        XCTAssertEqual(sut.dsLabel.alpha, 0.5)
+        XCTAssertEqual(sut.dsLabel.backgroundColor, Asset.Colors.secondary.color.withAlphaComponent(0.5))
     }
     
     func testAddCellSubViews() {

@@ -28,4 +28,17 @@ final class DSCharacterGridCollectionViewCell: UICollectionViewCell, DSCellStyle
         
         addCellSubViews()
     }
+    
+    func addCellSubViews() {
+        self.addSubview(dsImageView)
+        dsImageView.snp.makeConstraints {
+            $0.edges.equalTo(contentView)
+        }
+        
+        self.addSubview(dsLabel)
+        dsLabel.snp.makeConstraints {
+            $0.bottom.leading.trailing.equalTo(self.contentView)
+            $0.top.equalTo(self.contentView).inset(150)
+        }
+    }
 }

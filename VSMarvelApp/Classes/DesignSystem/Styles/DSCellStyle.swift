@@ -40,21 +40,9 @@ extension DSCellStyleable where Self: UICollectionViewCell {
     
     func apply(style: DSCellStyle, in label: UILabel) {
         dsLabel.tintColor = style.titleColor.uiColor
-        dsLabel.backgroundColor = style.titleBackgroundColor.uiColor
-        dsLabel.alpha = style.titleBackgroundAlpha.value
-    }
-    
-    func addCellSubViews() {
-        self.addSubview(dsImageView)
-        dsImageView.snp.makeConstraints {
-            $0.edges.equalTo(contentView)
-        }
-        
-        self.addSubview(dsLabel)
-        dsLabel.snp.makeConstraints {
-            $0.bottom.leading.trailing.equalTo(self.contentView)
-            $0.top.equalTo(self.contentView).inset(150)
-        }
+        dsLabel.backgroundColor = style.titleBackgroundColor
+            .uiColor
+            .withAlphaComponent(style.titleBackgroundAlpha.value)
     }
 }
 
@@ -66,20 +54,8 @@ extension DSCellStyleable where Self: UITableViewCell {
     
     func apply(style: DSCellStyle, in label: UILabel) {
         dsLabel.tintColor = style.titleColor.uiColor
-        dsLabel.backgroundColor = style.titleBackgroundColor.uiColor
-        dsLabel.alpha = style.titleBackgroundAlpha.value
-    }
-    
-    func addCellSubViews() {
-        self.addSubview(dsImageView)
-        dsImageView.snp.makeConstraints {
-            $0.top.bottom.leading.equalTo(contentView)
-        }
-        
-        self.addSubview(dsLabel)
-        dsLabel.snp.makeConstraints {
-            $0.top.bottom.trailing.equalTo(self.contentView)
-            $0.leading.equalTo(self.dsImageView.snp.trailing)
-        }
+        dsLabel.backgroundColor = style.titleBackgroundColor
+            .uiColor
+            .withAlphaComponent(style.titleBackgroundAlpha.value)
     }
 }

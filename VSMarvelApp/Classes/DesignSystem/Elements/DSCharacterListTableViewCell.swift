@@ -28,4 +28,17 @@ final class DSCharacterListTableViewCell: UITableViewCell, DSCellStyleable {
         
         addCellSubViews()
     }
+    
+    func addCellSubViews() {
+        self.addSubview(dsImageView)
+        dsImageView.snp.makeConstraints {
+            $0.top.bottom.leading.equalTo(contentView)
+        }
+        
+        self.addSubview(dsLabel)
+        dsLabel.snp.makeConstraints {
+            $0.top.bottom.trailing.equalTo(self.contentView)
+            $0.leading.equalTo(self.dsImageView.snp.trailing)
+        }
+    }
 }

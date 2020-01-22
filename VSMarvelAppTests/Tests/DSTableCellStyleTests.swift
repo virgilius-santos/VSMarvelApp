@@ -11,7 +11,7 @@ import XCTest
 
 class DSTableCellStyleTests: XCTestCase {
 
-    var sut: TableCellSpy!
+    var sut: DSCharacterListTableViewCell!
     
     override func setUp() {
         sut = .init()
@@ -25,8 +25,7 @@ class DSTableCellStyleTests: XCTestCase {
         sut.apply(style: DSCellStyle.default)
         
         XCTAssertEqual(sut.dsLabel.tintColor, Asset.Colors.text.color)
-        XCTAssertEqual(sut.dsLabel.backgroundColor, Asset.Colors.secondary.color)
-        XCTAssertEqual(sut.dsLabel.alpha, 0.5)
+        XCTAssertEqual(sut.dsLabel.backgroundColor, Asset.Colors.secondary.color.withAlphaComponent(0.5))
     }
     
     func testAddCellSubViews() {
@@ -34,10 +33,5 @@ class DSTableCellStyleTests: XCTestCase {
         
         XCTAssertEqual(sut.dsImageView.superview, sut)
         XCTAssertEqual(sut.dsLabel.superview, sut)
-    }
-    
-    class TableCellSpy: UITableViewCell, DSCellStyleable {
-        var dsLabel: UILabel = .init()
-        var dsImageView: UIImageView = .init()
     }
 }
