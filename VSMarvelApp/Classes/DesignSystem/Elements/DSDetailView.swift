@@ -9,7 +9,7 @@
 import UIKit
 import SnapKit
 
-class DSDetailView: UIView {
+final class DSDetailView: UIView {
     
     let scroll = UIScrollView()
     let contentView = UIView()
