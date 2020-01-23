@@ -10,10 +10,10 @@ import UIKit
 import Hero
 
 protocol VSNavigationControllerProtocol {
-    func navigate(to viewController: UIViewController, using type: NavigationTypes)
+    func navigate(to viewController: UIViewController, using type: NavigationType)
 }
 
-enum NavigationTypes {
+enum NavigationType {
     case push, present, replace
 }
 
@@ -23,24 +23,24 @@ final class VSNavigationController: VSNavigationControllerProtocol {
     
     weak var nav: UINavigationController?
     
-    let navigationFunctions: [NavigationTypes: NavigationFunction]
+    let navigationFunctions: [NavigationType: NavigationFunction]
     
     init(nav: UINavigationController?) {
         self.nav = nav
         navigationFunctions = [
-            NavigationTypes.push: { [nav] vc in
+            NavigationType.push: { [nav] vc in
                 nav?.pushViewController(vc, animated: true)
             },
-            NavigationTypes.present: { [nav] vc in
+            NavigationType.present: { [nav] vc in
                 nav?.present(vc, animated: true, completion: nil)
             },
-            NavigationTypes.present: { [nav] vc in
+            NavigationType.replace: { [nav] vc in
                 nav?.visibleViewController?.hero.replaceViewController(with: vc)
             },
         ]
     }
     
-    func navigate(to viewController: UIViewController, using type: NavigationTypes) {
+    func navigate(to viewController: UIViewController, using type: NavigationType) {
         if let function = navigationFunctions[type] {
             function(viewController)
         }

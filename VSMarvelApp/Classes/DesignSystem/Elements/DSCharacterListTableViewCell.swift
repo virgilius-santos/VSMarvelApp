@@ -8,13 +8,13 @@
 
 import UIKit
 
-final class DSCharacterListTableViewCell: UITableViewCell, DSCellStyleable {
+final class DSCharacterListTableViewCell: DynamicView, DSCellStyleable {
     
     let dsLabel = UILabel()
     let dsImageView = UIImageView()
     
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         
         common()
     }
@@ -32,12 +32,12 @@ final class DSCharacterListTableViewCell: UITableViewCell, DSCellStyleable {
     func addCellSubViews() {
         self.addSubview(dsImageView)
         dsImageView.snp.makeConstraints {
-            $0.top.bottom.leading.equalTo(contentView)
+            $0.top.bottom.leading.equalTo(self)
         }
         
         self.addSubview(dsLabel)
         dsLabel.snp.makeConstraints {
-            $0.top.bottom.trailing.equalTo(self.contentView)
+            $0.top.bottom.trailing.equalTo(self.self)
             $0.leading.equalTo(self.dsImageView.snp.trailing)
         }
     }

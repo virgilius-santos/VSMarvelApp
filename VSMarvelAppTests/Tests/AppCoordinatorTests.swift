@@ -10,11 +10,13 @@ import XCTest
 @testable import VSMarvelApp
 
 class VSNavigationControllerSpy: VSNavigationControllerProtocol {
-    
+
     var viewController: UIViewController?
+    var type: NavigationType?
     
-    func navigate(to viewController: UIViewController) {
+    func navigate(to viewController: UIViewController, using type: NavigationType) {
         self.viewController = viewController
+        self.type = type
     }
 }
 
@@ -36,5 +38,6 @@ class AppCoordinatorTests: XCTestCase {
     func testStartCalled() {
         sut.start()
         XCTAssertNotNil(spy.viewController)
+        XCTAssertEqual(spy.type, NavigationType.push)
     }
 }

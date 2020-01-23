@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import YetAnotherAnimationLibrary
 
-final class DSCharacterGridCollectionViewCell: UICollectionViewCell, DSCellStyleable {
+final class DSCharacterGridCollectionViewCell: DynamicView, DSCellStyleable {
     
     let dsLabel = UILabel()
     let dsImageView = UIImageView()
@@ -32,13 +33,13 @@ final class DSCharacterGridCollectionViewCell: UICollectionViewCell, DSCellStyle
     func addCellSubViews() {
         self.addSubview(dsImageView)
         dsImageView.snp.makeConstraints {
-            $0.edges.equalTo(contentView)
+            $0.edges.equalTo(self)
         }
         
         self.addSubview(dsLabel)
         dsLabel.snp.makeConstraints {
-            $0.bottom.leading.trailing.equalTo(self.contentView)
-            $0.top.equalTo(self.contentView).inset(150)
+            $0.bottom.leading.trailing.equalTo(self)
+            $0.top.equalTo(self).inset(150)
         }
     }
 }
