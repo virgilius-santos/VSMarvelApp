@@ -15,13 +15,15 @@ target 'VSMarvelApp' do
       "MarvelPrivateKey"
     ]}
 
-  pod "VService"                , :path => '../VSCommonSwiftLibrary'
-  pod "VCore"                   , :path => '../VSCommonSwiftLibrary'
-  pod "VComponents"             , :path => '../VSCommonSwiftLibrary'
-  pod 'SwiftGen'                , '~> 6.0'
-  pod 'SnapKit'                 , '~> 5.0'
-  pod 'Hero'                    , '~> 1.5'
-
+  pod "VService"                        , :path => '../VSCommonSwiftLibrary'
+  pod "VCore"                           , :path => '../VSCommonSwiftLibrary'
+  pod "VComponents"                     , :path => '../VSCommonSwiftLibrary'
+  pod 'SwiftGen'                        , '~> 6.0'
+  pod 'SnapKit'                         , '~> 5.0'
+  pod 'Hero'                            , '~> 1.5'
+  pod 'CollectionKit'                   , '~> 2.4'
+  pod "CollectionKit/WobbleAnimator"    , '~> 2.4'
+  
   target 'VSMarvelAppTests' do
     inherit! :search_paths
 

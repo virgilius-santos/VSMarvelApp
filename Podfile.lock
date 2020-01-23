@@ -1,4 +1,10 @@
 PODS:
+  - CollectionKit (2.4.0):
+    - CollectionKit/Core (= 2.4.0)
+  - CollectionKit/Core (2.4.0)
+  - CollectionKit/WobbleAnimator (2.4.0):
+    - CollectionKit/Core
+    - YetAnotherAnimationLibrary (~> 1.4.0)
   - Hero (1.5.0)
   - Keys (1.0.1)
   - Kingfisher (5.13.0):
@@ -13,8 +19,11 @@ PODS:
     - Kingfisher (~> 5.0)
     - VCore (~> 0.1)
   - Willow (5.2.1)
+  - YetAnotherAnimationLibrary (1.4.0)
 
 DEPENDENCIES:
+  - CollectionKit (~> 2.4)
+  - CollectionKit/WobbleAnimator (~> 2.4)
   - Hero (~> 1.5)
   - Keys (from `Pods/CocoaPodsKeys`)
   - SnapKit (~> 5.0)
@@ -25,11 +34,13 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
+    - CollectionKit
     - Hero
     - Kingfisher
     - SnapKit
     - SwiftGen
     - Willow
+    - YetAnotherAnimationLibrary
 
 EXTERNAL SOURCES:
   Keys:
@@ -42,6 +53,7 @@ EXTERNAL SOURCES:
     :path: "../VSCommonSwiftLibrary"
 
 SPEC CHECKSUMS:
+  CollectionKit: 8f01e7629185bb81072c4aa734d105df5c2d1c8b
   Hero: b7385b75e7259da62f4f85462f59a5082d66b058
   Keys: a576f4c9c1c641ca913a959a9c62ed3f215a8de9
   Kingfisher: 0d334cada987fcddbe9b5cec516406e1ee9d4748
@@ -51,7 +63,8 @@ SPEC CHECKSUMS:
   VCore: 986a5dc2cc15822beba3c92db59f3cbd59ead267
   VService: 59c4009527f5a4327f787dd7445d8a2a3438e787
   Willow: a6310f9aedcb6f4de8c35b94fd3416a660ae9280
+  YetAnotherAnimationLibrary: 7f808b10c2d193dd3e82407e722fa60aa0bdff2d
 
-PODFILE CHECKSUM: a9ac8239acdd97492dd208146def17b4d3cd5381
+PODFILE CHECKSUM: 995e318c7a41aafda034eca35954f1e3c4725b39
 
 COCOAPODS: 1.8.4
