@@ -19,7 +19,7 @@ final class AppCoordinator {
     
     func start() {
         let vc = ViewController()
-        self.navController.navigate(to: vc)
+        self.navController.navigate(to: vc, using: NavigationTypes.push)
     }
 }
 

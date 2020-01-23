@@ -1,4 +1,5 @@
 PODS:
+  - Hero (1.5.0)
   - Keys (1.0.1)
   - Kingfisher (5.13.0):
     - Kingfisher/Core (= 5.13.0)
@@ -14,6 +15,7 @@ PODS:
   - Willow (5.2.1)
 
 DEPENDENCIES:
+  - Hero (~> 1.5)
   - Keys (from `Pods/CocoaPodsKeys`)
   - SnapKit (~> 5.0)
   - SwiftGen (~> 6.0)
@@ -23,6 +25,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
+    - Hero
     - Kingfisher
     - SnapKit
     - SwiftGen
@@ -39,6 +42,7 @@ EXTERNAL SOURCES:
     :path: "../VSCommonSwiftLibrary"
 
 SPEC CHECKSUMS:
+  Hero: b7385b75e7259da62f4f85462f59a5082d66b058
   Keys: a576f4c9c1c641ca913a959a9c62ed3f215a8de9
   Kingfisher: 0d334cada987fcddbe9b5cec516406e1ee9d4748
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
@@ -48,6 +52,6 @@ SPEC CHECKSUMS:
   VService: 59c4009527f5a4327f787dd7445d8a2a3438e787
   Willow: a6310f9aedcb6f4de8c35b94fd3416a660ae9280
 
-PODFILE CHECKSUM: a8d836b57b624f6133a537fa27a6d452cba7d26a
+PODFILE CHECKSUM: a9ac8239acdd97492dd208146def17b4d3cd5381
 
 COCOAPODS: 1.8.4
