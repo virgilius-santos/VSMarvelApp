@@ -16,7 +16,7 @@ final class DSDetailView: UIView {
     let imageView = UIImageView()
     let descriptionLabel = UILabel()
     
-    func setup() {
+    func setupLayout() {
         
         Scroll: do {
             addSubview(scroll)
@@ -46,13 +46,18 @@ final class DSDetailView: UIView {
         Label: do {
             descriptionLabel.numberOfLines = 0
             descriptionLabel.adjustsFontForContentSizeCategory = true
+            descriptionLabel.font = UIFontMetrics(forTextStyle: UIFont.TextStyle.body)
+                .scaledFont(for: descriptionLabel.font)
             contentView.addSubview(descriptionLabel)
             
             descriptionLabel.snp.makeConstraints {
                 $0.top.equalTo(imageView.snp.bottom).offset(DSSpacing.medium.value)
-                $0.bottom.leading.trailing.equalTo(self.contentView)
+                $0.leading.trailing.equalTo(self.contentView)
+                $0.bottom.lessThanOrEqualTo(self.contentView)
             }
         }
     }
+    
+    
 
 }

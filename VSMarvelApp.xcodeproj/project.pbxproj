@@ -20,6 +20,8 @@
 		18C7001523D7D0AE00F023E6 /* DSCharacterListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7001423D7D0AE00F023E6 /* DSCharacterListTableViewCell.swift */; };
 		18C7001723D7D4C300F023E6 /* DSTableCellStyleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7001623D7D4C300F023E6 /* DSTableCellStyleTests.swift */; };
 		18C7002323DA5E5600F023E6 /* DynamicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7002223DA5E5600F023E6 /* DynamicView.swift */; };
+		18C7002823DA678800F023E6 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7002723DA678800F023E6 /* DetailViewController.swift */; };
+		18C7002A23DA6F7B00F023E6 /* DetailViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7002923DA6F7B00F023E6 /* DetailViewControllerTests.swift */; };
 		18C7FFCD23D52BC700F023E6 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7FFCC23D52BC700F023E6 /* Keys.swift */; };
 		18C7FFD123D5344000F023E6 /* DSColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7FFD023D5344000F023E6 /* DSColor.swift */; };
 		18C7FFD523D5456600F023E6 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7FFD423D5456600F023E6 /* AppCoordinator.swift */; };
@@ -69,6 +71,8 @@
 		18C7001423D7D0AE00F023E6 /* DSCharacterListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSCharacterListTableViewCell.swift; sourceTree = "<group>"; };
 		18C7001623D7D4C300F023E6 /* DSTableCellStyleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSTableCellStyleTests.swift; sourceTree = "<group>"; };
 		18C7002223DA5E5600F023E6 /* DynamicView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicView.swift; sourceTree = "<group>"; };
+		18C7002723DA678800F023E6 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		18C7002923DA6F7B00F023E6 /* DetailViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewControllerTests.swift; sourceTree = "<group>"; };
 		18C7FFCC23D52BC700F023E6 /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		18C7FFD023D5344000F023E6 /* DSColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSColor.swift; sourceTree = "<group>"; };
 		18C7FFD423D5456600F023E6 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
@@ -185,6 +189,7 @@
 		18C7000B23D69AA900F023E6 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				18C7002623DA676D00F023E6 /* Detail */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
@@ -206,6 +211,14 @@
 				18C7FFEF23D66D4800F023E6 /* DSWindowStyle.swift */,
 			);
 			path = Styles;
+			sourceTree = "<group>";
+		};
+		18C7002623DA676D00F023E6 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				18C7002723DA678800F023E6 /* DetailViewController.swift */,
+			);
+			path = Detail;
 			sourceTree = "<group>";
 		};
 		18C7FFCE23D5342300F023E6 /* Classes */ = {
@@ -252,6 +265,7 @@
 			isa = PBXGroup;
 			children = (
 				18C7FFDC23D5483B00F023E6 /* AppCoordinatorTests.swift */,
+				18C7002923DA6F7B00F023E6 /* DetailViewControllerTests.swift */,
 				18C7000523D67DB000F023E6 /* DSCollectionCellStyleTests.swift */,
 				18C7000723D6802600F023E6 /* DSNavigationBarTests.swift */,
 				18C7FFDE23D549D100F023E6 /* VSNavigationControllerTests.swift */,
@@ -496,6 +510,7 @@
 				18C7002323DA5E5600F023E6 /* DynamicView.swift in Sources */,
 				18C7FFFA23D673CE00F023E6 /* DSCellStyleable.swift in Sources */,
 				18C7FFF823D6729300F023E6 /* DSNavigationBarProtocol.swift in Sources */,
+				18C7002823DA678800F023E6 /* DetailViewController.swift in Sources */,
 				18C7FFE123D54C8600F023E6 /* DSNavigationBarStyle.swift in Sources */,
 				18C7FFFE23D6751500F023E6 /* DSRadius.swift in Sources */,
 				18C7FFE923D5534300F023E6 /* DSAssets.swift in Sources */,
@@ -516,6 +531,7 @@
 				18C7FFDD23D5483B00F023E6 /* AppCoordinatorTests.swift in Sources */,
 				18C7000823D6802600F023E6 /* DSNavigationBarTests.swift in Sources */,
 				18C7001723D7D4C300F023E6 /* DSTableCellStyleTests.swift in Sources */,
+				18C7002A23DA6F7B00F023E6 /* DetailViewControllerTests.swift in Sources */,
 				18C7000623D67DB000F023E6 /* DSCollectionCellStyleTests.swift in Sources */,
 				18C7000A23D6861C00F023E6 /* DSWindowStyleTests.swift in Sources */,
 			);

@@ -18,7 +18,7 @@ final class AppCoordinator {
     }
     
     func start() {
-        let vc = ViewController()
+        let vc = DetailViewController(viewModel: vmMock)
         self.navController.navigate(to: vc, using: NavigationType.push)
     }
 }
@@ -60,3 +60,7 @@ class ViewController: UIViewController, DSNavigationBarStyleable, DSNavigationBa
         navigationController?.pushViewController(ViewController(), animated: true)
     }
 }
+
+let vmMock = DetailViewModel(title: "Spider-Man",
+                             description: "Bitten by a radioactive spider, high school student Peter Parker gained the speed, strength and powers of a spider. Adopting the name Spider-Man, Peter hoped to start a career using his new abilities. Taught that with great power comes great responsibility, Spidey has vowed to use his powers to help people.",
+                             asset: DSImage.image10)
