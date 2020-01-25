@@ -81,8 +81,6 @@ class ListViewControllerTests: XCTestCase {
     }
     
     func test_viewDidLoad_sizeSource_returnSize() {
-        let view = CellView(frame: CGRect(x: 0, y: 0, width: 600, height: 600))
-        view.layoutIfNeeded()
         let size = sizeSource.size(at: 0, data: dummyCellVM, collectionSize: CGSize.zero)
         XCTAssertEqual(size.width, sut.view.frame.width - 2*DSSpacing.xxSmall.value)
         XCTAssertEqual(size.height, size.width/3)

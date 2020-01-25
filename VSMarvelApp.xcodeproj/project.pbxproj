@@ -405,8 +405,8 @@
 		18FC9BD523DBC502001DA15A /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				18FC9BD623DBC535001DA15A /* GridViewControllerTests.swift */,
 				18C7000523D67DB000F023E6 /* GridViewCellTests.swift */,
+				18FC9BD623DBC535001DA15A /* GridViewControllerTests.swift */,
 				18C7001623D7D4C300F023E6 /* ListViewCellTests.swift */,
 				18FC9BD823DBCEC6001DA15A /* ListViewControllerTests.swift */,
 			);

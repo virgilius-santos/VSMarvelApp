@@ -7,6 +7,7 @@ import XCTest
 class GridViewControllerTests: XCTestCase {
 
     typealias ViewController = GridViewController
+    typealias ViewModel = ViewController.ViewModel
     typealias CellView = ViewController.CellView
     typealias CellViewModel = ViewController.CellViewModel
     typealias BasicProviderData = BasicProvider<CellViewModel, CellView>
@@ -15,13 +16,6 @@ class GridViewControllerTests: XCTestCase {
     var spy: RouterSpy!
     var sut: ViewController!
     
-    override func setUp() {
-        spy = .init()
-        sut = .init(viewModel: GridViewModel(title: "a", router: spy))
-        nav = .init(rootViewController: sut)
-        _ = sut.view
-    }
-
     var provider: BasicProviderData {
         return (sut.collectionView.provider as! BasicProviderData)
     }
@@ -42,16 +36,27 @@ class GridViewControllerTests: XCTestCase {
         return sut.collectionView.hero.modifiers!
     }
     
+    var dummyVM: ViewModel {
+        return GridViewModel(title: "a", router: spy)
+    }
+    
     var dummyCellVM: CellViewModel {
         return GridViewModel.CellViewModel(asset: DSImage.image1,
-                                           name: "a",
+                                           name: "b",
                                            style: DSCellStyle.default)
     }
     
     var dummyDetailVC: DetailViewController {
-        let vm = DetailViewModel(title: "", description: "", asset: DSImage.image1)
+        let vm = DetailViewModel(title: "c", description: "d", asset: DSImage.image1)
         let vc = DetailViewController(viewModel: vm)
         return vc
+    }
+    
+    override func setUp() {
+        spy = .init()
+        sut = .init(viewModel: GridViewModel(title: "a", router: spy))
+        nav = .init(rootViewController: sut)
+        _ = sut.view
     }
     
     override func tearDown() {
@@ -59,77 +64,104 @@ class GridViewControllerTests: XCTestCase {
         sut = nil
     }
 
-    func testProviderMustBeSeted() {
+    func test_viewDidLoad_dataSource_mustBeEmpty() {
+        XCTAssert(dataSource.data.isEmpty)
+    }
+    
+    func test_viewDidLoad_dataSource_dataIdentifier_mustBeCharacterName() {
+        dataSource.data = [dummyCellVM]
+        XCTAssertEqual(dataSource.identifier(at: 0), dummyCellVM.name)
+    }
+    
+    func test_viewDidLoad_viewSource_setup_mustConfigureView() {
+        let view = CellView()
+        viewSource.update(view: view, data: dummyCellVM, index: 0)
+        XCTAssertEqual(view.dsLabel.text, dummyCellVM.name)
+        XCTAssertEqual(view.dsImageView.image, dummyCellVM.asset.image)
+    }
+    
+    func test_viewDidLoad_sizeSource_returnSize() {
+        let size = sizeSource.size(at: 0, data: dummyCellVM, collectionSize: CGSize.zero)
+        XCTAssertEqual(size.width, (sut.view.frame.width / 2) - 2*DSSpacing.xxSmall.value)
+        XCTAssertEqual(size.height, size.width)
+    }
+    
+    func test_viewDidLoad_viewModel_mustBeRequestData() {
+        
+    }
+    
+    func test_viewDidLoad_provider_mustBeSeted() {
         XCTAssertNotNil(sut.collectionView.provider)
     }
     
-    
-    func testSearchBarMustBeSeted() {
+    func test_viewDidLoad_searchBar_mustBeSeted() {
         XCTAssertNotNil(sut.navigationItem.searchController)
         XCTAssertFalse(sut.navigationItem.hidesSearchBarWhenScrolling)
         let search = sut.navigationItem.searchController
         XCTAssertFalse(search!.obscuresBackgroundDuringPresentation)
-        XCTAssertEqual(search?.searchResultsUpdater as? GridViewController, sut)
+        XCTAssertEqual(search?.searchResultsUpdater as? ViewController, sut)
         let searchBar = search?.searchBar
         XCTAssertEqual(searchBar?.placeholder, sut.viewModel.placeholderSearchBar)
         XCTAssertEqual(searchBar?.scopeButtonTitles, sut.viewModel.filterOptionsSearchBar)
     }
     
-    func testRightButtonMustBeSeted() {
+    func test_viewDidLoad_rightButton_mustBeSeted() {
         XCTAssertNotNil(sut.navigationItem.rightBarButtonItem)
     }
     
-    func testTitleMustBeSeted() {
+    func test_viewDidLoad_navTitle_mustBeSeted() {
         XCTAssertEqual(sut.title, "a")
     }
     
-    func testWhenRightButtonTappedMustGoToList() {
+    func test_rightButton_click_goToList() {
         let bt = sut.navigationItem.rightBarButtonItem
         UIApplication.shared.sendAction(bt!.action!,
                                         to: bt!.target, from: self, for: nil)
-
+        
         
         XCTAssertTrue(spy.grid_switchToListSpy!)
     }
     
-    func testWhenCellTappedMustGoToDetail() {
-        let dt = DataSourceMock(data: dummyCellVM)
+    func test_cell_tap_goToDetail() {
+        
+        dataSource.data = [dummyCellVM]
+        
         let bp = BasicProviderData.TapContext(view: .init(),
                                               index: 0,
-                                              dataSource: dt)
-        (sut?.collectionView.provider as? BasicProviderData)?.tapHandler?(bp)
+                                              dataSource: dataSource)
+        provider.tapHandler?(bp)
         XCTAssertEqual(spy?.detail?.title, dummyCellVM.name)
     }
     
-    func testWhenAnimateToOthersViewControllers() {
+    func test_heroWillStartAnimatingTo_noToDetailViewController() {
         sut.heroWillStartAnimatingTo(viewController: UIViewController())
-        XCTAssertEqual(sut.collectionView.hero.modifiers?.count, 1)
-        XCTAssert(sut.collectionView.hero.modifiers?[0] === HeroModifier.cascade)
+        XCTAssertEqual(modifiers.count, 1)
+        XCTAssert(modifiers[0] === HeroModifier.cascade)
     }
     
-    func testWhenAnimateToDetailViewControllers() {
-        let vm = DetailViewModel(title: "", description: "", asset: DSImage.image1)
-        let vc = DetailViewController(viewModel: vm)
-        sut.heroWillStartAnimatingTo(viewController: vc)
-        XCTAssertEqual(sut.collectionView.hero.modifiers?.count, 3)
-        XCTAssert(sut.collectionView.hero.modifiers?[0] === sut.scale)
-        XCTAssert(sut.collectionView.hero.modifiers?[1] === HeroModifier.ignoreSubviewModifiers)
-        XCTAssert(sut.collectionView.hero.modifiers?[2] === HeroModifier.fade)
+    func test_heroWillStartAnimatingTo_toDetailViewController() {
+        sut.heroWillStartAnimatingTo(viewController: dummyDetailVC)
+        XCTAssertEqual(modifiers.count, 3)
+        XCTAssert(modifiers[0] === sut.scale)
+        XCTAssert(modifiers[1] === HeroModifier.ignoreSubviewModifiers)
+        XCTAssert(modifiers[2] === HeroModifier.fade)
     }
     
-    func testWhenAnimateFromOthersViewControllers() {
+    func test_heroWillStartAnimatingFrom_noToDetailViewController() {
         sut.heroWillStartAnimatingFrom(viewController: UIViewController())
-        XCTAssertEqual(sut.collectionView.hero.modifiers?.count, 2)
-        XCTAssert(sut.collectionView.hero.modifiers?[0] === HeroModifier.cascade)
-        XCTAssert(sut.collectionView.hero.modifiers?[1] === sut.delay)
+        XCTAssertEqual(modifiers.count, 2)
+        XCTAssert(modifiers[0] === HeroModifier.cascade)
+        XCTAssert(modifiers[1] === sut.delay)
     }
     
-    func testWhenAnimateFromGridViewControllers() {
-        let vm = DetailViewModel(title: "", description: "", asset: DSImage.image1)
-        let vc = DetailViewController(viewModel: vm)
-        sut.heroWillStartAnimatingFrom(viewController: vc)
-        XCTAssertEqual(sut.collectionView.hero.modifiers?.count, 1)
-        XCTAssert(sut.collectionView.hero.modifiers?[0] === HeroModifier.cascade)
+    func test_heroWillStartAnimatingFrom_toDetailViewController() {
+        sut.heroWillStartAnimatingFrom(viewController: dummyDetailVC)
+        XCTAssertEqual(modifiers.count, 1)
+        XCTAssert(modifiers[0] === HeroModifier.cascade)
+    }
+    
+    func dataMock(index: Int) -> CellViewModel? {
+        return dataSource.data(at: index)
     }
     
     class DataSourceMock: DataSource<CellViewModel> {
