@@ -8,24 +8,34 @@
 
 import UIKit
 import VCore
+import Hero
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, WindowStyleable {
     var window: UIWindow?
-
+    var navController: DSNavigationController?
+    var coordinator: AppCoordinator?
+    
     func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
 
-        let nav = UINavigationController()
-        window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = nav
-        window?.makeKeyAndVisible()
+        Hero.shared.containerColor = DSColor.secondary.uiColor
         
-        apply(style: .default)
+        let nav = UINavigationController()
+        let window = UIWindow(frame: UIScreen.main.bounds)
+        window.rootViewController = nav
+        
+        applyWindow(style: .default, in: window)
 
-        let navController = VSNavigationController(nav: nav)
+        let navController = DSNavigationController(nav: nav)
         let coordinator = AppCoordinator(navController: navController)
+        
+        self.window = window
+        self.navController = navController
+        self.coordinator = coordinator
+        
         coordinator.start()
+        window.makeKeyAndVisible()
         
         return true
     }

@@ -1,10 +1,3 @@
-//
-//  DSWindowStyle.swift
-//  VSMarvelApp
-//
-//  Created by Virgilius Santos on 20/01/20.
-//  Copyright © 2020 Virgilius Santos. All rights reserved.
-//
 
 import UIKit
 import VCore
@@ -19,8 +12,8 @@ struct DSWindowStyle {
 
 extension WindowStyleable where Self: UIApplicationDelegate {
     
-    func apply(style: DSWindowStyle) {
-        window?.backgroundColor = style.backgroundColor.uiColor
-        window?.tintColor = style.tintColor.uiColor
+    func applyWindow(style: DSWindowStyle, in window: UIWindow) {
+        window.backgroundColor = style.backgroundColor.uiColor
+        window.tintColor = style.tintColor.uiColor
     }
 }

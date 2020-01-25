@@ -11,21 +11,29 @@
 		185DC06723D4E3C00083A6D4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185DC06523D4E3C00083A6D4 /* AppDelegate.swift */; };
 		18C7000023D675BE00F023E6 /* DSAlpha.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7FFFF23D675BE00F023E6 /* DSAlpha.swift */; };
 		18C7000223D6768200F023E6 /* DSShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7000123D6768200F023E6 /* DSShadow.swift */; };
-		18C7000623D67DB000F023E6 /* DSCollectionCellStyleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7000523D67DB000F023E6 /* DSCollectionCellStyleTests.swift */; };
+		18C7000623D67DB000F023E6 /* DSCharacterGridCollectionViewCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7000523D67DB000F023E6 /* DSCharacterGridCollectionViewCellTests.swift */; };
 		18C7000823D6802600F023E6 /* DSNavigationBarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7000723D6802600F023E6 /* DSNavigationBarTests.swift */; };
-		18C7000A23D6861C00F023E6 /* DSWindowStyleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7000923D6861C00F023E6 /* DSWindowStyleTests.swift */; };
 		18C7000D23D69EEB00F023E6 /* DSDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7000C23D69EEB00F023E6 /* DSDetailView.swift */; };
 		18C7000F23D6A38200F023E6 /* DSSpacing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7000E23D6A38200F023E6 /* DSSpacing.swift */; };
 		18C7001323D7D09000F023E6 /* DSCharacterGridCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7001223D7D09000F023E6 /* DSCharacterGridCollectionViewCell.swift */; };
 		18C7001523D7D0AE00F023E6 /* DSCharacterListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7001423D7D0AE00F023E6 /* DSCharacterListTableViewCell.swift */; };
-		18C7001723D7D4C300F023E6 /* DSTableCellStyleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7001623D7D4C300F023E6 /* DSTableCellStyleTests.swift */; };
-		18C7002323DA5E5600F023E6 /* DynamicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7002223DA5E5600F023E6 /* DynamicView.swift */; };
+		18C7001723D7D4C300F023E6 /* DSCharacterListTableViewCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7001623D7D4C300F023E6 /* DSCharacterListTableViewCellTests.swift */; };
+		18C7002323DA5E5600F023E6 /* DSDynamicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7002223DA5E5600F023E6 /* DSDynamicView.swift */; };
+		18C7002523DA64A000F023E6 /* DSCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7002423DA64A000F023E6 /* DSCollectionViewController.swift */; };
 		18C7002823DA678800F023E6 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7002723DA678800F023E6 /* DetailViewController.swift */; };
 		18C7002A23DA6F7B00F023E6 /* DetailViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7002923DA6F7B00F023E6 /* DetailViewControllerTests.swift */; };
+		18C7002C23DA710000F023E6 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7002B23DA710000F023E6 /* DetailViewModel.swift */; };
+		18C7002E23DA712500F023E6 /* DetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7002D23DA712500F023E6 /* DetailCoordinator.swift */; };
+		18C7003123DA7C3900F023E6 /* DSGridViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7003023DA7C3900F023E6 /* DSGridViewController.swift */; };
+		18C7003323DA7C7400F023E6 /* GridViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7003223DA7C7400F023E6 /* GridViewModel.swift */; };
+		18C7003523DADFD200F023E6 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7003423DADFD200F023E6 /* ListViewController.swift */; };
+		18C7003723DADFF800F023E6 /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7003623DADFF800F023E6 /* ListViewModel.swift */; };
+		18C7003923DAE9D000F023E6 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7003823DAE9D000F023E6 /* MainCoordinator.swift */; };
+		18C7004223DBA0AE00F023E6 /* AppDelegateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7004123DBA0AE00F023E6 /* AppDelegateTests.swift */; };
 		18C7FFCD23D52BC700F023E6 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7FFCC23D52BC700F023E6 /* Keys.swift */; };
 		18C7FFD123D5344000F023E6 /* DSColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7FFD023D5344000F023E6 /* DSColor.swift */; };
 		18C7FFD523D5456600F023E6 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7FFD423D5456600F023E6 /* AppCoordinator.swift */; };
-		18C7FFDA23D5472600F023E6 /* VSNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7FFD923D5472600F023E6 /* VSNavigationController.swift */; };
+		18C7FFDA23D5472600F023E6 /* DSNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7FFD923D5472600F023E6 /* DSNavigationController.swift */; };
 		18C7FFDD23D5483B00F023E6 /* AppCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7FFDC23D5483B00F023E6 /* AppCoordinatorTests.swift */; };
 		18C7FFDF23D549D100F023E6 /* VSNavigationControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7FFDE23D549D100F023E6 /* VSNavigationControllerTests.swift */; };
 		18C7FFE123D54C8600F023E6 /* DSNavigationBarStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7FFE023D54C8600F023E6 /* DSNavigationBarStyle.swift */; };
@@ -38,6 +46,16 @@
 		18C7FFFA23D673CE00F023E6 /* DSCellStyleable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7FFF923D673CE00F023E6 /* DSCellStyleable.swift */; };
 		18C7FFFC23D6747B00F023E6 /* DSCellStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7FFFB23D6747B00F023E6 /* DSCellStyle.swift */; };
 		18C7FFFE23D6751500F023E6 /* DSRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7FFFD23D6751500F023E6 /* DSRadius.swift */; };
+		18FC9BCE23DBA20F001DA15A /* DSWindowStyleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FC9BCD23DBA20F001DA15A /* DSWindowStyleTests.swift */; };
+		18FC9BD023DBA906001DA15A /* VSCollectionViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FC9BCF23DBA906001DA15A /* VSCollectionViewControllerTests.swift */; };
+		18FC9BD223DBB118001DA15A /* DSDetailViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FC9BD123DBB118001DA15A /* DSDetailViewTests.swift */; };
+		18FC9BD423DBB851001DA15A /* MainCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FC9BD323DBB851001DA15A /* MainCoordinatorTests.swift */; };
+		18FC9BD723DBC535001DA15A /* GridViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FC9BD623DBC535001DA15A /* GridViewControllerTests.swift */; };
+		18FC9BD923DBCEC6001DA15A /* ListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FC9BD823DBCEC6001DA15A /* ListViewControllerTests.swift */; };
+		18FC9BDC23DC16E6001DA15A /* AppRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FC9BDB23DC16E6001DA15A /* AppRepository.swift */; };
+		18FC9BDE23DC1786001DA15A /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FC9BDD23DC1786001DA15A /* Character.swift */; };
+		18FC9BE023DC192B001DA15A /* ThumbImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FC9BDF23DC192B001DA15A /* ThumbImage.swift */; };
+		18FC9BE323DCBBDF001DA15A /* DSCharactersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FC9BE223DCBBDE001DA15A /* DSCharactersViewModel.swift */; };
 		485FB88BFC6634C87893486C /* Pods_VSMarvelAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89DBFCB564074F40733B77E8 /* Pods_VSMarvelAppTests.framework */; };
 		B5C3899D6AA5BC904857501E /* Pods_VSMarvelApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 609FDEDC29ECFD1B55051F78 /* Pods_VSMarvelApp.framework */; };
 /* End PBXBuildFile section */
@@ -62,21 +80,29 @@
 		185DC06423D4E3C00083A6D4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		185DC06523D4E3C00083A6D4 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18C7000123D6768200F023E6 /* DSShadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSShadow.swift; sourceTree = "<group>"; };
-		18C7000523D67DB000F023E6 /* DSCollectionCellStyleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSCollectionCellStyleTests.swift; sourceTree = "<group>"; };
+		18C7000523D67DB000F023E6 /* DSCharacterGridCollectionViewCellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSCharacterGridCollectionViewCellTests.swift; sourceTree = "<group>"; };
 		18C7000723D6802600F023E6 /* DSNavigationBarTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSNavigationBarTests.swift; sourceTree = "<group>"; };
-		18C7000923D6861C00F023E6 /* DSWindowStyleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSWindowStyleTests.swift; sourceTree = "<group>"; };
 		18C7000C23D69EEB00F023E6 /* DSDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSDetailView.swift; sourceTree = "<group>"; };
 		18C7000E23D6A38200F023E6 /* DSSpacing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSSpacing.swift; sourceTree = "<group>"; };
 		18C7001223D7D09000F023E6 /* DSCharacterGridCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSCharacterGridCollectionViewCell.swift; sourceTree = "<group>"; };
 		18C7001423D7D0AE00F023E6 /* DSCharacterListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSCharacterListTableViewCell.swift; sourceTree = "<group>"; };
-		18C7001623D7D4C300F023E6 /* DSTableCellStyleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSTableCellStyleTests.swift; sourceTree = "<group>"; };
-		18C7002223DA5E5600F023E6 /* DynamicView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicView.swift; sourceTree = "<group>"; };
+		18C7001623D7D4C300F023E6 /* DSCharacterListTableViewCellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSCharacterListTableViewCellTests.swift; sourceTree = "<group>"; };
+		18C7002223DA5E5600F023E6 /* DSDynamicView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSDynamicView.swift; sourceTree = "<group>"; };
+		18C7002423DA64A000F023E6 /* DSCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSCollectionViewController.swift; sourceTree = "<group>"; };
 		18C7002723DA678800F023E6 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		18C7002923DA6F7B00F023E6 /* DetailViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewControllerTests.swift; sourceTree = "<group>"; };
+		18C7002B23DA710000F023E6 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
+		18C7002D23DA712500F023E6 /* DetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCoordinator.swift; sourceTree = "<group>"; };
+		18C7003023DA7C3900F023E6 /* DSGridViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSGridViewController.swift; sourceTree = "<group>"; };
+		18C7003223DA7C7400F023E6 /* GridViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridViewModel.swift; sourceTree = "<group>"; };
+		18C7003423DADFD200F023E6 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
+		18C7003623DADFF800F023E6 /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
+		18C7003823DAE9D000F023E6 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
+		18C7004123DBA0AE00F023E6 /* AppDelegateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegateTests.swift; sourceTree = "<group>"; };
 		18C7FFCC23D52BC700F023E6 /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		18C7FFD023D5344000F023E6 /* DSColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSColor.swift; sourceTree = "<group>"; };
 		18C7FFD423D5456600F023E6 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
-		18C7FFD923D5472600F023E6 /* VSNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VSNavigationController.swift; sourceTree = "<group>"; };
+		18C7FFD923D5472600F023E6 /* DSNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSNavigationController.swift; sourceTree = "<group>"; };
 		18C7FFDC23D5483B00F023E6 /* AppCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinatorTests.swift; sourceTree = "<group>"; };
 		18C7FFDE23D549D100F023E6 /* VSNavigationControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VSNavigationControllerTests.swift; sourceTree = "<group>"; };
 		18C7FFE023D54C8600F023E6 /* DSNavigationBarStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSNavigationBarStyle.swift; sourceTree = "<group>"; };
@@ -89,6 +115,16 @@
 		18C7FFFB23D6747B00F023E6 /* DSCellStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSCellStyle.swift; sourceTree = "<group>"; };
 		18C7FFFD23D6751500F023E6 /* DSRadius.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSRadius.swift; sourceTree = "<group>"; };
 		18C7FFFF23D675BE00F023E6 /* DSAlpha.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSAlpha.swift; sourceTree = "<group>"; };
+		18FC9BCD23DBA20F001DA15A /* DSWindowStyleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DSWindowStyleTests.swift; sourceTree = "<group>"; };
+		18FC9BCF23DBA906001DA15A /* VSCollectionViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VSCollectionViewControllerTests.swift; sourceTree = "<group>"; };
+		18FC9BD123DBB118001DA15A /* DSDetailViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSDetailViewTests.swift; sourceTree = "<group>"; };
+		18FC9BD323DBB851001DA15A /* MainCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinatorTests.swift; sourceTree = "<group>"; };
+		18FC9BD623DBC535001DA15A /* GridViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridViewControllerTests.swift; sourceTree = "<group>"; };
+		18FC9BD823DBCEC6001DA15A /* ListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewControllerTests.swift; sourceTree = "<group>"; };
+		18FC9BDB23DC16E6001DA15A /* AppRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRepository.swift; sourceTree = "<group>"; };
+		18FC9BDD23DC1786001DA15A /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
+		18FC9BDF23DC192B001DA15A /* ThumbImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbImage.swift; sourceTree = "<group>"; };
+		18FC9BE223DCBBDE001DA15A /* DSCharactersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSCharactersViewModel.swift; sourceTree = "<group>"; };
 		31EA8AAB2974F923412E9F5C /* Pods-VSMarvelAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VSMarvelAppTests.release.xcconfig"; path = "Target Support Files/Pods-VSMarvelAppTests/Pods-VSMarvelAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		441E33463AAB819154AC69C1 /* Pods-VSMarvelAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VSMarvelAppTests.debug.xcconfig"; path = "Target Support Files/Pods-VSMarvelAppTests/Pods-VSMarvelAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5DCBA6A0F1E907DDF6B88B63 /* Pods-VSMarvelApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VSMarvelApp.release.xcconfig"; path = "Target Support Files/Pods-VSMarvelApp/Pods-VSMarvelApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -160,10 +196,10 @@
 		185DC06223D4E2B00083A6D4 /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				18C7FFD423D5456600F023E6 /* AppCoordinator.swift */,
 				185DC06523D4E3C00083A6D4 /* AppDelegate.swift */,
 				185DC06423D4E3C00083A6D4 /* Info.plist */,
 				18C7FFCC23D52BC700F023E6 /* Keys.swift */,
-				18C7FFD423D5456600F023E6 /* AppCoordinator.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -190,6 +226,8 @@
 			isa = PBXGroup;
 			children = (
 				18C7002623DA676D00F023E6 /* Detail */,
+				18C7002F23DA7C0A00F023E6 /* Main */,
+				18C7003823DAE9D000F023E6 /* MainCoordinator.swift */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
@@ -216,16 +254,97 @@
 		18C7002623DA676D00F023E6 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
+				18C7002D23DA712500F023E6 /* DetailCoordinator.swift */,
 				18C7002723DA678800F023E6 /* DetailViewController.swift */,
+				18C7002B23DA710000F023E6 /* DetailViewModel.swift */,
 			);
 			path = Detail;
+			sourceTree = "<group>";
+		};
+		18C7002F23DA7C0A00F023E6 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				18C7003023DA7C3900F023E6 /* DSGridViewController.swift */,
+				18C7001223D7D09000F023E6 /* DSCharacterGridCollectionViewCell.swift */,
+				18C7003223DA7C7400F023E6 /* GridViewModel.swift */,
+				18C7003423DADFD200F023E6 /* ListViewController.swift */,
+				18C7001423D7D0AE00F023E6 /* DSCharacterListTableViewCell.swift */,
+				18C7003623DADFF800F023E6 /* ListViewModel.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		18C7003A23DB9EEA00F023E6 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				18C7FFDC23D5483B00F023E6 /* AppCoordinatorTests.swift */,
+				18C7004123DBA0AE00F023E6 /* AppDelegateTests.swift */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		18C7003B23DB9F2700F023E6 /* Styles */ = {
+			isa = PBXGroup;
+			children = (
+				18C7000723D6802600F023E6 /* DSNavigationBarTests.swift */,
+				18FC9BCD23DBA20F001DA15A /* DSWindowStyleTests.swift */,
+			);
+			path = Styles;
+			sourceTree = "<group>";
+		};
+		18C7003C23DB9F5300F023E6 /* Scene */ = {
+			isa = PBXGroup;
+			children = (
+				18C7003D23DB9F5A00F023E6 /* Detail */,
+				18FC9BD523DBC502001DA15A /* Main */,
+				18FC9BD323DBB851001DA15A /* MainCoordinatorTests.swift */,
+			);
+			path = Scene;
+			sourceTree = "<group>";
+		};
+		18C7003D23DB9F5A00F023E6 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				18C7002923DA6F7B00F023E6 /* DetailViewControllerTests.swift */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		18C7003E23DB9FA200F023E6 /* Elements */ = {
+			isa = PBXGroup;
+			children = (
+				18C7001623D7D4C300F023E6 /* DSCharacterListTableViewCellTests.swift */,
+				18C7000523D67DB000F023E6 /* DSCharacterGridCollectionViewCellTests.swift */,
+				18FC9BD123DBB118001DA15A /* DSDetailViewTests.swift */,
+			);
+			path = Elements;
+			sourceTree = "<group>";
+		};
+		18C7003F23DBA00A00F023E6 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				18FC9BCF23DBA906001DA15A /* VSCollectionViewControllerTests.swift */,
+				18C7FFDE23D549D100F023E6 /* VSNavigationControllerTests.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		18C7004023DBA05000F023E6 /* DesignSystem */ = {
+			isa = PBXGroup;
+			children = (
+				18C7003F23DBA00A00F023E6 /* Components */,
+				18C7003E23DB9FA200F023E6 /* Elements */,
+				18C7003B23DB9F2700F023E6 /* Styles */,
+			);
+			path = DesignSystem;
 			sourceTree = "<group>";
 		};
 		18C7FFCE23D5342300F023E6 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				18C7000B23D69AA900F023E6 /* Scene */,
 				18C7FFCF23D5342B00F023E6 /* DesignSystem */,
+				18FC9BDA23DC16C3001DA15A /* Repository */,
+				18C7000B23D69AA900F023E6 /* Scene */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -233,11 +352,11 @@
 		18C7FFCF23D5342B00F023E6 /* DesignSystem */ = {
 			isa = PBXGroup;
 			children = (
-				18C7001123D7CF5B00F023E6 /* Styles */,
-				18C7001023D7CF3100F023E6 /* Protocols */,
-				18C7FFE223D5502A00F023E6 /* Tokens */,
 				18C7FFD723D546F600F023E6 /* Components */,
 				18C7FFD623D546E900F023E6 /* Elements */,
+				18C7001023D7CF3100F023E6 /* Protocols */,
+				18C7001123D7CF5B00F023E6 /* Styles */,
+				18C7FFE223D5502A00F023E6 /* Tokens */,
 			);
 			path = DesignSystem;
 			sourceTree = "<group>";
@@ -246,8 +365,6 @@
 			isa = PBXGroup;
 			children = (
 				18C7000C23D69EEB00F023E6 /* DSDetailView.swift */,
-				18C7001223D7D09000F023E6 /* DSCharacterGridCollectionViewCell.swift */,
-				18C7001423D7D0AE00F023E6 /* DSCharacterListTableViewCell.swift */,
 			);
 			path = Elements;
 			sourceTree = "<group>";
@@ -255,8 +372,9 @@
 		18C7FFD723D546F600F023E6 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				18C7002223DA5E5600F023E6 /* DynamicView.swift */,
-				18C7FFD923D5472600F023E6 /* VSNavigationController.swift */,
+				18C7002423DA64A000F023E6 /* DSCollectionViewController.swift */,
+				18C7002223DA5E5600F023E6 /* DSDynamicView.swift */,
+				18C7FFD923D5472600F023E6 /* DSNavigationController.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -264,13 +382,9 @@
 		18C7FFDB23D5480D00F023E6 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				18C7FFDC23D5483B00F023E6 /* AppCoordinatorTests.swift */,
-				18C7002923DA6F7B00F023E6 /* DetailViewControllerTests.swift */,
-				18C7000523D67DB000F023E6 /* DSCollectionCellStyleTests.swift */,
-				18C7000723D6802600F023E6 /* DSNavigationBarTests.swift */,
-				18C7FFDE23D549D100F023E6 /* VSNavigationControllerTests.swift */,
-				18C7001623D7D4C300F023E6 /* DSTableCellStyleTests.swift */,
-				18C7000923D6861C00F023E6 /* DSWindowStyleTests.swift */,
+				18C7004023DBA05000F023E6 /* DesignSystem */,
+				18C7003C23DB9F5300F023E6 /* Scene */,
+				18C7003A23DB9EEA00F023E6 /* Support */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -287,6 +401,34 @@
 				18C7000E23D6A38200F023E6 /* DSSpacing.swift */,
 			);
 			path = Tokens;
+			sourceTree = "<group>";
+		};
+		18FC9BD523DBC502001DA15A /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				18FC9BD623DBC535001DA15A /* GridViewControllerTests.swift */,
+				18FC9BD823DBCEC6001DA15A /* ListViewControllerTests.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		18FC9BDA23DC16C3001DA15A /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				18FC9BDB23DC16E6001DA15A /* AppRepository.swift */,
+				18FC9BE123DC1937001DA15A /* Models */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		18FC9BE123DC1937001DA15A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				18FC9BE223DCBBDE001DA15A /* DSCharactersViewModel.swift */,
+				18FC9BDD23DC1786001DA15A /* Character.swift */,
+				18FC9BDF23DC192B001DA15A /* ThumbImage.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		663C01F0FA6BC0FDBE2F5ADD /* Pods */ = {
@@ -342,6 +484,7 @@
 				185DC04F23D4E02D0083A6D4 /* Sources */,
 				185DC05023D4E02D0083A6D4 /* Frameworks */,
 				185DC05123D4E02D0083A6D4 /* Resources */,
+				251ABC4F082E011301B4573F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -431,6 +574,23 @@
 			shellPath = /bin/sh;
 			shellScript = "$PODS_ROOT/SwiftGen/bin/swiftgen\n";
 		};
+		251ABC4F082E011301B4573F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-VSMarvelAppTests/Pods-VSMarvelAppTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-VSMarvelAppTests/Pods-VSMarvelAppTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-VSMarvelAppTests/Pods-VSMarvelAppTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		2DFF1F00473CF45CA59D66AF /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -499,25 +659,37 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18FC9BE323DCBBDF001DA15A /* DSCharactersViewModel.swift in Sources */,
 				18C7000223D6768200F023E6 /* DSShadow.swift in Sources */,
+				18FC9BDE23DC1786001DA15A /* Character.swift in Sources */,
 				18C7FFFC23D6747B00F023E6 /* DSCellStyle.swift in Sources */,
+				18C7003723DADFF800F023E6 /* ListViewModel.swift in Sources */,
 				18C7000F23D6A38200F023E6 /* DSSpacing.swift in Sources */,
 				18C7000D23D69EEB00F023E6 /* DSDetailView.swift in Sources */,
 				18C7000023D675BE00F023E6 /* DSAlpha.swift in Sources */,
-				18C7FFDA23D5472600F023E6 /* VSNavigationController.swift in Sources */,
+				18C7003523DADFD200F023E6 /* ListViewController.swift in Sources */,
+				18C7FFDA23D5472600F023E6 /* DSNavigationController.swift in Sources */,
+				18C7003123DA7C3900F023E6 /* DSGridViewController.swift in Sources */,
 				18C7001523D7D0AE00F023E6 /* DSCharacterListTableViewCell.swift in Sources */,
 				18C7FFF023D66D4800F023E6 /* DSWindowStyle.swift in Sources */,
-				18C7002323DA5E5600F023E6 /* DynamicView.swift in Sources */,
+				18C7002323DA5E5600F023E6 /* DSDynamicView.swift in Sources */,
+				18C7003923DAE9D000F023E6 /* MainCoordinator.swift in Sources */,
+				18FC9BE023DC192B001DA15A /* ThumbImage.swift in Sources */,
+				18C7002E23DA712500F023E6 /* DetailCoordinator.swift in Sources */,
 				18C7FFFA23D673CE00F023E6 /* DSCellStyleable.swift in Sources */,
 				18C7FFF823D6729300F023E6 /* DSNavigationBarProtocol.swift in Sources */,
+				18C7002C23DA710000F023E6 /* DetailViewModel.swift in Sources */,
 				18C7002823DA678800F023E6 /* DetailViewController.swift in Sources */,
 				18C7FFE123D54C8600F023E6 /* DSNavigationBarStyle.swift in Sources */,
+				18FC9BDC23DC16E6001DA15A /* AppRepository.swift in Sources */,
 				18C7FFFE23D6751500F023E6 /* DSRadius.swift in Sources */,
 				18C7FFE923D5534300F023E6 /* DSAssets.swift in Sources */,
 				18C7FFD523D5456600F023E6 /* AppCoordinator.swift in Sources */,
 				185DC06723D4E3C00083A6D4 /* AppDelegate.swift in Sources */,
+				18C7003323DA7C7400F023E6 /* GridViewModel.swift in Sources */,
 				18C7001323D7D09000F023E6 /* DSCharacterGridCollectionViewCell.swift in Sources */,
 				18C7FFCD23D52BC700F023E6 /* Keys.swift in Sources */,
+				18C7002523DA64A000F023E6 /* DSCollectionViewController.swift in Sources */,
 				18C7FFD123D5344000F023E6 /* DSColor.swift in Sources */,
 				18C7FFEB23D553E300F023E6 /* DSIcon.swift in Sources */,
 			);
@@ -527,13 +699,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18FC9BD223DBB118001DA15A /* DSDetailViewTests.swift in Sources */,
+				18FC9BD423DBB851001DA15A /* MainCoordinatorTests.swift in Sources */,
+				18C7004223DBA0AE00F023E6 /* AppDelegateTests.swift in Sources */,
+				18FC9BD023DBA906001DA15A /* VSCollectionViewControllerTests.swift in Sources */,
+				18FC9BD723DBC535001DA15A /* GridViewControllerTests.swift in Sources */,
 				18C7FFDF23D549D100F023E6 /* VSNavigationControllerTests.swift in Sources */,
 				18C7FFDD23D5483B00F023E6 /* AppCoordinatorTests.swift in Sources */,
 				18C7000823D6802600F023E6 /* DSNavigationBarTests.swift in Sources */,
-				18C7001723D7D4C300F023E6 /* DSTableCellStyleTests.swift in Sources */,
+				18C7001723D7D4C300F023E6 /* DSCharacterListTableViewCellTests.swift in Sources */,
+				18FC9BD923DBCEC6001DA15A /* ListViewControllerTests.swift in Sources */,
 				18C7002A23DA6F7B00F023E6 /* DetailViewControllerTests.swift in Sources */,
-				18C7000623D67DB000F023E6 /* DSCollectionCellStyleTests.swift in Sources */,
-				18C7000A23D6861C00F023E6 /* DSWindowStyleTests.swift in Sources */,
+				18FC9BCE23DBA20F001DA15A /* DSWindowStyleTests.swift in Sources */,
+				18C7000623D67DB000F023E6 /* DSCharacterGridCollectionViewCellTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -720,7 +898,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 441E33463AAB819154AC69C1 /* Pods-VSMarvelAppTests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KR99UBUHUT;
@@ -743,7 +921,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 31EA8AAB2974F923412E9F5C /* Pods-VSMarvelAppTests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KR99UBUHUT;

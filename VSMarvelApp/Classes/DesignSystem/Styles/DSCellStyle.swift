@@ -1,10 +1,3 @@
-//
-//  DSCellStyle.swift
-//  VSMarvelApp
-//
-//  Created by Virgilius Santos on 20/01/20.
-//  Copyright © 2020 Virgilius Santos. All rights reserved.
-//
 
 import UIKit
 
@@ -39,6 +32,7 @@ extension DSCellStyleable where Self: DSCharacterGridCollectionViewCell {
     }
     
     func apply(style: DSCellStyle, in label: UILabel) {
+        dsLabel.textAlignment = NSTextAlignment.center
         dsLabel.tintColor = style.titleColor.uiColor
         dsLabel.backgroundColor = style.titleBackgroundColor
             .uiColor

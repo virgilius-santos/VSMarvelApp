@@ -1,18 +1,6 @@
-//
-//  DetailViewController.swift
-//  VSMarvelApp
-//
-//  Created by Virgilius Santos on 23/01/20.
-//  Copyright © 2020 Virgilius Santos. All rights reserved.
-//
 
 import UIKit
-
-struct DetailViewModel {
-    let title: String
-    let description: String
-    let asset: DSAsset
-}
+import VCore
 
 class DetailViewController: UIViewController {
     
@@ -30,6 +18,10 @@ class DetailViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    deinit {
+        logger.info("fuii", String(describing: Self.self))
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -43,9 +35,7 @@ class DetailViewController: UIViewController {
         
         Data: do {
             title = viewModel.title
-            detailView.descriptionLabel.text = viewModel.description
-            detailView.imageView.image = viewModel.asset.image
-            detailView.imageView.heroID = viewModel.asset.name
+            detailView.setup(viewModel: viewModel)
         }
     }
 }

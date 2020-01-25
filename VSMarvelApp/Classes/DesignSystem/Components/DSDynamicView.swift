@@ -3,7 +3,7 @@ import UIKit
 
 let kTiltAnimationVelocityListenerIdentifier = "kTiltAnimationVelocityListenerIdentifier"
 
-open class DynamicView: UIView {
+open class DSDynamicView: UIView {
     open var tapAnimation = true
     
     open var tiltAnimation = false {

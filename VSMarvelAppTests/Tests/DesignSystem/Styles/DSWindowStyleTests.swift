@@ -12,24 +12,28 @@ import XCTest
 
 class DSWindowStyleTests: XCTestCase {
 
-    var sut: WindowStyleSpy!
+    var appDelegate: AppDelegate!
+    var sut: UIWindow!
     
     override func setUp() {
+        appDelegate = .init()
         sut = .init()
     }
 
     override func tearDown() {
         sut = nil
+        appDelegate = nil
     }
 
     func testApplyStyle() {
-        sut.apply(style: DSWindowStyle.default)
         
-        XCTAssertEqual(sut.window?.tintColor, Asset.Colors.text.color)
-        XCTAssertEqual(sut.window?.backgroundColor, Asset.Colors.secondary.color)
+        appDelegate.applyWindow(style: DSWindowStyle.default, in: sut)
+        
+        XCTAssertEqual(sut.tintColor, Asset.Colors.text.color)
+        XCTAssertEqual(sut.backgroundColor, Asset.Colors.secondary.color)
     }
 
-    class WindowStyleSpy: NSObject, UIApplicationDelegate, WindowStyleable {
+    class AppDelegate: NSObject, UIApplicationDelegate, WindowStyleable {
         var window: UIWindow? = .init(frame: .zero)
     }
 }

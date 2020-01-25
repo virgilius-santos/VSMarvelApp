@@ -1,10 +1,3 @@
-//
-//  DSColor.swift
-//  VSMarvelApp
-//
-//  Created by Virgilius Santos on 19/01/20.
-//  Copyright © 2020 Virgilius Santos. All rights reserved.
-//
 
 import UIKit
 import VCore

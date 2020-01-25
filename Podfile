@@ -18,17 +18,23 @@ target 'VSMarvelApp' do
   pod "VService"                        , :path => '../VSCommonSwiftLibrary'
   pod "VCore"                           , :path => '../VSCommonSwiftLibrary'
   pod "VComponents"                     , :path => '../VSCommonSwiftLibrary'
-  pod 'SwiftGen'                        , '~> 6.0'
-  pod 'SnapKit'                         , '~> 5.0'
-  pod 'Hero'                            , '~> 1.5'
-  pod 'CollectionKit'                   , '~> 2.4'
-  pod "CollectionKit/WobbleAnimator"    , '~> 2.4'
+  pod 'SwiftGen'                        , '~> 6.0', :inhibit_warnings => true
+  pod 'SnapKit'                         , '~> 5.0', :inhibit_warnings => true
+  pod 'Hero'                            , '~> 1.5', :inhibit_warnings => true
+  pod 'CollectionKit'                   , '~> 2.4', :inhibit_warnings => true
+  pod "CollectionKit/WobbleAnimator"    , '~> 2.4', :inhibit_warnings => true
+  pod "YetAnotherAnimationLibrary"      , :inhibit_warnings => true
+  
+  pod 'RxSwift'                         , '~> 5.0', :inhibit_warnings => true
+  pod 'RxRelay'                         , :inhibit_warnings => true
+  pod 'RxCocoa'                         , '~> 5.0', :inhibit_warnings => true
   
   target 'VSMarvelAppTests' do
     inherit! :search_paths
 
+    pod 'RxTest'                        , '~> 5.0', :inhibit_warnings => true
+    pod 'RxBlocking'                    , '~> 5.0', :inhibit_warnings => true
   end
-
 end
 
 post_install do |installer|

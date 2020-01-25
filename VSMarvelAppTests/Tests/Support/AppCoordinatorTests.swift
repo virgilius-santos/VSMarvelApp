@@ -1,7 +1,4 @@
-//
-//  AppCoordinatorTests.swift
-//  VSMarvelAppTests
-//
+
 //  Created by Virgilius Santos on 19/01/20.
 //  Copyright © 2020 Virgilius Santos. All rights reserved.
 //
@@ -9,12 +6,12 @@
 import XCTest
 @testable import VSMarvelApp
 
-class VSNavigationControllerSpy: VSNavigationControllerProtocol {
+class DSNavigationControllerSpy: DSNavigationControllerProtocol {
 
     var viewController: UIViewController?
-    var type: NavigationType?
+    var type: DSNavigationType?
     
-    func navigate(to viewController: UIViewController, using type: NavigationType) {
+    func navigate(to viewController: UIViewController, using type: DSNavigationType) {
         self.viewController = viewController
         self.type = type
     }
@@ -23,10 +20,10 @@ class VSNavigationControllerSpy: VSNavigationControllerProtocol {
 class AppCoordinatorTests: XCTestCase {
 
     var sut: AppCoordinator!
-    var spy: VSNavigationControllerSpy!
+    var spy: DSNavigationControllerSpy!
     
     override func setUp() {
-        spy = VSNavigationControllerSpy()
+        spy = DSNavigationControllerSpy()
         sut = AppCoordinator(navController: spy)
     }
 
@@ -38,6 +35,6 @@ class AppCoordinatorTests: XCTestCase {
     func testStartCalled() {
         sut.start()
         XCTAssertNotNil(spy.viewController)
-        XCTAssertEqual(spy.type, NavigationType.push)
+        XCTAssertEqual(spy.type, DSNavigationType.push)
     }
 }

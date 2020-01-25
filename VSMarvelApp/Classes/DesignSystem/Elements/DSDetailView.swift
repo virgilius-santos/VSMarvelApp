@@ -1,10 +1,3 @@
-//
-//  DSDetailView.swift
-//  VSMarvelApp
-//
-//  Created by Virgilius Santos on 20/01/20.
-//  Copyright © 2020 Virgilius Santos. All rights reserved.
-//
 
 import UIKit
 import SnapKit
@@ -58,6 +51,9 @@ final class DSDetailView: UIView {
         }
     }
     
-    
-
+    func setup(viewModel: DetailViewModel) {
+        descriptionLabel.text = viewModel.description
+        imageView.image = viewModel.asset.image
+        imageView.heroID = viewModel.asset.name
+    }
 }

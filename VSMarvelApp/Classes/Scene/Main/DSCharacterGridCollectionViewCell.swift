@@ -1,14 +1,9 @@
-//
-//  CharacterListTableViewCell.swift
-//  VSMarvelApp
-//
-//  Created by Virgilius Santos on 21/01/20.
-//  Copyright © 2020 Virgilius Santos. All rights reserved.
-//
 
 import UIKit
 
-final class DSCharacterListTableViewCell: DynamicView, DSCellStyleable {
+final class DSCharacterGridCollectionViewCell: DSDynamicView, DSCellStyleable {
+    
+    typealias ViewModelCell = DSCharacterViewModel
     
     let dsLabel = UILabel()
     let dsImageView = UIImageView()
@@ -32,13 +27,19 @@ final class DSCharacterListTableViewCell: DynamicView, DSCellStyleable {
     func addCellSubViews() {
         self.addSubview(dsImageView)
         dsImageView.snp.makeConstraints {
-            $0.top.bottom.leading.equalTo(self)
+            $0.edges.equalTo(self)
         }
         
         self.addSubview(dsLabel)
         dsLabel.snp.makeConstraints {
-            $0.top.bottom.trailing.equalTo(self.self)
-            $0.leading.equalTo(self.dsImageView.snp.trailing)
+            $0.bottom.leading.trailing.equalTo(self)
         }
+    }
+    
+    func setup(_ vm: ViewModelCell) {
+        apply(style: vm.style)
+        dsImageView.image = vm.asset.image
+        dsImageView.heroID = vm.asset.name
+        dsLabel.text = vm.name
     }
 }
