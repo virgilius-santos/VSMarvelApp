@@ -1,7 +1,7 @@
 
 import UIKit
 
-final class ListViewCell: DSDynamicView, DSCellStyleable {
+final class ListViewCell: DSDynamicView, DSCellStyleable, CharacterCellView {
     
     typealias ViewModelCell = CharacterViewModel
     

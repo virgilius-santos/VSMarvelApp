@@ -24,9 +24,8 @@
 		18C7002A23DA6F7B00F023E6 /* DetailViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7002923DA6F7B00F023E6 /* DetailViewControllerTests.swift */; };
 		18C7002C23DA710000F023E6 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7002B23DA710000F023E6 /* DetailViewModel.swift */; };
 		18C7002E23DA712500F023E6 /* DetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7002D23DA712500F023E6 /* DetailCoordinator.swift */; };
-		18C7003123DA7C3900F023E6 /* GridViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7003023DA7C3900F023E6 /* GridViewController.swift */; };
+		18C7003123DA7C3900F023E6 /* CharactersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7003023DA7C3900F023E6 /* CharactersViewController.swift */; };
 		18C7003323DA7C7400F023E6 /* GridViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7003223DA7C7400F023E6 /* GridViewModel.swift */; };
-		18C7003523DADFD200F023E6 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7003423DADFD200F023E6 /* ListViewController.swift */; };
 		18C7003723DADFF800F023E6 /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7003623DADFF800F023E6 /* ListViewModel.swift */; };
 		18C7003923DAE9D000F023E6 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7003823DAE9D000F023E6 /* MainCoordinator.swift */; };
 		18C7004223DBA0AE00F023E6 /* AppDelegateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7004123DBA0AE00F023E6 /* AppDelegateTests.swift */; };
@@ -93,9 +92,8 @@
 		18C7002923DA6F7B00F023E6 /* DetailViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewControllerTests.swift; sourceTree = "<group>"; };
 		18C7002B23DA710000F023E6 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		18C7002D23DA712500F023E6 /* DetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCoordinator.swift; sourceTree = "<group>"; };
-		18C7003023DA7C3900F023E6 /* GridViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridViewController.swift; sourceTree = "<group>"; };
+		18C7003023DA7C3900F023E6 /* CharactersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersViewController.swift; sourceTree = "<group>"; };
 		18C7003223DA7C7400F023E6 /* GridViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridViewModel.swift; sourceTree = "<group>"; };
-		18C7003423DADFD200F023E6 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		18C7003623DADFF800F023E6 /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
 		18C7003823DAE9D000F023E6 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		18C7004123DBA0AE00F023E6 /* AppDelegateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegateTests.swift; sourceTree = "<group>"; };
@@ -264,11 +262,10 @@
 		18C7002F23DA7C0A00F023E6 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				18C7003023DA7C3900F023E6 /* CharactersViewController.swift */,
 				18FC9BE223DCBBDE001DA15A /* CharactersViewModel.swift */,
-				18C7003023DA7C3900F023E6 /* GridViewController.swift */,
 				18C7001223D7D09000F023E6 /* GridViewCell.swift */,
 				18C7003223DA7C7400F023E6 /* GridViewModel.swift */,
-				18C7003423DADFD200F023E6 /* ListViewController.swift */,
 				18C7001423D7D0AE00F023E6 /* ListViewCell.swift */,
 				18C7003623DADFF800F023E6 /* ListViewModel.swift */,
 			);
@@ -667,9 +664,8 @@
 				18C7000F23D6A38200F023E6 /* DSSpacing.swift in Sources */,
 				18C7000D23D69EEB00F023E6 /* DSDetailView.swift in Sources */,
 				18C7000023D675BE00F023E6 /* DSAlpha.swift in Sources */,
-				18C7003523DADFD200F023E6 /* ListViewController.swift in Sources */,
 				18C7FFDA23D5472600F023E6 /* DSNavigationController.swift in Sources */,
-				18C7003123DA7C3900F023E6 /* GridViewController.swift in Sources */,
+				18C7003123DA7C3900F023E6 /* CharactersViewController.swift in Sources */,
 				18C7001523D7D0AE00F023E6 /* ListViewCell.swift in Sources */,
 				18C7FFF023D66D4800F023E6 /* DSWindowStyle.swift in Sources */,
 				18C7002323DA5E5600F023E6 /* DSDynamicView.swift in Sources */,

@@ -4,10 +4,13 @@ import CollectionKit
 import Hero
 import VCore
 
-class GridViewController: DSCollectionViewController {
+protocol CharacterCellView {
+     func setup(_ vm: CharacterViewModel)
+}
+
+class CharactersViewController<CellView: UIView>: DSCollectionViewController, HeroViewControllerDelegate {
     
     typealias ViewModel = CharactersViewModel
-    typealias CellView = GridViewCell
     typealias CellViewModel = CharacterViewModel
     
     let viewModel: ViewModel
@@ -42,7 +45,9 @@ class GridViewController: DSCollectionViewController {
             
             let viewSource = ClosureViewSource(
                 viewUpdater: { (view: CellView, data: CellViewModel, index: Int) in
-                    view.setup(data)
+                    if let cell = view as? CharacterCellView {
+                        cell.setup(data)
+                    }
             })
             
             let sizeSource = { [weak self] (index: Int, data: CellViewModel, collectionSize: CGSize) -> CGSize in
@@ -91,7 +96,7 @@ class GridViewController: DSCollectionViewController {
     }
 }
 
-extension GridViewController: HeroViewControllerDelegate {
+extension CharactersViewController where CellView == GridViewCell {
     func heroWillStartAnimatingTo(viewController: UIViewController) {
         if viewController is DetailViewController {
             collectionView.hero.modifiers = [scale,
@@ -108,6 +113,25 @@ extension GridViewController: HeroViewControllerDelegate {
         } else {
             collectionView.hero.modifiers = [HeroModifier.cascade,
                                              delay]
+        }
+    }
+}
+
+extension CharactersViewController where CellView == ListViewCell {
+    func heroWillStartAnimatingTo(viewController: UIViewController) {
+        if viewController is DetailViewController {
+            collectionView.hero.modifiers = [.cascade]
+        }
+        else {
+            collectionView.hero.modifiers = [.ignoreSubviewModifiers]
+        }
+    }
+    
+    func heroWillStartAnimatingFrom(viewController: UIViewController) {
+        if viewController is DetailViewController {
+            collectionView.hero.modifiers = [.cascade]
+        } else {
+            collectionView.hero.modifiers = [.ignoreSubviewModifiers]
         }
     }
 }

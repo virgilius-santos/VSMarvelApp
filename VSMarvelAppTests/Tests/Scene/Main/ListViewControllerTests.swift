@@ -6,9 +6,9 @@ import XCTest
 
 class ListViewControllerTests: XCTestCase {
 
-    typealias ViewController = ListViewController
+    typealias ViewController = CharactersViewController<ListViewCell>
     typealias ViewModel = ViewController.ViewModel
-    typealias CellView = ViewController.CellView
+    typealias CellView = ListViewCell
     typealias CellViewModel = ViewController.CellViewModel
     typealias BasicProviderData = BasicProvider<CellViewModel, CellView>
     

@@ -4,11 +4,11 @@ import XCTest
 @testable import CollectionKit
 @testable import Hero
 
-class GridViewControllerTests: XCTestCase {
+class CharactersViewControllerTests: XCTestCase {
 
-    typealias ViewController = GridViewController
+    typealias ViewController = CharactersViewController<GridViewCell>
     typealias ViewModel = ViewController.ViewModel
-    typealias CellView = ViewController.CellView
+    typealias CellView = GridViewCell
     typealias CellViewModel = ViewController.CellViewModel
     typealias BasicProviderData = BasicProvider<CellViewModel, CellView>
     

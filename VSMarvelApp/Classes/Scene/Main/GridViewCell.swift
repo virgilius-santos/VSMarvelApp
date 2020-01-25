@@ -1,7 +1,7 @@
 
 import UIKit
 
-final class GridViewCell: DSDynamicView, DSCellStyleable {
+final class GridViewCell: DSDynamicView, DSCellStyleable, CharacterCellView {
     
     typealias ViewModelCell = CharacterViewModel
     

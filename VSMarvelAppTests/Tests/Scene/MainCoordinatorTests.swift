@@ -23,7 +23,7 @@ class MainCoordinatorTests: XCTestCase {
 
     func testListViewControllerMustBeStarted() {
         sut.start()
-        XCTAssert(nav?.viewController is ListViewController)
+        XCTAssert(nav?.viewController is CharactersViewController<ListViewCell>)
         XCTAssertEqual(nav?.type, DSNavigationType.push)
     }
     
@@ -51,13 +51,13 @@ class MainCoordinatorTests: XCTestCase {
     
     func testWhenSwitchToListCalledGridMustBeStarted() {
         sut.list_switchToGrid()
-        XCTAssert(nav?.viewController is GridViewController)
+        XCTAssert(nav?.viewController is CharactersViewController<GridViewCell>)
         XCTAssertEqual(nav?.type, DSNavigationType.replace)
     }
     
     func testWhenSwitchToGridCalledListMustBeStarted() {
         sut.grid_switchToList()
-        XCTAssert(nav?.viewController is ListViewController)
+        XCTAssert(nav?.viewController is CharactersViewController<ListViewCell>)
         XCTAssertEqual(nav?.type, DSNavigationType.replace)
     }
 }
