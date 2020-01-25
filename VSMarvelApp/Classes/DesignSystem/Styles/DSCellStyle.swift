@@ -16,7 +16,7 @@ struct DSCellStyle {
                                        shadow: DSShadow.zero)
 }
 
-extension DSCellStyleable where Self: DSCharacterGridCollectionViewCell {
+extension DSCellStyleable where Self: GridViewCell {
     
     func apply(style: DSCellStyle) {
         apply(shadow: style.shadow)
@@ -40,7 +40,7 @@ extension DSCellStyleable where Self: DSCharacterGridCollectionViewCell {
     }
 }
 
-extension DSCellStyleable where Self: DSCharacterListTableViewCell {
+extension DSCellStyleable where Self: ListViewCell {
     
     func apply(style: DSCellStyle) {
         apply(style: style, in: dsLabel)

@@ -1,9 +1,9 @@
 
 import UIKit
 
-final class DSCharacterListTableViewCell: DSDynamicView, DSCellStyleable {
+final class ListViewCell: DSDynamicView, DSCellStyleable {
     
-    typealias ViewModelCell = DSCharacterViewModel
+    typealias ViewModelCell = CharacterViewModel
     
     let dsLabel = UILabel()
     let dsImageView = UIImageView()

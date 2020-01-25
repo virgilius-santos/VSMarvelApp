@@ -1,17 +1,10 @@
-//
-//  DSCellStyleTests.swift
-//  VSMarvelAppTests
-//
-//  Created by Virgilius Santos on 20/01/20.
-//  Copyright © 2020 Virgilius Santos. All rights reserved.
-//
 
 import XCTest
 @testable import VSMarvelApp
 
-class DSCharacterListTableViewCellTests: XCTestCase {
+class ListViewCellTests: XCTestCase {
 
-    var sut: DSCharacterListTableViewCell!
+    var sut: ListViewCell!
     
     override func setUp() {
         sut = .init()

@@ -8,9 +8,9 @@ import RxSwift
 
 class ListViewController: DSCollectionViewController {
     
-    typealias ViewModel = DSCharactersViewModel
-    typealias CellView = DSCharacterListTableViewCell
-    typealias CellViewModel = DSCharacterViewModel
+    typealias ViewModel = CharactersViewModel
+    typealias CellView = ListViewCell
+    typealias CellViewModel = CharacterViewModel
     
     let viewModel: ViewModel
     let disposeBag = DisposeBag()

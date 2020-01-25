@@ -34,7 +34,7 @@ extension MainCoordinator: ListRouter {
     }
     
     func list_switchToGrid() {
-        let vc = DSGridViewController(viewModel: GridViewModel(title: "Character", router: self))
+        let vc = GridViewController(viewModel: GridViewModel(title: "Character", router: self))
         navController?.navigate(to: vc, using: DSNavigationType.replace)
     }
 }

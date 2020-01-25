@@ -1,9 +1,9 @@
 
 import UIKit
 
-final class DSCharacterGridCollectionViewCell: DSDynamicView, DSCellStyleable {
+final class GridViewCell: DSDynamicView, DSCellStyleable {
     
-    typealias ViewModelCell = DSCharacterViewModel
+    typealias ViewModelCell = CharacterViewModel
     
     let dsLabel = UILabel()
     let dsImageView = UIImageView()

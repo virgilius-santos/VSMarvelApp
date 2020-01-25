@@ -1,10 +1,3 @@
-//
-//  DSDetailViewTests.swift
-//  VSMarvelAppTests
-//
-//  Created by Virgilius Santos on 24/01/20.
-//  Copyright © 2020 Virgilius Santos. All rights reserved.
-//
 
 import XCTest
 @testable import VSMarvelApp

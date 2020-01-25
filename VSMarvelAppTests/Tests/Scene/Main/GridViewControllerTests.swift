@@ -1,10 +1,3 @@
-//
-//  GridViewControllerTests.swift
-//  VSMarvelAppTests
-//
-//  Created by Virgilius Santos on 24/01/20.
-//  Copyright © 2020 Virgilius Santos. All rights reserved.
-//
 
 import XCTest
 @testable import VSMarvelApp
@@ -13,7 +6,7 @@ import XCTest
 
 class GridViewControllerTests: XCTestCase {
 
-    typealias ViewController = DSGridViewController
+    typealias ViewController = GridViewController
     typealias CellView = ViewController.CellView
     typealias CellViewModel = ViewController.CellViewModel
     typealias BasicProviderData = BasicProvider<CellViewModel, CellView>
@@ -76,7 +69,7 @@ class GridViewControllerTests: XCTestCase {
         XCTAssertFalse(sut.navigationItem.hidesSearchBarWhenScrolling)
         let search = sut.navigationItem.searchController
         XCTAssertFalse(search!.obscuresBackgroundDuringPresentation)
-        XCTAssertEqual(search?.searchResultsUpdater as? DSGridViewController, sut)
+        XCTAssertEqual(search?.searchResultsUpdater as? GridViewController, sut)
         let searchBar = search?.searchBar
         XCTAssertEqual(searchBar?.placeholder, sut.viewModel.placeholderSearchBar)
         XCTAssertEqual(searchBar?.scopeButtonTitles, sut.viewModel.filterOptionsSearchBar)

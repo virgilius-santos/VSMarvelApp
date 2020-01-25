@@ -6,9 +6,9 @@ protocol GridRouter {
     func grid_switchToList()
 }
 
-struct GridViewModel: DSCharactersViewModel {
+struct GridViewModel: CharactersViewModel {
     
-    struct CellViewModel: DSCharacterViewModel {
+    struct CellViewModel: CharacterViewModel {
         let asset: DSAsset
         let name: String
         let style: DSCellStyle
@@ -56,7 +56,7 @@ struct GridViewModel: DSCharactersViewModel {
         CellViewModel(asset: DSImage.image9, name: "image9", style: DSCellStyle.default),
         ].sorted(by: { $0.name < $1.name })
     
-    func goTo(_ vm: DSCharacterViewModel) {
+    func goTo(_ vm: CharacterViewModel) {
         let detail = DetailViewModel(title: vm.name,
                                      description: "Bitten by a radioactive spider, high school student Peter Parker gained the speed, strength and powers of a spider. Adopting the name Spider-Man, Peter hoped to start a career using his new abilities. Taught that with great power comes great responsibility, Spidey has vowed to use his powers to help people.",
                                      asset: vm.asset)

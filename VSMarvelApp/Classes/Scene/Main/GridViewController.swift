@@ -4,11 +4,11 @@ import CollectionKit
 import Hero
 import VCore
 
-class DSGridViewController: DSCollectionViewController {
+class GridViewController: DSCollectionViewController {
     
-    typealias ViewModel = DSCharactersViewModel
-    typealias CellView = DSCharacterGridCollectionViewCell
-    typealias CellViewModel = DSCharacterViewModel
+    typealias ViewModel = CharactersViewModel
+    typealias CellView = GridViewCell
+    typealias CellViewModel = CharacterViewModel
     
     let viewModel: ViewModel
     
@@ -91,7 +91,7 @@ class DSGridViewController: DSCollectionViewController {
     }
 }
 
-extension DSGridViewController: HeroViewControllerDelegate {
+extension GridViewController: HeroViewControllerDelegate {
     func heroWillStartAnimatingTo(viewController: UIViewController) {
         if viewController is DetailViewController {
             collectionView.hero.modifiers = [scale,

@@ -1,10 +1,3 @@
-//
-//  MainCoordinatorTests.swift
-//  VSMarvelAppTests
-//
-//  Created by Virgilius Santos on 24/01/20.
-//  Copyright © 2020 Virgilius Santos. All rights reserved.
-//
 
 import XCTest
 @testable import VSMarvelApp
@@ -58,7 +51,7 @@ class MainCoordinatorTests: XCTestCase {
     
     func testWhenSwitchToListCalledGridMustBeStarted() {
         sut.list_switchToGrid()
-        XCTAssert(nav?.viewController is DSGridViewController)
+        XCTAssert(nav?.viewController is GridViewController)
         XCTAssertEqual(nav?.type, DSNavigationType.replace)
     }
     
