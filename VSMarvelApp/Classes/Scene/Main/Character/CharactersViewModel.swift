@@ -22,10 +22,8 @@ extension CharactersViewModel {
     
     func bind(input: CharactersInput) -> CharactersOutput {
         
-        let loading = PublishSubject<DSLoadingState>()
+        let loading = BehaviorSubject<DSLoadingState>(value: DSLoadingState.loading)
         let offset = BehaviorSubject<Int>(value: 0)
-        
-        
         
         let load = self.loadCharacters(loading: loading)
         
@@ -49,7 +47,7 @@ extension CharactersViewModel {
         )
     }
     
-    func loadCharacters(loading: PublishSubject<DSLoadingState>) -> Observable<[CharacterViewModel]> {
+    func loadCharacters(loading: BehaviorSubject<DSLoadingState>) -> Observable<[CharacterViewModel]> {
         
         return repository.getCharacters()
             .map { characters in
@@ -60,7 +58,8 @@ extension CharactersViewModel {
         .do(onSuccess: { _ in
             loading.onNext(DSLoadingState.normal) },
             onError: { _ in loading.onNext(DSLoadingState.error) },
-            onSubscribe: { loading.onNext(DSLoadingState.loading) })
+            onSubscribed: {
+                loading.onNext(DSLoadingState.loading) })
             .asObservable()
     }
 }
