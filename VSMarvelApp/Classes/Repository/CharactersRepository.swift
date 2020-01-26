@@ -2,6 +2,7 @@
 import Foundation
 import VService
 import RxSwift
+import VCore
 
 protocol CharactersRepositoryProtocol {
     func getCharacters(id: Int?, next: Bool, name: String?) -> Single<[Character]>
@@ -36,6 +37,7 @@ final class CharactersRepository: CharactersRepositoryProtocol {
         do {
             queries = try getQueries(next: next, name: name)
         } catch {
+            logger.error("\(error)")
             return Single<[Character]>.just([])
         }
         
