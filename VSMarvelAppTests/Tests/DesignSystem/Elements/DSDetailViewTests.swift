@@ -2,9 +2,9 @@
 import XCTest
 @testable import VSMarvelApp
 
-class DSDetailViewTests: XCTestCase {
+class DetailViewTests: XCTestCase {
 
-    var sut: DSDetailView!
+    var sut: DetailView!
     
     override func setUp() {
         sut = .init()

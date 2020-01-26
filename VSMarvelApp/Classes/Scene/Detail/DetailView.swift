@@ -3,7 +3,7 @@ import UIKit
 import SnapKit
 import VCore
 
-final class DSDetailView: UIView {
+final class DetailView: UIView {
     
     let scroll = UIScrollView()
     let contentView = UIView()

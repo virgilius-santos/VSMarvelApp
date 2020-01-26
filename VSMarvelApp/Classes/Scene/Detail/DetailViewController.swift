@@ -4,7 +4,7 @@ import VCore
 
 class DetailViewController: UIViewController {
     
-    let detailView = DSDetailView()
+    let detailView = DetailView()
     let viewModel: DetailViewModel
     
     init(viewModel: DetailViewModel) {
