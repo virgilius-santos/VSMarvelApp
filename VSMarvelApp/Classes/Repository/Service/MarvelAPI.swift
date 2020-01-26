@@ -17,9 +17,9 @@ final class MarvelAPI {
     
     let session: VSession
     
-    let charactersResponse: ((Data) throws -> [MarvelAPI.Character]) = {
+    let charactersResponse: ((Data) throws -> MarvelAPI.Response.DataReceived) = {
         let response = try MarvelAPI.Response.decode(data: $0)
-        return response.data.results
+        return response.data
     }
     
     var charactersRequest: VRequestData {
@@ -41,7 +41,7 @@ final class MarvelAPI {
     func getCharacters(
         id: Int?,
         queries: [QueryKeys],
-        completion: @escaping((Result<[Character], VSessionError>)->())
+        completion: @escaping((Result<Response.DataReceived, VSessionError>)->())
         ) {
         
         let request = self.getCharactersRequestData(id: id, queries: queries)
@@ -52,8 +52,8 @@ final class MarvelAPI {
         { (result) in
             
             switch result {
-                case let .success(characters):
-                    completion(.success(characters))
+                case let .success(data):
+                    completion(.success(data))
                 case let .failure(error):
                     completion(.failure(error))
             }
@@ -111,6 +111,10 @@ final class MarvelAPI {
     
     struct Response: Decodable {
         struct DataReceived: Decodable {
+            let offset: Int
+            let limit: Int
+            let total: Int
+            let count: Int
             var results: [MarvelAPI.Character]
         }
         let data: DataReceived

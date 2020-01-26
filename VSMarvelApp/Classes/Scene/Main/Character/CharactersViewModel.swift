@@ -20,15 +20,15 @@ extension CharactersViewModel {
     
     var repository: CharactersRepositoryProtocol { return CharactersRepository() }
     
-    var orderBy: MarvelAPI.QueryKeys {
-        MarvelAPI.QueryKeys.orderBy(type: MarvelAPI.OrderType.name(ascendent: true))
-    }
-    
     func bind(input: CharactersInput) -> CharactersOutput {
         
         let loading = PublishSubject<DSLoadingState>()
+        let offset = BehaviorSubject<Int>(value: 0)
+        
+        
         
         let load = self.loadCharacters(loading: loading)
+        
         
         input.currentIndex
             .debug("currentIndex")
@@ -51,13 +51,14 @@ extension CharactersViewModel {
     
     func loadCharacters(loading: PublishSubject<DSLoadingState>) -> Observable<[CharacterViewModel]> {
         
-        return repository.getCharacters(queries: [])
+        return repository.getCharacters()
             .map { characters in
                 characters.map { character in CharacterViewModel(character: character) }
         }
         .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .background))
         .observeOn(MainScheduler.instance)
-        .do(onSuccess: { _ in loading.onNext(DSLoadingState.normal) },
+        .do(onSuccess: { _ in
+            loading.onNext(DSLoadingState.normal) },
             onError: { _ in loading.onNext(DSLoadingState.error) },
             onSubscribe: { loading.onNext(DSLoadingState.loading) })
             .asObservable()

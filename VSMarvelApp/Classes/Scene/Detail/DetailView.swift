@@ -30,7 +30,8 @@ final class DetailView: UIView {
 
         Image: do {
             contentView.addSubview(imageView)
-            imageView.contentMode = .scaleAspectFit
+            imageView.contentMode = .scaleAspectFill
+            imageView.clipsToBounds = true
             imageView.snp.makeConstraints {
                 $0.top.leading.trailing.equalTo(self.contentView)
                 $0.height.equalTo(self.imageView.snp.width)
