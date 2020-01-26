@@ -1,6 +1,7 @@
 
 import UIKit
 import SnapKit
+import VCore
 
 final class DSDetailView: UIView {
     
@@ -53,7 +54,7 @@ final class DSDetailView: UIView {
     
     func setup(viewModel: DetailViewModel) {
         descriptionLabel.text = viewModel.description
-        imageView.image = viewModel.asset.image
-        imageView.heroID = viewModel.asset.name
+        imageView.setImage(with: viewModel.path, placeholder: DSImage.placeholder.image)
+        imageView.heroID = viewModel.path
     }
 }

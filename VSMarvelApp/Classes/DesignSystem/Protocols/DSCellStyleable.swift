@@ -39,6 +39,7 @@ extension DSCellStyleable where Self: ListViewCell {
     }
     
     func apply(style: DSCellStyle, in label: UILabel) {
+        dsLabel.numberOfLines = 0
         dsLabel.tintColor = style.titleColor.uiColor
         dsLabel.backgroundColor = style.titleBackgroundColor
             .uiColor

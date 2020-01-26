@@ -15,7 +15,7 @@ target 'VSMarvelApp' do
       "MarvelPrivateKey"
     ]}
 
-  pod "VService"                        , '~> 0.2.3'#, :path => '../VSCommonSwiftLibrary'
+  pod "VService"                        , '~> 0.2.4'#, :path => '../VSCommonSwiftLibrary'
   pod "VCore"                           , '~> 0.4'#, :path => '../VSCommonSwiftLibrary'
   pod "VComponents"                     , '~> 0.0.2'#, :path => '../VSCommonSwiftLibrary'
   

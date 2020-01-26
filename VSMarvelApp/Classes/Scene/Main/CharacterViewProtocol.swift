@@ -14,7 +14,7 @@ extension CharacterViewProtocol where Self: DSCellStyleable {
         dsImageView.cancelRequest()
         dsImageView.setImage(with: vm.path,
                              placeholder: vm.asset.image)
-        dsImageView.heroID = vm.asset.name
-        dsLabel.text = vm.name
+        dsImageView.heroID = vm.path
+        dsLabel.text = "\(vm.name)\n\n\(vm.bio)"
     }
 }
