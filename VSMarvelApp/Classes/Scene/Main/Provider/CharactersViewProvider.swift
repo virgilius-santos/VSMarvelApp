@@ -4,7 +4,7 @@ import CollectionKit
 import RxCocoa
 import RxSwift
 
-final class CharactersViewProvider<CharacterView: UIView> where CharacterView: CharacterViewProtocol {
+final class CharactersViewProvider<CharacterView: UIView> where CharacterView: CharacterViewStyleable {
     
     let dataSource: ArrayDataSource<CharacterViewModel>
     

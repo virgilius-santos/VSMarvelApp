@@ -8,7 +8,7 @@ class DetailViewTests: XCTestCase {
     
     override func setUp() {
         sut = .init()
-        let vm = DetailViewModel(title: "um", description: "dois", asset: DSImage.image1)
+        let vm = DetailViewModel(title: "um", description: "dois", path: "arte")
         sut.setup(viewModel: vm)
     }
 
@@ -18,7 +18,7 @@ class DetailViewTests: XCTestCase {
 
     func testViewModelSeted() {
         XCTAssertEqual(sut.descriptionLabel.text, "dois")
-        XCTAssertEqual(sut.imageView.image, DSImage.image1.image)
-        XCTAssertEqual(sut.imageView.heroID, DSImage.image1.name)
+        XCTAssertNotNil(sut.imageView.image)
+        XCTAssertEqual(sut.imageView.heroID, "arte")
     }
 }

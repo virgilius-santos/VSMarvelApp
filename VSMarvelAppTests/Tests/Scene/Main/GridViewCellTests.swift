@@ -15,7 +15,7 @@ class GridViewCellTests: XCTestCase {
     }
 
     func testApplyStyle() {
-        sut.apply(style: DSCellStyle.default)
+        sut.apply(style: CharacterViewStyle.default)
         
         XCTAssertEqual(sut.layer.shadowColor, Asset.Colors.secondary.color.cgColor)
         XCTAssertEqual(sut.layer.shadowOpacity, 0)
@@ -35,14 +35,14 @@ class GridViewCellTests: XCTestCase {
         XCTAssertEqual(sut.dsLabel.superview, sut)
     }
     
-    class CollectionCellSpy: UICollectionViewCell, DSCellStyleable {
+    class CollectionCellSpy: UICollectionViewCell, CharacterViewStyleable {
         
-        var styleSpy: DSCellStyle?
+        var styleSpy: CharacterViewStyle?
         
         var dsLabel: UILabel = .init()
         var dsImageView: UIImageView = .init()
         
-        func apply(style: DSCellStyle) {
+        func apply(style: CharacterViewStyle) {
             styleSpy = style
         }
     }

@@ -2,7 +2,7 @@
 import UIKit
 import VCore
 
-final class GridViewCell: DSDynamicView, DSCellStyleable, CharacterViewProtocol {
+final class GridViewCell: DSDynamicView, CharacterViewStyleable {
     
     typealias ViewModelCell = CharacterViewModel
     

@@ -1,16 +1,29 @@
 
 import UIKit
 
-protocol DSCellStyleable {
+protocol CharacterViewStyleable {
     var dsLabel: UILabel { get }
     var dsImageView: UIImageView { get }
     
-    func apply(style: DSCellStyle)
+    func apply(style: CharacterViewStyle)
+    func setup(_ vm: CharacterViewModel)
 }
 
-extension DSCellStyleable where Self: GridViewCell {
+extension CharacterViewStyleable {
+    func setup(_ vm: CharacterViewModel) {
+        apply(style: vm.style)
+        dsImageView.image = vm.asset.image
+        dsImageView.cancelRequest()
+        dsImageView.setImage(with: vm.path,
+                             placeholder: vm.asset.image)
+        dsImageView.heroID = vm.path
+        dsLabel.text = "\(vm.name)\n\n\(vm.bio)"
+    }
+}
+
+extension CharacterViewStyleable where Self: GridViewCell {
     
-    func apply(style: DSCellStyle) {
+    func apply(style: CharacterViewStyle) {
         apply(shadow: style.shadow)
         apply(style: style, in: dsLabel)
         layer.cornerRadius = style.cornerRadius.value
@@ -23,7 +36,7 @@ extension DSCellStyleable where Self: GridViewCell {
         layer.shadowRadius = shadow.shadowRadius.value
     }
     
-    func apply(style: DSCellStyle, in label: UILabel) {
+    func apply(style: CharacterViewStyle, in label: UILabel) {
         dsLabel.textAlignment = NSTextAlignment.center
         dsLabel.tintColor = style.titleColor.uiColor
         dsLabel.backgroundColor = style.titleBackgroundColor
@@ -32,13 +45,13 @@ extension DSCellStyleable where Self: GridViewCell {
     }
 }
 
-extension DSCellStyleable where Self: ListViewCell {
+extension CharacterViewStyleable where Self: ListViewCell {
     
-    func apply(style: DSCellStyle) {
+    func apply(style: CharacterViewStyle) {
         apply(style: style, in: dsLabel)
     }
     
-    func apply(style: DSCellStyle, in label: UILabel) {
+    func apply(style: CharacterViewStyle, in label: UILabel) {
         dsLabel.numberOfLines = 0
         dsLabel.tintColor = style.titleColor.uiColor
         dsLabel.backgroundColor = style.titleBackgroundColor

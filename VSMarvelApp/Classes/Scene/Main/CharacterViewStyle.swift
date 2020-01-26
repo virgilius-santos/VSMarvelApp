@@ -1,7 +1,7 @@
 
 import UIKit
 
-struct DSCellStyle {
+struct CharacterViewStyle {
     
     var titleColor: DSColor
     var titleBackgroundColor: DSColor
@@ -9,7 +9,7 @@ struct DSCellStyle {
     var cornerRadius: DSRadius
     var shadow: DSShadow
     
-    static let `default` = DSCellStyle(titleColor: DSColor.text,
+    static let `default` = CharacterViewStyle(titleColor: DSColor.text,
                                        titleBackgroundColor: DSColor.secondary,
                                        titleBackgroundAlpha: DSAlpha.medium,
                                        cornerRadius: DSRadius.medium,

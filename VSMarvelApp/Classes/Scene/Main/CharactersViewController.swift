@@ -6,7 +6,7 @@ import VCore
 import RxCocoa
 import RxSwift
 
-class CharactersViewController<CharacterView: UIView>: DSCollectionViewController, HeroViewControllerDelegate where CharacterView: CharacterViewProtocol {
+class CharactersViewController<CharacterView: UIView>: DSCollectionViewController, HeroViewControllerDelegate where CharacterView: CharacterViewStyleable {
     
     typealias ViewModel = CharactersViewModel
     

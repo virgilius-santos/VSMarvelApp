@@ -53,7 +53,7 @@ class CharactersViewControllerTests: XCTestCase {
     }
     
     var dummyDetailVC: DetailViewController {
-        let vm = DetailViewModel(title: "c", description: "d", asset: DSImage.image1)
+        let vm = DetailViewModel(title: "c", description: "d", path: "arte")
         let vc = DetailViewController(viewModel: vm)
         return vc
     }
@@ -82,7 +82,7 @@ class CharactersViewControllerTests: XCTestCase {
     func test_viewDidLoad_viewSource_setup_mustConfigureView() {
         let view = CellView()
         viewSource.update(view: view, data: dummyCellVM, index: 0)
-        XCTAssertEqual(view.dsLabel.text, dummyCellVM.name)
+        XCTAssertEqual(view.dsLabel.text, "a\n\nb")
         XCTAssertNotNil(view.dsImageView.image)
     }
     

@@ -28,25 +28,23 @@ class MainCoordinatorTests: XCTestCase {
     }
     
     func testWhenGoToFromGridCalledDetailMustBeStarted() {
-        let vm = DetailViewModel.init(title: "a", description: "b", asset: DSImage.image1)
+        let vm = DetailViewModel.init(title: "a", description: "b", path: "arte")
         sut.grid_goTo(vm)
         XCTAssert(nav?.viewController is DetailViewController)
         XCTAssertEqual(nav?.type, DSNavigationType.push)
         XCTAssertEqual((nav?.viewController as? DetailViewController)?.viewModel.title, "a")
         XCTAssertEqual((nav?.viewController as? DetailViewController)?.viewModel.description, "b")
-        XCTAssertEqual((nav?.viewController as? DetailViewController)?.viewModel.asset.name, DSImage.image1.name)
-        XCTAssertEqual((nav?.viewController as? DetailViewController)?.viewModel.asset.image, DSImage.image1.image)
+        XCTAssertEqual((nav?.viewController as? DetailViewController)?.viewModel.path, "arte")
     }
     
     func testWhenGoToFromListCalledDetailMustBeStarted() {
-        let vm = DetailViewModel.init(title: "a", description: "b", asset: DSImage.image1)
+        let vm = DetailViewModel.init(title: "a", description: "b", path: "arte")
         sut.list_goTo(vm)
         XCTAssert(nav?.viewController is DetailViewController)
         XCTAssertEqual(nav?.type, DSNavigationType.push)
         XCTAssertEqual((nav?.viewController as? DetailViewController)?.viewModel.title, "a")
         XCTAssertEqual((nav?.viewController as? DetailViewController)?.viewModel.description, "b")
-        XCTAssertEqual((nav?.viewController as? DetailViewController)?.viewModel.asset.name, DSImage.image1.name)
-        XCTAssertEqual((nav?.viewController as? DetailViewController)?.viewModel.asset.image, DSImage.image1.image)
+        XCTAssertEqual((nav?.viewController as? DetailViewController)?.viewModel.path, "arte")
     }
     
     func testWhenSwitchToListCalledGridMustBeStarted() {

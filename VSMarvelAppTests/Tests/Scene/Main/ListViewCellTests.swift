@@ -15,7 +15,7 @@ class ListViewCellTests: XCTestCase {
     }
 
     func testApplyStyle() {
-        sut.apply(style: DSCellStyle.default)
+        sut.apply(style: CharacterViewStyle.default)
         
         XCTAssertEqual(sut.dsLabel.tintColor, Asset.Colors.text.color)
         XCTAssertEqual(sut.dsLabel.backgroundColor, Asset.Colors.secondary.color.withAlphaComponent(0.5))

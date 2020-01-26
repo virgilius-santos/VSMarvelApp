@@ -18,12 +18,12 @@ class DetailViewControllerTests: XCTestCase {
     func testSetData() {
         XCTAssertEqual(sut.title, "Spider-Man")
         XCTAssertEqual(sut.detailView.descriptionLabel.text, "Teste")
-        XCTAssertEqual(sut.detailView.imageView.image, DSImage.image10.image)
-        XCTAssertEqual(sut.detailView.imageView.heroID, DSImage.image10.name)
+        XCTAssertNotNil(sut.detailView.imageView.image)
+        XCTAssertEqual(sut.detailView.imageView.heroID, "arte")
     }
     
     let vmMock = DetailViewModel(title: "Spider-Man",
                                  description: "Teste",
-                                 asset: DSImage.image10)
+                                 path: "arte")
 
 }

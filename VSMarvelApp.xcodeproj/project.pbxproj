@@ -44,8 +44,8 @@
 		18C7FFEC23D663FE00F023E6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 185DC04B23D4E02D0083A6D4 /* LaunchScreen.storyboard */; };
 		18C7FFF023D66D4800F023E6 /* DSWindowStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7FFEF23D66D4800F023E6 /* DSWindowStyle.swift */; };
 		18C7FFF823D6729300F023E6 /* DSNavigationBarProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7FFF723D6729300F023E6 /* DSNavigationBarProtocol.swift */; };
-		18C7FFFA23D673CE00F023E6 /* DSCellStyleable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7FFF923D673CE00F023E6 /* DSCellStyleable.swift */; };
-		18C7FFFC23D6747B00F023E6 /* DSCellStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7FFFB23D6747B00F023E6 /* DSCellStyle.swift */; };
+		18C7FFFA23D673CE00F023E6 /* CharacterViewStyleable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7FFF923D673CE00F023E6 /* CharacterViewStyleable.swift */; };
+		18C7FFFC23D6747B00F023E6 /* CharacterViewStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7FFFB23D6747B00F023E6 /* CharacterViewStyle.swift */; };
 		18C7FFFE23D6751500F023E6 /* DSRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7FFFD23D6751500F023E6 /* DSRadius.swift */; };
 		18D4A19F23DD955A00DC1146 /* LoadingViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D4A19E23DD955A00DC1146 /* LoadingViewProvider.swift */; };
 		18D4A1A223DDCA5600DC1146 /* DSBrightness.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D4A1A123DDCA5600DC1146 /* DSBrightness.swift */; };
@@ -119,8 +119,8 @@
 		18C7FFEA23D553E300F023E6 /* DSIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSIcon.swift; sourceTree = "<group>"; };
 		18C7FFEF23D66D4800F023E6 /* DSWindowStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSWindowStyle.swift; sourceTree = "<group>"; };
 		18C7FFF723D6729300F023E6 /* DSNavigationBarProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DSNavigationBarProtocol.swift; sourceTree = "<group>"; };
-		18C7FFF923D673CE00F023E6 /* DSCellStyleable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSCellStyleable.swift; sourceTree = "<group>"; };
-		18C7FFFB23D6747B00F023E6 /* DSCellStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSCellStyle.swift; sourceTree = "<group>"; };
+		18C7FFF923D673CE00F023E6 /* CharacterViewStyleable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterViewStyleable.swift; sourceTree = "<group>"; };
+		18C7FFFB23D6747B00F023E6 /* CharacterViewStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterViewStyle.swift; sourceTree = "<group>"; };
 		18C7FFFD23D6751500F023E6 /* DSRadius.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSRadius.swift; sourceTree = "<group>"; };
 		18C7FFFF23D675BE00F023E6 /* DSAlpha.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSAlpha.swift; sourceTree = "<group>"; };
 		18D4A19E23DD955A00DC1146 /* LoadingViewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewProvider.swift; sourceTree = "<group>"; };
@@ -249,7 +249,6 @@
 		18C7001023D7CF3100F023E6 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				18C7FFF923D673CE00F023E6 /* DSCellStyleable.swift */,
 				18C7FFF723D6729300F023E6 /* DSNavigationBarProtocol.swift */,
 				18E0521123DD72D200DFD5F4 /* DSViewLockable.swift */,
 			);
@@ -259,7 +258,6 @@
 		18C7001123D7CF5B00F023E6 /* Styles */ = {
 			isa = PBXGroup;
 			children = (
-				18C7FFFB23D6747B00F023E6 /* DSCellStyle.swift */,
 				18C7FFE023D54C8600F023E6 /* DSNavigationBarStyle.swift */,
 				18C7FFEF23D66D4800F023E6 /* DSWindowStyle.swift */,
 			);
@@ -280,9 +278,11 @@
 		18C7002F23DA7C0A00F023E6 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				18C7FFFB23D6747B00F023E6 /* CharacterViewStyle.swift */,
+				18C7FFF923D673CE00F023E6 /* CharacterViewStyleable.swift */,
 				18D4A1A723DDE61F00DC1146 /* CharacterViewProtocol.swift */,
-				18C7003023DA7C3900F023E6 /* CharactersViewController.swift */,
 				18D4A1A923DDF3D000DC1146 /* CharacterViewModel.swift */,
+				18C7003023DA7C3900F023E6 /* CharactersViewController.swift */,
 				18FC9BE223DCBBDE001DA15A /* CharactersViewModel.swift */,
 				18D4A1A023DD956B00DC1146 /* Provider */,
 				18E2B61C23DCF46E007AE6A5 /* Grid */,
@@ -724,7 +724,7 @@
 				18FC9BE323DCBBDF001DA15A /* CharactersViewModel.swift in Sources */,
 				18C7000223D6768200F023E6 /* DSShadow.swift in Sources */,
 				18FC9BDE23DC1786001DA15A /* Character.swift in Sources */,
-				18C7FFFC23D6747B00F023E6 /* DSCellStyle.swift in Sources */,
+				18C7FFFC23D6747B00F023E6 /* CharacterViewStyle.swift in Sources */,
 				18C7003723DADFF800F023E6 /* ListViewModel.swift in Sources */,
 				18C7000F23D6A38200F023E6 /* DSSpacing.swift in Sources */,
 				1849DBCE23DD91B8008B9852 /* DSLoadingView.swift in Sources */,
@@ -742,7 +742,7 @@
 				18FC9BE023DC192B001DA15A /* ThumbImage.swift in Sources */,
 				18C7002E23DA712500F023E6 /* DetailCoordinator.swift in Sources */,
 				18E2B61F23DCF530007AE6A5 /* CharactersRepository.swift in Sources */,
-				18C7FFFA23D673CE00F023E6 /* DSCellStyleable.swift in Sources */,
+				18C7FFFA23D673CE00F023E6 /* CharacterViewStyleable.swift in Sources */,
 				18C7FFF823D6729300F023E6 /* DSNavigationBarProtocol.swift in Sources */,
 				18D4A1A223DDCA5600DC1146 /* DSBrightness.swift in Sources */,
 				18C7002C23DA710000F023E6 /* DetailViewModel.swift in Sources */,

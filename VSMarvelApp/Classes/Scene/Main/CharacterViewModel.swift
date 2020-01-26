@@ -12,7 +12,7 @@ import Foundation
 struct CharacterViewModel {
     var name: String { character.name }
     var path: String { "\(character.thumImage.path)/portrait_xlarge.\(character.thumImage.extension)"  }
-    var style: DSCellStyle { DSCellStyle.default }
+    var style: CharacterViewStyle { CharacterViewStyle.default }
     var bio: String { character.bio }
     
     let character: Character
