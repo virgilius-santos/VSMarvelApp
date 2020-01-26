@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1849DBCC23DD853C008B9852 /* CharactersViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1849DBCB23DD853C008B9852 /* CharactersViewProvider.swift */; };
+		1849DBCE23DD91B8008B9852 /* DSLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1849DBCD23DD91B8008B9852 /* DSLoadingView.swift */; };
 		185DC04A23D4E02D0083A6D4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 185DC04923D4E02D0083A6D4 /* Images.xcassets */; };
 		185DC06723D4E3C00083A6D4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185DC06523D4E3C00083A6D4 /* AppDelegate.swift */; };
 		18C7000023D675BE00F023E6 /* DSAlpha.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7FFFF23D675BE00F023E6 /* DSAlpha.swift */; };
@@ -45,13 +47,19 @@
 		18C7FFFA23D673CE00F023E6 /* DSCellStyleable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7FFF923D673CE00F023E6 /* DSCellStyleable.swift */; };
 		18C7FFFC23D6747B00F023E6 /* DSCellStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7FFFB23D6747B00F023E6 /* DSCellStyle.swift */; };
 		18C7FFFE23D6751500F023E6 /* DSRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7FFFD23D6751500F023E6 /* DSRadius.swift */; };
+		18D4A19F23DD955A00DC1146 /* LoadingViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D4A19E23DD955A00DC1146 /* LoadingViewProvider.swift */; };
+		18D4A1A223DDCA5600DC1146 /* DSBrightness.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D4A1A123DDCA5600DC1146 /* DSBrightness.swift */; };
+		18D4A1A823DDE61F00DC1146 /* CharacterViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D4A1A723DDE61F00DC1146 /* CharacterViewProtocol.swift */; };
+		18D4A1AA23DDF3D000DC1146 /* CharacterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D4A1A923DDF3D000DC1146 /* CharacterViewModel.swift */; };
+		18E0521223DD72D200DFD5F4 /* DSViewLockable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E0521123DD72D200DFD5F4 /* DSViewLockable.swift */; };
+		18E2B61F23DCF530007AE6A5 /* CharactersRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E2B61E23DCF530007AE6A5 /* CharactersRepository.swift */; };
+		18E2B62223DCFD14007AE6A5 /* MarvelAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E2B62123DCFD14007AE6A5 /* MarvelAPI.swift */; };
 		18FC9BCE23DBA20F001DA15A /* DSWindowStyleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FC9BCD23DBA20F001DA15A /* DSWindowStyleTests.swift */; };
 		18FC9BD023DBA906001DA15A /* VSCollectionViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FC9BCF23DBA906001DA15A /* VSCollectionViewControllerTests.swift */; };
 		18FC9BD223DBB118001DA15A /* DSDetailViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FC9BD123DBB118001DA15A /* DSDetailViewTests.swift */; };
 		18FC9BD423DBB851001DA15A /* MainCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FC9BD323DBB851001DA15A /* MainCoordinatorTests.swift */; };
 		18FC9BD723DBC535001DA15A /* GridViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FC9BD623DBC535001DA15A /* GridViewControllerTests.swift */; };
 		18FC9BD923DBCEC6001DA15A /* ListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FC9BD823DBCEC6001DA15A /* ListViewControllerTests.swift */; };
-		18FC9BDC23DC16E6001DA15A /* AppRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FC9BDB23DC16E6001DA15A /* AppRepository.swift */; };
 		18FC9BDE23DC1786001DA15A /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FC9BDD23DC1786001DA15A /* Character.swift */; };
 		18FC9BE023DC192B001DA15A /* ThumbImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FC9BDF23DC192B001DA15A /* ThumbImage.swift */; };
 		18FC9BE323DCBBDF001DA15A /* CharactersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FC9BE223DCBBDE001DA15A /* CharactersViewModel.swift */; };
@@ -71,6 +79,8 @@
 
 /* Begin PBXFileReference section */
 		14E70A2FD0925E97D25F1BB6 /* Pods-VSMarvelApp-VSMarvelAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VSMarvelApp-VSMarvelAppTests.debug.xcconfig"; path = "Target Support Files/Pods-VSMarvelApp-VSMarvelAppTests/Pods-VSMarvelApp-VSMarvelAppTests.debug.xcconfig"; sourceTree = "<group>"; };
+		1849DBCB23DD853C008B9852 /* CharactersViewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersViewProvider.swift; sourceTree = "<group>"; };
+		1849DBCD23DD91B8008B9852 /* DSLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSLoadingView.swift; sourceTree = "<group>"; };
 		185DC03D23D4E0280083A6D4 /* VSMarvelApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VSMarvelApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		185DC04923D4E02D0083A6D4 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		185DC04C23D4E02D0083A6D4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -113,13 +123,19 @@
 		18C7FFFB23D6747B00F023E6 /* DSCellStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSCellStyle.swift; sourceTree = "<group>"; };
 		18C7FFFD23D6751500F023E6 /* DSRadius.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSRadius.swift; sourceTree = "<group>"; };
 		18C7FFFF23D675BE00F023E6 /* DSAlpha.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSAlpha.swift; sourceTree = "<group>"; };
+		18D4A19E23DD955A00DC1146 /* LoadingViewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewProvider.swift; sourceTree = "<group>"; };
+		18D4A1A123DDCA5600DC1146 /* DSBrightness.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSBrightness.swift; sourceTree = "<group>"; };
+		18D4A1A723DDE61F00DC1146 /* CharacterViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterViewProtocol.swift; sourceTree = "<group>"; };
+		18D4A1A923DDF3D000DC1146 /* CharacterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterViewModel.swift; sourceTree = "<group>"; };
+		18E0521123DD72D200DFD5F4 /* DSViewLockable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSViewLockable.swift; sourceTree = "<group>"; };
+		18E2B61E23DCF530007AE6A5 /* CharactersRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersRepository.swift; sourceTree = "<group>"; };
+		18E2B62123DCFD14007AE6A5 /* MarvelAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelAPI.swift; sourceTree = "<group>"; };
 		18FC9BCD23DBA20F001DA15A /* DSWindowStyleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DSWindowStyleTests.swift; sourceTree = "<group>"; };
 		18FC9BCF23DBA906001DA15A /* VSCollectionViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VSCollectionViewControllerTests.swift; sourceTree = "<group>"; };
 		18FC9BD123DBB118001DA15A /* DSDetailViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSDetailViewTests.swift; sourceTree = "<group>"; };
 		18FC9BD323DBB851001DA15A /* MainCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinatorTests.swift; sourceTree = "<group>"; };
 		18FC9BD623DBC535001DA15A /* GridViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridViewControllerTests.swift; sourceTree = "<group>"; };
 		18FC9BD823DBCEC6001DA15A /* ListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewControllerTests.swift; sourceTree = "<group>"; };
-		18FC9BDB23DC16E6001DA15A /* AppRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRepository.swift; sourceTree = "<group>"; };
 		18FC9BDD23DC1786001DA15A /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 		18FC9BDF23DC192B001DA15A /* ThumbImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbImage.swift; sourceTree = "<group>"; };
 		18FC9BE223DCBBDE001DA15A /* CharactersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersViewModel.swift; sourceTree = "<group>"; };
@@ -235,6 +251,7 @@
 			children = (
 				18C7FFF923D673CE00F023E6 /* DSCellStyleable.swift */,
 				18C7FFF723D6729300F023E6 /* DSNavigationBarProtocol.swift */,
+				18E0521123DD72D200DFD5F4 /* DSViewLockable.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -262,12 +279,13 @@
 		18C7002F23DA7C0A00F023E6 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				18D4A1A723DDE61F00DC1146 /* CharacterViewProtocol.swift */,
 				18C7003023DA7C3900F023E6 /* CharactersViewController.swift */,
+				18D4A1A923DDF3D000DC1146 /* CharacterViewModel.swift */,
 				18FC9BE223DCBBDE001DA15A /* CharactersViewModel.swift */,
-				18C7001223D7D09000F023E6 /* GridViewCell.swift */,
-				18C7003223DA7C7400F023E6 /* GridViewModel.swift */,
-				18C7001423D7D0AE00F023E6 /* ListViewCell.swift */,
-				18C7003623DADFF800F023E6 /* ListViewModel.swift */,
+				18D4A1A023DD956B00DC1146 /* Provider */,
+				18E2B61C23DCF46E007AE6A5 /* Grid */,
+				18E2B61D23DCF478007AE6A5 /* List */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -338,6 +356,7 @@
 		18C7FFCE23D5342300F023E6 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				18E0521023DD72B400DFD5F4 /* Extensions */,
 				18C7FFCF23D5342B00F023E6 /* DesignSystem */,
 				18FC9BDA23DC16C3001DA15A /* Repository */,
 				18C7000B23D69AA900F023E6 /* Scene */,
@@ -361,6 +380,7 @@
 			isa = PBXGroup;
 			children = (
 				18C7000C23D69EEB00F023E6 /* DSDetailView.swift */,
+				1849DBCD23DD91B8008B9852 /* DSLoadingView.swift */,
 			);
 			path = Elements;
 			sourceTree = "<group>";
@@ -388,15 +408,58 @@
 		18C7FFE223D5502A00F023E6 /* Tokens */ = {
 			isa = PBXGroup;
 			children = (
+				18C7FFFF23D675BE00F023E6 /* DSAlpha.swift */,
 				18C7FFE823D5534300F023E6 /* DSAssets.swift */,
+				18D4A1A123DDCA5600DC1146 /* DSBrightness.swift */,
 				18C7FFD023D5344000F023E6 /* DSColor.swift */,
 				18C7FFEA23D553E300F023E6 /* DSIcon.swift */,
 				18C7FFFD23D6751500F023E6 /* DSRadius.swift */,
-				18C7FFFF23D675BE00F023E6 /* DSAlpha.swift */,
 				18C7000123D6768200F023E6 /* DSShadow.swift */,
 				18C7000E23D6A38200F023E6 /* DSSpacing.swift */,
 			);
 			path = Tokens;
+			sourceTree = "<group>";
+		};
+		18D4A1A023DD956B00DC1146 /* Provider */ = {
+			isa = PBXGroup;
+			children = (
+				1849DBCB23DD853C008B9852 /* CharactersViewProvider.swift */,
+				18D4A19E23DD955A00DC1146 /* LoadingViewProvider.swift */,
+			);
+			path = Provider;
+			sourceTree = "<group>";
+		};
+		18E0521023DD72B400DFD5F4 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		18E2B61C23DCF46E007AE6A5 /* Grid */ = {
+			isa = PBXGroup;
+			children = (
+				18C7001223D7D09000F023E6 /* GridViewCell.swift */,
+				18C7003223DA7C7400F023E6 /* GridViewModel.swift */,
+			);
+			path = Grid;
+			sourceTree = "<group>";
+		};
+		18E2B61D23DCF478007AE6A5 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				18C7001423D7D0AE00F023E6 /* ListViewCell.swift */,
+				18C7003623DADFF800F023E6 /* ListViewModel.swift */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
+		18E2B62023DCFD03007AE6A5 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				18E2B62123DCFD14007AE6A5 /* MarvelAPI.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 		18FC9BD523DBC502001DA15A /* Main */ = {
@@ -413,7 +476,8 @@
 		18FC9BDA23DC16C3001DA15A /* Repository */ = {
 			isa = PBXGroup;
 			children = (
-				18FC9BDB23DC16E6001DA15A /* AppRepository.swift */,
+				18E2B62023DCFD03007AE6A5 /* Service */,
+				18E2B61E23DCF530007AE6A5 /* CharactersRepository.swift */,
 				18FC9BE123DC1937001DA15A /* Models */,
 			);
 			path = Repository;
@@ -656,28 +720,34 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18E2B62223DCFD14007AE6A5 /* MarvelAPI.swift in Sources */,
 				18FC9BE323DCBBDF001DA15A /* CharactersViewModel.swift in Sources */,
 				18C7000223D6768200F023E6 /* DSShadow.swift in Sources */,
 				18FC9BDE23DC1786001DA15A /* Character.swift in Sources */,
 				18C7FFFC23D6747B00F023E6 /* DSCellStyle.swift in Sources */,
 				18C7003723DADFF800F023E6 /* ListViewModel.swift in Sources */,
 				18C7000F23D6A38200F023E6 /* DSSpacing.swift in Sources */,
+				1849DBCE23DD91B8008B9852 /* DSLoadingView.swift in Sources */,
 				18C7000D23D69EEB00F023E6 /* DSDetailView.swift in Sources */,
 				18C7000023D675BE00F023E6 /* DSAlpha.swift in Sources */,
 				18C7FFDA23D5472600F023E6 /* DSNavigationController.swift in Sources */,
 				18C7003123DA7C3900F023E6 /* CharactersViewController.swift in Sources */,
 				18C7001523D7D0AE00F023E6 /* ListViewCell.swift in Sources */,
+				18D4A1A823DDE61F00DC1146 /* CharacterViewProtocol.swift in Sources */,
 				18C7FFF023D66D4800F023E6 /* DSWindowStyle.swift in Sources */,
+				18D4A19F23DD955A00DC1146 /* LoadingViewProvider.swift in Sources */,
 				18C7002323DA5E5600F023E6 /* DSDynamicView.swift in Sources */,
+				18E0521223DD72D200DFD5F4 /* DSViewLockable.swift in Sources */,
 				18C7003923DAE9D000F023E6 /* MainCoordinator.swift in Sources */,
 				18FC9BE023DC192B001DA15A /* ThumbImage.swift in Sources */,
 				18C7002E23DA712500F023E6 /* DetailCoordinator.swift in Sources */,
+				18E2B61F23DCF530007AE6A5 /* CharactersRepository.swift in Sources */,
 				18C7FFFA23D673CE00F023E6 /* DSCellStyleable.swift in Sources */,
 				18C7FFF823D6729300F023E6 /* DSNavigationBarProtocol.swift in Sources */,
+				18D4A1A223DDCA5600DC1146 /* DSBrightness.swift in Sources */,
 				18C7002C23DA710000F023E6 /* DetailViewModel.swift in Sources */,
 				18C7002823DA678800F023E6 /* DetailViewController.swift in Sources */,
 				18C7FFE123D54C8600F023E6 /* DSNavigationBarStyle.swift in Sources */,
-				18FC9BDC23DC16E6001DA15A /* AppRepository.swift in Sources */,
 				18C7FFFE23D6751500F023E6 /* DSRadius.swift in Sources */,
 				18C7FFE923D5534300F023E6 /* DSAssets.swift in Sources */,
 				18C7FFD523D5456600F023E6 /* AppCoordinator.swift in Sources */,
@@ -685,6 +755,8 @@
 				18C7003323DA7C7400F023E6 /* GridViewModel.swift in Sources */,
 				18C7001323D7D09000F023E6 /* GridViewCell.swift in Sources */,
 				18C7FFCD23D52BC700F023E6 /* Keys.swift in Sources */,
+				1849DBCC23DD853C008B9852 /* CharactersViewProvider.swift in Sources */,
+				18D4A1AA23DDF3D000DC1146 /* CharacterViewModel.swift in Sources */,
 				18C7002523DA64A000F023E6 /* DSCollectionViewController.swift in Sources */,
 				18C7FFD123D5344000F023E6 /* DSColor.swift in Sources */,
 				18C7FFEB23D553E300F023E6 /* DSIcon.swift in Sources */,

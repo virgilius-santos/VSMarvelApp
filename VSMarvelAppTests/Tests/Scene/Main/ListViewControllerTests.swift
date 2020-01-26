@@ -9,7 +9,7 @@ class ListViewControllerTests: XCTestCase {
     typealias ViewController = CharactersViewController<ListViewCell>
     typealias ViewModel = ViewController.ViewModel
     typealias CellView = ListViewCell
-    typealias CellViewModel = ViewController.CellViewModel
+    typealias CellViewModel = CharacterViewModel
     typealias BasicProviderData = BasicProvider<CellViewModel, CellView>
     
     var nav: UINavigationController!
@@ -17,7 +17,7 @@ class ListViewControllerTests: XCTestCase {
     var sut: ViewController!
     
     var provider: BasicProviderData {
-        return (sut.collectionView.provider as! BasicProviderData)
+        return (sut.collectionView.provider as! ComposedProvider).sections[0] as! BasicProviderData
     }
     
     var dataSource: ArrayDataSource<CellViewModel> {
@@ -41,9 +41,15 @@ class ListViewControllerTests: XCTestCase {
     }
     
     var dummyCellVM: CellViewModel {
-        return ListViewModel.CellViewModel(asset: DSImage.image1,
-                                           name: "b",
-                                           style: DSCellStyle.default)
+        return CellViewModel(character: dummyCharacter)
+    }
+    
+    var dummyCharacter: Character {
+        return Character(id: 0,
+                         name: "a",
+                         bio: "b",
+                         thumImage: ThumbImage(path: "c",
+                                               extension: "jpg"))
     }
     
     var dummyDetailVC: DetailViewController {
@@ -77,7 +83,7 @@ class ListViewControllerTests: XCTestCase {
         let view = CellView()
         viewSource.update(view: view, data: dummyCellVM, index: 0)
         XCTAssertEqual(view.dsLabel.text, dummyCellVM.name)
-        XCTAssertEqual(view.dsImageView.image, dummyCellVM.asset.image)
+        XCTAssertNotNil(view.dsImageView.image)
     }
     
     func test_viewDidLoad_sizeSource_returnSize() {
@@ -97,12 +103,12 @@ class ListViewControllerTests: XCTestCase {
     func test_viewDidLoad_searchBar_mustBeSeted() {
         XCTAssertNotNil(sut.navigationItem.searchController)
         XCTAssertFalse(sut.navigationItem.hidesSearchBarWhenScrolling)
-        let search = sut.navigationItem.searchController
-        XCTAssertFalse(search!.obscuresBackgroundDuringPresentation)
-        XCTAssertEqual(search?.searchResultsUpdater as? ViewController, sut)
-        let searchBar = search?.searchBar
-        XCTAssertEqual(searchBar?.placeholder, sut.viewModel.placeholderSearchBar)
-        XCTAssertEqual(searchBar?.scopeButtonTitles, sut.viewModel.filterOptionsSearchBar)
+        let search = sut.navigationItem.searchController!
+        XCTAssertFalse(search.obscuresBackgroundDuringPresentation)
+        let searchBar = search.searchBar
+        XCTAssertEqual(searchBar.placeholder, sut.viewModel.placeholderSearchBar)
+        XCTAssertEqual(searchBar.scopeButtonTitles, sut.viewModel.filterOptionsSearchBar)
+        XCTAssertEqual(searchBar.delegate as? ViewController, sut)
     }
     
     func test_viewDidLoad_rightButton_mustBeSeted() {

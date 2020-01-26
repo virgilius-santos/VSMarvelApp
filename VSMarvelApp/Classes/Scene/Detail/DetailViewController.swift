@@ -26,6 +26,7 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
         
         Layout: do {
+            view.backgroundColor = DSColor.secondary.uiColor
             view.addSubview(detailView)
             detailView.snp.makeConstraints {
                 $0.edges.equalTo(self.view)

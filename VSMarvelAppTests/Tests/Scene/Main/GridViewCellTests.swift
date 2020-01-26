@@ -36,7 +36,14 @@ class GridViewCellTests: XCTestCase {
     }
     
     class CollectionCellSpy: UICollectionViewCell, DSCellStyleable {
+        
+        var styleSpy: DSCellStyle?
+        
         var dsLabel: UILabel = .init()
         var dsImageView: UIImageView = .init()
+        
+        func apply(style: DSCellStyle) {
+            styleSpy = style
+        }
     }
 }

@@ -1,6 +1,9 @@
 
 import UIKit
 
+typealias GridViewController = CharactersViewController<GridViewCell>
+typealias ListViewController = CharactersViewController<ListViewCell>
+
 final class MainCoordinator {
     
     weak var navController: DSNavigationControllerProtocol?
@@ -10,7 +13,7 @@ final class MainCoordinator {
     }
     
     func start() {
-        let vc = CharactersViewController<ListViewCell>(viewModel: ListViewModel(title: "Character", router: self))
+        let vc = ListViewController(viewModel: ListViewModel(title: "Character", router: self))
         navController?.navigate(to: vc, using: DSNavigationType.push)
     }
 }
@@ -22,7 +25,7 @@ extension MainCoordinator: GridRouter {
     }
     
     func grid_switchToList() {
-        let vc = CharactersViewController<ListViewCell>(viewModel: ListViewModel(title: "Character", router: self))
+        let vc = ListViewController(viewModel: ListViewModel(title: "Character", router: self))
         navController?.navigate(to: vc, using: DSNavigationType.replace)
     }
 }
@@ -34,7 +37,7 @@ extension MainCoordinator: ListRouter {
     }
     
     func list_switchToGrid() {
-        let vc = CharactersViewController<GridViewCell>(viewModel: GridViewModel(title: "Character", router: self))
+        let vc = GridViewController(viewModel: GridViewModel(title: "Character", router: self))
         navController?.navigate(to: vc, using: DSNavigationType.replace)
     }
 }

@@ -36,7 +36,7 @@ class VSCollectionViewControllerTests: XCTestCase {
         
         let sc = UISearchController()
         sc.searchBar.text = "TExt"
-        sut.updateSearchResults(for: sc)
+        sut.searchBarSearchButtonClicked(sc.searchBar)
         wait(for: [expectation], timeout: 2)
         
         XCTAssertEqual(text, "TExt")

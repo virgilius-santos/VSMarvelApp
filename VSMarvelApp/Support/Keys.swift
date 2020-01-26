@@ -8,10 +8,13 @@
 
 import Foundation
 import Keys
+import CryptoSwift
 
 private let keys = VSMarvelAppKeys()
 
 enum ApiKeys {
     static let marvelApiKey = keys.marvelApiKey
     static let marvelPrivateKey = keys.marvelPrivateKey
+    static let ts = Date().timeIntervalSince1970.description
+    static let hash = "\(ts)\(marvelPrivateKey)\(marvelApiKey)".md5()
 }

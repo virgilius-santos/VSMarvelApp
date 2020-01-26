@@ -1,7 +1,7 @@
 
 import UIKit
 
-final class ListViewCell: DSDynamicView, DSCellStyleable, CharacterCellView {
+final class ListViewCell: DSDynamicView, DSCellStyleable, CharacterViewProtocol {
     
     typealias ViewModelCell = CharacterViewModel
     
@@ -38,12 +38,5 @@ final class ListViewCell: DSDynamicView, DSCellStyleable, CharacterCellView {
             $0.leading.equalTo(self.dsImageView.snp.trailing).offset(DSSpacing.medium.value)
             $0.bottom.lessThanOrEqualTo(self).offset(-DSSpacing.medium.value)
         }
-    }
-    
-    func setup(_ vm: ViewModelCell) {
-        apply(style: vm.style)
-        dsImageView.image = vm.asset.image
-        dsImageView.heroID = vm.asset.name
-        dsLabel.text = vm.name
     }
 }

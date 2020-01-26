@@ -15,12 +15,15 @@ target 'VSMarvelApp' do
       "MarvelPrivateKey"
     ]}
 
-  pod "VService"                        , :path => '../VSCommonSwiftLibrary'
-  pod "VCore"                           , :path => '../VSCommonSwiftLibrary'
-  pod "VComponents"                     , :path => '../VSCommonSwiftLibrary'
+  pod "VService"                        , '~> 0.2.3'#, :path => '../VSCommonSwiftLibrary'
+  pod "VCore"                           , '~> 0.4'#, :path => '../VSCommonSwiftLibrary'
+  pod "VComponents"                     , '~> 0.0.2'#, :path => '../VSCommonSwiftLibrary'
+  
   pod 'SwiftGen'                        , '~> 6.0', :inhibit_warnings => true
   pod 'SnapKit'                         , '~> 5.0', :inhibit_warnings => true
+  
   pod 'Hero'                            , '~> 1.5', :inhibit_warnings => true
+  
   pod 'CollectionKit'                   , '~> 2.4', :inhibit_warnings => true
   pod "CollectionKit/WobbleAnimator"    , '~> 2.4', :inhibit_warnings => true
   pod "YetAnotherAnimationLibrary"      , :inhibit_warnings => true
@@ -28,6 +31,8 @@ target 'VSMarvelApp' do
   pod 'RxSwift'                         , '~> 5.0', :inhibit_warnings => true
   pod 'RxRelay'                         , :inhibit_warnings => true
   pod 'RxCocoa'                         , '~> 5.0', :inhibit_warnings => true
+  
+  pod 'CryptoSwift'                     , '~> 1.3', :inhibit_warnings => true
   
   target 'VSMarvelAppTests' do
     inherit! :search_paths

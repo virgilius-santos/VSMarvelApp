@@ -3,13 +3,18 @@
 import Foundation
 
 struct Character {
-    
-    var id: Int
-    var name: String
-    var bio: String
-    var thumImage: ThumbImage?
+    let id: Int
+    let name: String
+    let bio: String
+    let thumImage: ThumbImage
 }
 
-struct ThumbImage {
-    var path: String
+extension Character {
+    
+    init(_ data: MarvelAPI.Character) {
+        self.id = data.id
+        self.name = data.name
+        self.bio = data.description
+        self.thumImage = ThumbImage(data.thumbnail)
+    }
 }

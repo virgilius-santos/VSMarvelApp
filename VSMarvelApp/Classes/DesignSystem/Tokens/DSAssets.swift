@@ -26,6 +26,7 @@ internal enum Asset {
   internal enum Images {
     internal static let gridIcon = ImageAsset(name: "Grid Icon")
     internal static let listIcon = ImageAsset(name: "List Icon")
+    internal static let placeholder = ImageAsset(name: "placeholder")
     internal static let image1 = ImageAsset(name: "image_1")
     internal static let image10 = ImageAsset(name: "image_10")
     internal static let image11 = ImageAsset(name: "image_11")

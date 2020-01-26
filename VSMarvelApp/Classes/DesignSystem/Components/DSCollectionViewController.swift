@@ -3,7 +3,7 @@ import UIKit
 import CollectionKit
 import SnapKit
 
-class DSCollectionViewController: UIViewController, DSNavigationBarStyleable, DSNavigationBarConfigurable, UISearchResultsUpdating {
+class DSCollectionViewController: UIViewController, DSNavigationBarStyleable, DSNavigationBarConfigurable, UISearchResultsUpdating, UISearchBarDelegate {
     
     let collectionView = CollectionView()
     
@@ -35,7 +35,13 @@ class DSCollectionViewController: UIViewController, DSNavigationBarStyleable, DS
     }
     
     func updateSearchResults(for searchController: UISearchController) {
-        let searchBar = searchController.searchBar
+//        let searchBar = searchController.searchBar
+//        let text = searchBar.text
+//        let index = searchBar.selectedScopeButtonIndex
+//        searchBarText?((text, index))
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         let text = searchBar.text
         let index = searchBar.selectedScopeButtonIndex
         searchBarText?((text, index))

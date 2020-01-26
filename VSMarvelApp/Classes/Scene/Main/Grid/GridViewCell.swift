@@ -1,7 +1,8 @@
 
 import UIKit
+import VCore
 
-final class GridViewCell: DSDynamicView, DSCellStyleable, CharacterCellView {
+final class GridViewCell: DSDynamicView, DSCellStyleable, CharacterViewProtocol {
     
     typealias ViewModelCell = CharacterViewModel
     
@@ -34,12 +35,5 @@ final class GridViewCell: DSDynamicView, DSCellStyleable, CharacterCellView {
         dsLabel.snp.makeConstraints {
             $0.bottom.leading.trailing.equalTo(self)
         }
-    }
-    
-    func setup(_ vm: ViewModelCell) {
-        apply(style: vm.style)
-        dsImageView.image = vm.asset.image
-        dsImageView.heroID = vm.asset.name
-        dsLabel.text = vm.name
     }
 }

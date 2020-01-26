@@ -3,20 +3,26 @@ import UIKit
 import CollectionKit
 import Hero
 import VCore
+import RxCocoa
+import RxSwift
 
-protocol CharacterCellView {
-     func setup(_ vm: CharacterViewModel)
-}
-
-class CharactersViewController<CellView: UIView>: DSCollectionViewController, HeroViewControllerDelegate {
+class CharactersViewController<CharacterView: UIView>: DSCollectionViewController, HeroViewControllerDelegate where CharacterView: CharacterViewProtocol {
     
     typealias ViewModel = CharactersViewModel
-    typealias CellViewModel = CharacterViewModel
     
     let viewModel: ViewModel
     
     let scale = HeroModifier.scale(3)
     let delay = HeroModifier.delay(0.2)
+    
+    var searchBarTextObservable: Observable<(text: String?, filter: Int)> {
+        return Observable<(text: String?, filter: Int)>.create { observer in
+            super.searchBarText = { observer.onNext($0) }
+            return Disposables.create()
+        }
+    }
+    
+    let disposeBag = DisposeBag()
     
     init(viewModel: ViewModel) {
         self.viewModel = viewModel
@@ -36,51 +42,43 @@ class CharactersViewController<CellView: UIView>: DSCollectionViewController, He
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = DSColor.secondary.uiColor
+        
+        let cellProvider: CharactersViewProvider<CharacterView>
+        
+        let loadingProvider = LoadingViewProvider(sizeSource: { [weak self] in
+            guard let self = self else { return CGSize.zero }
+            return CGSize(width: self.view.frame.width - 2*DSSpacing.xxSmall.value,
+                          height: self.view.frame.width/3)
+        })
+        
+        let finalProvider: ComposedProvider
+                
         Layout: do {
             
-            let dataSource = ArrayDataSource(
-                data: [],
-                identifierMapper: { (index: Int, data: CellViewModel) in return data.name }
-            )
-            
-            let viewSource = ClosureViewSource(
-                viewUpdater: { (view: CellView, data: CellViewModel, index: Int) in
-                    if let cell = view as? CharacterCellView {
-                        cell.setup(data)
-                    }
-            })
-            
-            let sizeSource = { [weak self] (index: Int, data: CellViewModel, collectionSize: CGSize) -> CGSize in
+            let sizeSource = { [weak self] () -> CGSize in
                 guard let self = self else { return CGSize.zero }
                 return self.viewModel.cellSize(from: self.view.frame)
             }
             
-            let provider = BasicProvider(
-                dataSource: dataSource,
-                viewSource: viewSource,
-                sizeSource: sizeSource,
-                animator: WobbleAnimator()
-            )
-            
-            let inset = UIEdgeInsets(top: DSSpacing.xxSmall.value,
-                                     left: DSSpacing.xxSmall.value,
-                                     bottom: DSSpacing.xxSmall.value,
-                                     right: DSSpacing.xxSmall.value)
-            provider.layout = FlowLayout(spacing: DSSpacing.xxSmall.value,
-                                         justifyContent: JustifyContent.spaceAround)
-                .inset(by: inset)
-            
-            provider.tapHandler = { [viewModel] context in
-                viewModel.goTo(context.data)
+            let tapHandler: ((CharacterViewModel) -> ()) = { [viewModel] cellVM in
+                viewModel.goTo(cellVM)
             }
             
-            //lastly assign this provider to the collectionView to display the content
-            collectionView.provider = provider
+            cellProvider = CharactersViewProvider<CharacterView>(
+                sizeSource: sizeSource,
+                tapHandler: tapHandler
+            )
+            
+            finalProvider = ComposedProvider(sections: [cellProvider.provider, loadingProvider.provider])
+            collectionView.provider = finalProvider
         }
         
         SearchBar: do {
-            addSearchBar(placeholder: viewModel.placeholderSearchBar,
-                         scopeButtonTitles: viewModel.filterOptionsSearchBar)
+            let searchController = addSearchBar(placeholder: viewModel.placeholderSearchBar,
+                                         scopeButtonTitles: viewModel.filterOptionsSearchBar)
+            searchController.searchBar.delegate = self
+            
             configureRightButton(with: viewModel.rightButtonIcon.image,
                                  target: self,
                                  action: #selector(rightButtonAction))
@@ -89,6 +87,46 @@ class CharactersViewController<CellView: UIView>: DSCollectionViewController, He
         Data: do {
             title = viewModel.title
         }
+        
+        Rx: do {
+            
+            let input = CharactersInput(text: searchBarTextObservable,
+                                        currentIndex: cellProvider.currentIndex,
+                                        reload: loadingProvider.tap)
+            
+            let output = viewModel.bind(input: input)
+            
+            output.cellViewModel
+                .subscribe(onNext: { (listCellVM: [CharacterViewModel]) in
+                    cellProvider.dataSource.data.append(contentsOf: listCellVM)
+                })
+                .disposed(by: disposeBag)
+            
+            output.loading
+                .subscribe(onNext: { state in
+                    
+                    let noContainsLooadingProvider = finalProvider.sections.count == 1
+                    switch state {
+                        case .loading:
+                            if noContainsLooadingProvider {
+                                finalProvider.sections.append(loadingProvider.provider)
+                            }
+                            loadingProvider.dataSource.data = [DSLoadingState.loading]
+                        case .error:
+                            if noContainsLooadingProvider {
+                                finalProvider.sections.append(loadingProvider.provider)
+                            }
+                            loadingProvider.dataSource.data = [DSLoadingState.error]
+                        case .normal:
+                            if !noContainsLooadingProvider {
+                                finalProvider.sections = [cellProvider.provider]
+                            }
+                            loadingProvider.dataSource.data = [DSLoadingState.normal]
+                    }
+                })
+                .disposed(by: disposeBag)
+            
+        }
     }
     
     @objc func rightButtonAction() {
@@ -96,7 +134,7 @@ class CharactersViewController<CellView: UIView>: DSCollectionViewController, He
     }
 }
 
-extension CharactersViewController where CellView == GridViewCell {
+extension CharactersViewController where CharacterView == GridViewCell {
     func heroWillStartAnimatingTo(viewController: UIViewController) {
         if viewController is DetailViewController {
             collectionView.hero.modifiers = [scale,
@@ -117,7 +155,7 @@ extension CharactersViewController where CellView == GridViewCell {
     }
 }
 
-extension CharactersViewController where CellView == ListViewCell {
+extension CharactersViewController where CharacterView == ListViewCell {
     func heroWillStartAnimatingTo(viewController: UIViewController) {
         if viewController is DetailViewController {
             collectionView.hero.modifiers = [.cascade]
