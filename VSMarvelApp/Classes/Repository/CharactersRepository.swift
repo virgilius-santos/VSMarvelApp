@@ -5,13 +5,7 @@ import RxSwift
 import VCore
 
 protocol CharactersRepositoryProtocol {
-    func getCharacters(id: Int?, next: Bool, name: String?) -> Single<[Character]>
-}
-
-extension CharactersRepositoryProtocol {
-    func getCharacters(next: Bool = false, name: String? = nil) -> Single<[Character]> {
-        self.getCharacters(id: nil, next: next, name: name)
-    }
+    func getCharacters(id: Int?, number: Int, name: String?) -> Single<[Character]>
 }
 
 final class CharactersRepository: CharactersRepositoryProtocol {
@@ -21,8 +15,8 @@ final class CharactersRepository: CharactersRepositoryProtocol {
     let api = MarvelAPI()
     
     var dataReceived = DataReceived(offset: 0,
-                                    limit: 0,
-                                    total: 0,
+                                    limit: 20,
+                                    total: 1000,
                                     count: 0,
                                     results: [])
     
@@ -30,12 +24,12 @@ final class CharactersRepository: CharactersRepositoryProtocol {
         MarvelAPI.QueryKeys.orderBy(type: MarvelAPI.OrderType.name(ascendent: true))
     }
     
-    func getCharacters(id: Int?, next: Bool, name: String?) -> Single<[Character]> {
+    func getCharacters(id: Int?, number: Int, name: String?) -> Single<[Character]> {
         
         let queries: [MarvelAPI.QueryKeys]
             
         do {
-            queries = try getQueries(next: next, name: name)
+            queries = try getQueries(number: number, name: name)
         } catch {
             logger.error("\(error)")
             return Single<[Character]>.just([])
@@ -63,7 +57,7 @@ final class CharactersRepository: CharactersRepositoryProtocol {
         .map { data in data.results.map { Character($0) }}
     }
     
-    func getQueries(next: Bool, name: String?) throws -> [MarvelAPI.QueryKeys] {
+    func getQueries(number: Int, name: String?) throws -> [MarvelAPI.QueryKeys] {
         var queries = [MarvelAPI.QueryKeys]()
         
         queries.append(orderBy)
@@ -72,15 +66,15 @@ final class CharactersRepository: CharactersRepositoryProtocol {
             queries.append(MarvelAPI.QueryKeys.nameStartsWith(string: name))
         }
         
-        if next {
-            let offset = dataReceived.offset + dataReceived.limit
-            if offset < dataReceived.total {
-                queries.append(MarvelAPI.QueryKeys.offset(index: offset))
-            }
-            else {
-                throw RepositoryError.noDataToRequest
-            }
+        let limit = 20
+        let offset = number * limit
+        if offset < dataReceived.total {
+            queries.append(MarvelAPI.QueryKeys.offset(index: offset))
         }
+        else {
+            throw RepositoryError.noDataToRequest
+        }
+
         
         return queries
     }

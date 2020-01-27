@@ -126,6 +126,14 @@ class CharactersViewController<CharacterView: UIView>: DSCollectionViewControlle
                 })
                 .disposed(by: disposeBag)
             
+            output.resetData
+                .subscribe(onNext: {
+                    cellProvider.dataSource.data = []
+                })
+                .disposed(by: disposeBag)
+            
+            output.disposable
+                .disposed(by: disposeBag)
         }
     }
     

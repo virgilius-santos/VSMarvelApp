@@ -46,7 +46,7 @@ final class MarvelAPI {
         
         let request = self.getCharactersRequestData(id: id, queries: queries)
         let response = self.charactersResponse
-
+        logger.info(String(describing: request.url))
         self.session.request(resquest: request,
                              response: response)
         { (result) in
