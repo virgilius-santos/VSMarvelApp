@@ -99,6 +99,7 @@ extension CharactersViewModel {
             onError: { _ in loading.onNext(DSLoadingState.error) },
             onSubscribed: {
                 loading.onNext(DSLoadingState.loading) })
+            .catchErrorJustReturn([])
             .asObservable()
     }
 }
