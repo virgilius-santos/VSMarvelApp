@@ -15,14 +15,14 @@ final class MarvelAPI {
     
     static let baseURL = "https://gateway.marvel.com:443/v1/public"
     
-    let session: VSession
+    let session: VSessionProtocol
     
     let charactersResponse: ((Data) throws -> MarvelAPI.Response.DataReceived) = {
         let response = try MarvelAPI.Response.decode(data: $0)
         return response.data
     }
     
-    init(session: VSession? = nil) {
+    init(session: VSessionProtocol? = nil) {
         self.session = session ?? VSession(config: VConfiguration.default)
     }
     
@@ -36,7 +36,9 @@ final class MarvelAPI {
         let responseData = self.charactersResponse
         logger.info(String(describing: requestData.url))
         
-        self.session.request(resquest: requestData, response: responseData) { (result) in
+        self.session.request(resquest: requestData,
+                             response: responseData,
+                             errorHandler: nil) { (result) in
             switch result {
                 case let .success(data):
                     completion(.success(data))
