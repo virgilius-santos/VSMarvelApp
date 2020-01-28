@@ -22,18 +22,6 @@ final class MarvelAPI {
         return response.data
     }
     
-    var charactersRequest: VRequestData {
-        return VRequestData(
-            urlString: MarvelAPI.baseURL,
-            queryParameters: [
-                ("apikey", ApiKeys.marvelApiKey),
-                ("ts", ApiKeys.ts),
-                ("hash", ApiKeys.hash),
-            ],
-            paths:  ["characters"]
-        )
-    }
-    
     init(session: VSession? = nil) {
         self.session = session ?? VSession(config: VConfiguration.default)
     }
@@ -44,13 +32,11 @@ final class MarvelAPI {
         completion: @escaping((Result<Response.DataReceived, VSessionError>)->())
         ) {
         
-        let request = self.getCharactersRequestData(id: id, queries: queries)
-        let response = self.charactersResponse
-        logger.info(String(describing: request.url))
-        self.session.request(resquest: request,
-                             response: response)
-        { (result) in
-            
+        let requestData = self.getCharactersRequestData(id: id, queries: queries)
+        let responseData = self.charactersResponse
+        logger.info(String(describing: requestData.url))
+        
+        self.session.request(resquest: requestData, response: responseData) { (result) in
             switch result {
                 case let .success(data):
                     completion(.success(data))
@@ -61,17 +47,21 @@ final class MarvelAPI {
     }
     
     func getCharactersRequestData(id: Int?, queries: [QueryKeys]) -> VRequestData {
-        var request = self.charactersRequest
         
-        if let id = id {
-            request.add(path: id)
-        }
+        let keys = queries
+            .map { (queryKeys) -> (key: String, value: String) in queryKeys.value }
         
-        queries
-            .map { (keys) -> (key: String, value: String) in keys.value }
-            .forEach { request.addQuery(key: $0.key, value: $0.value) }
+        let path: [Any] = (id == nil) ? ["characters"] : ["characters", id ?? 0]
         
-        return request
+        return VRequestData(
+            urlString: MarvelAPI.baseURL,
+            queryParameters: keys + [
+                ("apikey", ApiKeys.marvelApiKey),
+                ("ts", ApiKeys.ts),
+                ("hash", ApiKeys.hash),
+            ],
+            paths: path
+        )
     }
     
     enum OrderType {
