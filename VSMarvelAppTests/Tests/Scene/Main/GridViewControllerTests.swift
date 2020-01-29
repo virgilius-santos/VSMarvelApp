@@ -136,7 +136,7 @@ class CharactersViewControllerTests: XCTestCase {
                                               index: 0,
                                               dataSource: dataSource)
         provider.tapHandler?(bp)
-        XCTAssertEqual(spy?.detail?.title, dummyCellVM.name)
+        XCTAssertEqual(spy?.detail?.name, dummyCellVM.name)
     }
     
     func test_heroWillStartAnimatingTo_noToDetailViewController() {
@@ -185,9 +185,9 @@ class CharactersViewControllerTests: XCTestCase {
     class RouterSpy: GridRouter {
         
         var grid_switchToListSpy: Bool?
-        var detail: DetailViewModel?
+        var detail: CharacterViewModel?
         
-        func grid_goTo(_ vm: DetailViewModel) {
+        func grid_goTo(_ vm: CharacterViewModel) {
             detail = vm
         }
         

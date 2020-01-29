@@ -7,6 +7,18 @@ class MainCoordinatorTests: XCTestCase {
     var nav: DSNavigationControllerSpy!
     var sut: MainCoordinator!
     
+    var dummyGridVM: CharacterViewModel {
+        return .init(character: characterMock)
+    }
+    
+    var characterMock: Character {
+        return .init(id: 0,
+                     name: "a",
+                     bio: "b",
+                     thumImage: ThumbImage(path: "arte",
+                                           extension: "jpg"))
+    }
+    
     override func setUp() {
         nav = .init()
         sut = .init(navController: nav)
@@ -28,23 +40,21 @@ class MainCoordinatorTests: XCTestCase {
     }
     
     func testWhenGoToFromGridCalledDetailMustBeStarted() {
-        let vm = DetailViewModel.init(title: "a", description: "b", path: "arte")
-        sut.grid_goTo(vm)
+        sut.grid_goTo(dummyGridVM)
         XCTAssert(nav?.viewController is DetailViewController)
         XCTAssertEqual(nav?.type, DSNavigationType.push)
         XCTAssertEqual((nav?.viewController as? DetailViewController)?.viewModel.title, "a")
         XCTAssertEqual((nav?.viewController as? DetailViewController)?.viewModel.description, "b")
-        XCTAssertEqual((nav?.viewController as? DetailViewController)?.viewModel.path, "arte")
+        XCTAssertEqual((nav?.viewController as? DetailViewController)?.viewModel.path, "arte/portrait_xlarge.jpg")
     }
     
     func testWhenGoToFromListCalledDetailMustBeStarted() {
-        let vm = DetailViewModel.init(title: "a", description: "b", path: "arte")
-        sut.list_goTo(vm)
+        sut.list_goTo(dummyGridVM)
         XCTAssert(nav?.viewController is DetailViewController)
         XCTAssertEqual(nav?.type, DSNavigationType.push)
         XCTAssertEqual((nav?.viewController as? DetailViewController)?.viewModel.title, "a")
         XCTAssertEqual((nav?.viewController as? DetailViewController)?.viewModel.description, "b")
-        XCTAssertEqual((nav?.viewController as? DetailViewController)?.viewModel.path, "arte")
+        XCTAssertEqual((nav?.viewController as? DetailViewController)?.viewModel.path, "arte/portrait_xlarge.jpg")
     }
     
     func testWhenSwitchToListCalledGridMustBeStarted() {
