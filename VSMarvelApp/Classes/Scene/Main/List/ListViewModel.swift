@@ -2,7 +2,7 @@
 import UIKit
 
 protocol ListRouter {
-    func list_goTo(_: DetailViewModel)
+    func list_goTo(_: CharacterViewModel)
     func list_switchToGrid()
 }
 
@@ -28,10 +28,7 @@ struct ListViewModel: CharactersViewModel {
     }
     
     func goTo(_ vm: CharacterViewModel) {
-        let detail = DetailViewModel(title: vm.name,
-                                     description: vm.bio,
-                                     path: vm.path)
-        router.list_goTo(detail)
+        router.list_goTo(vm)
     }
     
     func switchView() {

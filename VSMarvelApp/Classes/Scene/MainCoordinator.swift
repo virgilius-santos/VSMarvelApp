@@ -19,7 +19,7 @@ final class MainCoordinator {
 }
 
 extension MainCoordinator: GridRouter {
-    func grid_goTo(_ vm: DetailViewModel) {
+    func grid_goTo(_ vm: CharacterViewModel) {
         let coord = DetailCoordinator(navController: navController, viewModel: vm)
         coord.start()
     }
@@ -31,7 +31,7 @@ extension MainCoordinator: GridRouter {
 }
 
 extension MainCoordinator: ListRouter {
-    func list_goTo(_ vm: DetailViewModel) {
+    func list_goTo(_ vm: CharacterViewModel) {
         let coord = DetailCoordinator(navController: navController, viewModel: vm)
         coord.start()
     }

@@ -11,6 +11,8 @@ protocol CharactersViewModel {
     
     var repository: CharactersRepositoryProtocol { get }
     
+    func bind(input: CharactersInput) -> CharactersOutput
+    
     func goTo(_ vm: CharacterViewModel)
     func switchView()
     func cellSize(from rect: CGRect) -> CGSize
