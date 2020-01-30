@@ -31,15 +31,14 @@ class VSCollectionViewControllerTests: XCTestCase {
         let expectation = self.expectation(description: "searchBarText")
         sut.searchBarText = { args in
             text = args.text
+            XCTAssertEqual(text, "TExt")
             expectation.fulfill()
         }
         
-        let sc = UISearchController()
-        sc.searchBar.text = "TExt"
-        sut.searchBarSearchButtonClicked(sc.searchBar)
-        wait(for: [expectation], timeout: 2)
-        
-        XCTAssertEqual(text, "TExt")
+        let searchBar = UISearchBar()
+        searchBar.text = "TExt"
+        self.sut.searchBarSearchButtonClicked(searchBar)
+        wait(for: [expectation], timeout: 3)
     }
     
     func test () {

@@ -8,7 +8,7 @@ use_frameworks!
 target 'VSMarvelApp' do
 
   plugin 'cocoapods-keys', {
-    :project => "VSMarvelApp",
+    :project => "VSMarvelApp.xcworkspace",
     :target => "VSMarvelApp",
     :keys => [
       "MarvelApiKey",

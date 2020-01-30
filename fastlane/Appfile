@@ -1,0 +1,8 @@
+app_identifier("org.cocoapods.VComponents") # The bundle identifier of your app
+apple_id("virgilius_santos@yahoo.com.br") # Your Apple email address
+
+itc_team_id("118594739") # App Store Connect Team ID
+team_id("MK25RCCMW7") # Developer Portal Team ID
+
+# For more information about the Appfile, see:
+#     https://docs.fastlane.tools/advanced/#appfile
