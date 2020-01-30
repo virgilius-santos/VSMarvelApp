@@ -81,7 +81,7 @@ final class BrowseProductsViewModel {
 final class BrowseProductsViewController: UIViewController {
     
     // Also Note the strong reference
-    var delegate: BrowseProductsViewModel
+    var viewModel: BrowseProductsViewModel
     
     func onProductTapped(product: Product) {
         delegate?.browseProducts(didTapProduct: product)
@@ -101,6 +101,8 @@ final class BrowseProductsCoordinator: CoordinatorNavigable {
     }
     
     func start() {
+        
+        // here we make the scene's configuration injecting the dependencies
         let rootViewModel = BrowseProductsViewModel()
         rootViewModel.delegate = self 
         let rootViewController = BrowseProductsViewController(rootViewModel)
