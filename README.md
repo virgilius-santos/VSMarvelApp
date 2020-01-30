@@ -232,7 +232,8 @@ A key value store for enviroment and application keys [link](https://github.com/
 Screens: [thiagolioy/marvelapp-SketchProject](https://github.com/thiagolioy/marvelapp-SketchProject)  
 cocoa-keys: [thiagolioy/tools-pods-tricks](https://medium.com/cocoaacademymag/creating-a-ios-app-from-scratch-tools-pods-tricks-of-the-trade-and-more-part-1-a0a3f18fbd13#.fu8u4puxu)
 
-### Next Steps
+### Next Steps  
+- [X] Add screens  
+- [ ] Add travis CI  
 - [ ] Create code documentation with Jazzy.  
-- [ ] Implementing unit tests with RxTest and RxBlocking.  
-- [X] Add screens
+- [ ] Implementing unit tests with RxTest and RxBlocking.
