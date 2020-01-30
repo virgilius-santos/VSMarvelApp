@@ -223,13 +223,16 @@ A key value store for enviroment and application keys [link](https://github.com/
 * Build the project for testing using: ```Cmd```+ ```Shift```+ ```U```.
 * Run the tests using: ```Cmd``` + ```U```
 
+
+### Artboard
+![Artboard](Assets/Artboard.png)
+
 ### Reference
 
-Screens: [thiagolioy/marvelapp-SketchProject](https://github.com/thiagolioy/marvelapp-SketchProject)
-
+Screens: [thiagolioy/marvelapp-SketchProject](https://github.com/thiagolioy/marvelapp-SketchProject)  
 cocoa-keys: [thiagolioy/tools-pods-tricks](https://medium.com/cocoaacademymag/creating-a-ios-app-from-scratch-tools-pods-tricks-of-the-trade-and-more-part-1-a0a3f18fbd13#.fu8u4puxu)
 
 ### Next Steps
 - [ ] Create code documentation with Jazzy.  
 - [ ] Implementing unit tests with RxTest and RxBlocking.  
-- [ ] Add screens
+- [X] Add screens
