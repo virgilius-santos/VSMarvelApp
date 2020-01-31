@@ -10,11 +10,10 @@ struct Character {
 }
 
 extension Character {
-    
     init(_ data: MarvelAPI.Character) {
-        self.id = data.id
-        self.name = data.name
-        self.bio = data.description
-        self.thumImage = ThumbImage(data.thumbnail)
+        id = data.id
+        name = data.name
+        bio = data.description
+        thumImage = ThumbImage(data.thumbnail)
     }
 }

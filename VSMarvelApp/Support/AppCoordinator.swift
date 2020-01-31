@@ -9,13 +9,12 @@
 import UIKit
 
 final class AppCoordinator {
-    
     weak var navController: DSNavigationControllerProtocol?
-    
+
     init(navController: DSNavigationControllerProtocol?) {
         self.navController = navController
     }
-    
+
     func start() {
         let coord = MainCoordinator(navController: navController)
         coord.start()

@@ -1,6 +1,6 @@
 
-import UIKit
 import SnapKit
+import UIKit
 
 enum DSLoadingState {
     case loading
@@ -9,7 +9,6 @@ enum DSLoadingState {
 }
 
 final class DSLoadingView: UIView {
-    
     let errorLabel: UILabel = {
         $0.isHidden = true
         $0.numberOfLines = 0
@@ -19,7 +18,7 @@ final class DSLoadingView: UIView {
         $0.text = "Erro baixando dados"
         return $0
     }(UILabel())
-    
+
     let errorButton: UIButton = {
         $0.isHidden = true
         if let label = $0.titleLabel {
@@ -32,42 +31,42 @@ final class DSLoadingView: UIView {
                          for: UIControl.State.highlighted)
         return $0
     }(UIButton())
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+
         common()
     }
-    
+
     @available(*, unavailable)
-    required init?(coder: NSCoder) {
+    required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     func setup(_ state: DSLoadingState) {
         switch state {
-            case .loading:
-                view(isLock: true)
-                view(isHidden: true)
-            case .error:
-                view(isLock: false)
-                view(isHidden: false)
-            case .normal:
-                view(isLock: false)
-                view(isHidden: true)
+        case .loading:
+            view(isLock: true)
+            view(isHidden: true)
+        case .error:
+            view(isLock: false)
+            view(isHidden: false)
+        case .normal:
+            view(isLock: false)
+            view(isHidden: true)
         }
     }
-    
+
     private func view(isHidden: Bool) {
         errorButton.isHidden = isHidden
         errorLabel.isHidden = isHidden
     }
-    
+
     private func view(isLock: Bool) {
         if isLock { lock() }
         else { unlock() }
     }
-    
+
     private func common() {
         addSubview(errorLabel)
         addSubview(errorButton)

@@ -1,8 +1,8 @@
 
-import UIKit
 import Hero
+import UIKit
 
-protocol DSNavigationControllerProtocol: class {
+protocol DSNavigationControllerProtocol: AnyObject {
     func navigate(to viewController: UIViewController, using type: DSNavigationType)
 }
 
@@ -11,24 +11,22 @@ enum DSNavigationType {
 }
 
 final class DSNavigationController: DSNavigationControllerProtocol {
-    
-    typealias NavigationFunction = ((UIViewController)->())
-    
+    typealias NavigationFunction = ((UIViewController) -> Void)
+
     weak var nav: UINavigationController?
-    
+
     var isHeroEnabled: Bool = true {
         didSet {
             nav?.hero.isEnabled = isHeroEnabled
         }
     }
-    
-    
+
     let navigationFunctions: [DSNavigationType: NavigationFunction]
-    
+
     init(nav: UINavigationController?) {
         self.nav = nav
         nav?.hero.isEnabled = true
-        
+
         navigationFunctions = [
             DSNavigationType.push: { [nav] vc in
                 nav?.pushViewController(vc, animated: true)
@@ -41,7 +39,7 @@ final class DSNavigationController: DSNavigationControllerProtocol {
             },
         ]
     }
-    
+
     func navigate(to viewController: UIViewController, using type: DSNavigationType) {
         if let function = navigationFunctions[type] {
             function(viewController)

@@ -6,15 +6,14 @@
 //  Copyright © 2020 Virgilius Santos. All rights reserved.
 //
 
-import XCTest
-@testable import VSMarvelApp
 @testable import VCore
+@testable import VSMarvelApp
+import XCTest
 
 class DSWindowStyleTests: XCTestCase {
-
     var appDelegate: AppDelegate!
     var sut: UIWindow!
-    
+
     override func setUp() {
         appDelegate = .init()
         sut = .init()
@@ -26,9 +25,8 @@ class DSWindowStyleTests: XCTestCase {
     }
 
     func testApplyStyle() {
-        
         appDelegate.applyWindow(style: DSWindowStyle.default, in: sut)
-        
+
         XCTAssertEqual(sut.tintColor, Asset.Colors.text.color)
         XCTAssertEqual(sut.backgroundColor, Asset.Colors.secondary.color)
     }

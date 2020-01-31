@@ -1,11 +1,10 @@
 
-import XCTest
 @testable import VSMarvelApp
+import XCTest
 
 class DetailViewControllerTests: XCTestCase {
-
     var sut: DetailViewController!
-    
+
     override func setUp() {
         sut = .init(viewModel: vmMock)
         _ = sut.view
@@ -21,9 +20,8 @@ class DetailViewControllerTests: XCTestCase {
         XCTAssertNotNil(sut.detailView.imageView.image)
         XCTAssertEqual(sut.detailView.imageView.heroID, "arte")
     }
-    
+
     let vmMock = DetailViewModel(title: "Spider-Man",
                                  description: "Teste",
                                  path: "arte")
-
 }

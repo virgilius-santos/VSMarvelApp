@@ -6,9 +6,9 @@
 //  Copyright © 2020 Virgilius Santos. All rights reserved.
 //
 
+import CryptoSwift
 import Foundation
 import Keys
-import CryptoSwift
 
 private let keys = VSMarvelAppKeys()
 

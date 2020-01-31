@@ -2,36 +2,34 @@
 import UIKit
 
 final class ListViewCell: DSDynamicView, CharacterViewStyleable {
-    
     typealias ViewModelCell = CharacterViewModel
-    
+
     let dsLabel = UILabel()
     let dsImageView = UIImageView()
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+
         common()
     }
-    
+
     @available(*, unavailable)
-    required init?(coder: NSCoder) {
+    required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     func common() {
-        
         addCellSubViews()
     }
-    
+
     func addCellSubViews() {
-        self.addSubview(dsImageView)
+        addSubview(dsImageView)
         dsImageView.snp.makeConstraints {
             $0.top.bottom.leading.equalTo(self)
             $0.height.equalTo(self.dsImageView.snp.width)
         }
-        
-        self.addSubview(dsLabel)
+
+        addSubview(dsLabel)
         dsLabel.snp.makeConstraints {
             $0.top.equalTo(self).offset(DSSpacing.medium.value)
             $0.trailing.equalTo(self).offset(-DSSpacing.medium.value)

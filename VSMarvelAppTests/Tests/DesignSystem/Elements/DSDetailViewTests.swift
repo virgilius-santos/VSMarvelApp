@@ -1,11 +1,10 @@
 
-import XCTest
 @testable import VSMarvelApp
+import XCTest
 
 class DetailViewTests: XCTestCase {
-
     var sut: DetailView!
-    
+
     override func setUp() {
         sut = .init()
         let vm = DetailViewModel(title: "um", description: "dois", path: "arte")

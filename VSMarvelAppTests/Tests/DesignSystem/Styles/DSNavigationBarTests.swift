@@ -6,14 +6,13 @@
 //  Copyright © 2020 Virgilius Santos. All rights reserved.
 //
 
-import XCTest
 @testable import VSMarvelApp
+import XCTest
 
 class DSNavigationBarStyleTests: XCTestCase {
-
     var nav: UINavigationController!
     var sut: ViewControllerSpy!
-    
+
     override func setUp() {
         sut = .init()
         nav = .init(rootViewController: sut)
@@ -26,7 +25,7 @@ class DSNavigationBarStyleTests: XCTestCase {
 
     func testApplyStyle() {
         sut.apply(style: DSNavigationBarStyle.default)
-        
+
         let navBar = nav.navigationBar
         XCTAssertEqual(navBar.barTintColor, Asset.Colors.primary.color)
         XCTAssertEqual(navBar.titleTextAttributes?[.foregroundColor] as? UIColor, Asset.Colors.text.color)
@@ -37,17 +36,16 @@ class DSNavigationBarStyleTests: XCTestCase {
                                  target: sut as Any,
                                  action: Selector(("tapAction")))
         _ = sut.view
-        
+
         let button = sut.navigationItem.rightBarButtonItem
         XCTAssertEqual(button?.style, .plain)
         XCTAssertEqual(button?.image, DSIcon.gridIcon.image)
-        
+
         _ = button?.target?.perform(button?.action, with: nil)
         XCTAssert(sut.tapped)
     }
 
     class ViewControllerSpy: UIViewController, DSNavigationBarStyleable, DSNavigationBarConfigurable {
-        
         var tapped = false
         @objc func tapAction() {
             tapped = true

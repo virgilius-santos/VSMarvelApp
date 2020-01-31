@@ -1,26 +1,25 @@
 
-import UIKit
 import CollectionKit
 import SnapKit
+import UIKit
 
 class DSCollectionViewController: UIViewController, DSNavigationBarStyleable, DSNavigationBarConfigurable, UISearchResultsUpdating, UISearchBarDelegate {
-    
     let collectionView = CollectionView()
-    
+
     var provider: Provider? {
-        get { return collectionView.provider }
+        get { collectionView.provider }
         set { collectionView.provider = newValue }
     }
-    
-    var searchBarText: (((text: String?, filter: Int))->())?
-    
+
+    var searchBarText: (((text: String?, filter: Int)) -> Void)?
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         NavBar: do {
             apply(style: .default)
         }
-        
+
         Collection: do {
             view.addSubview(collectionView)
             collectionView.snp.makeConstraints {
@@ -28,19 +27,19 @@ class DSCollectionViewController: UIViewController, DSNavigationBarStyleable, DS
             }
         }
     }
-    
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         collectionView.frame = view.bounds
     }
-    
-    func updateSearchResults(for searchController: UISearchController) {
+
+    func updateSearchResults(for _: UISearchController) {
 //        let searchBar = searchController.searchBar
 //        let text = searchBar.text
 //        let index = searchBar.selectedScopeButtonIndex
 //        searchBarText?((text, index))
     }
-    
+
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         let text = searchBar.text
         let index = searchBar.selectedScopeButtonIndex

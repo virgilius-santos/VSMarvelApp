@@ -8,20 +8,19 @@
 
 import Foundation
 
-
 struct CharacterViewModel {
     var name: String { character.name }
-    var path: String { "\(character.thumImage.path)/portrait_xlarge.\(character.thumImage.extension)"  }
+    var path: String { "\(character.thumImage.path)/portrait_xlarge.\(character.thumImage.extension)" }
     var style: CharacterViewStyle { CharacterViewStyle.default }
     var bio: String { character.bio }
-    
+
     let character: Character
-    
+
     init(character: Character) {
         self.character = character
     }
 }
 
 extension CharacterViewModel {
-    var asset: DSAsset { return DSImage.placeholder }
+    var asset: DSAsset { DSImage.placeholder }
 }

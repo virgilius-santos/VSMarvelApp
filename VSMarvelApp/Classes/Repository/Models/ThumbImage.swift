@@ -7,9 +7,8 @@ struct ThumbImage {
 }
 
 extension ThumbImage {
-    
-    init( _ data: MarvelAPI.Thumbnail) {
-        self.path = data.path
+    init(_ data: MarvelAPI.Thumbnail) {
+        path = data.path
         self.extension = data.extension
     }
 }

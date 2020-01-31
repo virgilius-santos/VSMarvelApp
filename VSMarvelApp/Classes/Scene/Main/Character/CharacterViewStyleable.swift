@@ -4,7 +4,7 @@ import UIKit
 protocol CharacterViewStyleable {
     var dsLabel: UILabel { get }
     var dsImageView: UIImageView { get }
-    
+
     func apply(style: CharacterViewStyle)
     func setup(_ vm: CharacterViewModel)
 }
@@ -22,21 +22,20 @@ extension CharacterViewStyleable {
 }
 
 extension CharacterViewStyleable where Self: GridViewCell {
-    
     func apply(style: CharacterViewStyle) {
         apply(shadow: style.shadow)
         apply(style: style, in: dsLabel)
         layer.cornerRadius = style.cornerRadius.value
     }
-    
+
     func apply(shadow: DSShadow) {
         layer.shadowColor = shadow.shadowColor.uiColor.cgColor
         layer.shadowOpacity = Float(shadow.shadowOpacity.value)
         layer.shadowOffset = .zero
         layer.shadowRadius = shadow.shadowRadius.value
     }
-    
-    func apply(style: CharacterViewStyle, in label: UILabel) {
+
+    func apply(style: CharacterViewStyle, in _: UILabel) {
         dsLabel.textAlignment = NSTextAlignment.center
         dsLabel.tintColor = style.titleColor.uiColor
         dsLabel.backgroundColor = style.titleBackgroundColor
@@ -46,12 +45,11 @@ extension CharacterViewStyleable where Self: GridViewCell {
 }
 
 extension CharacterViewStyleable where Self: ListViewCell {
-    
     func apply(style: CharacterViewStyle) {
         apply(style: style, in: dsLabel)
     }
-    
-    func apply(style: CharacterViewStyle, in label: UILabel) {
+
+    func apply(style: CharacterViewStyle, in _: UILabel) {
         dsLabel.numberOfLines = 0
         dsLabel.tintColor = style.titleColor.uiColor
         dsLabel.backgroundColor = style.titleBackgroundColor
