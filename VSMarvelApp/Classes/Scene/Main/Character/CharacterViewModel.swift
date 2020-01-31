@@ -1,10 +1,3 @@
-//
-//  CharacterViewModel.swift
-//  VSMarvelApp
-//
-//  Created by Virgilius Santos on 26/01/20.
-//  Copyright © 2020 Virgilius Santos. All rights reserved.
-//
 
 import Foundation
 

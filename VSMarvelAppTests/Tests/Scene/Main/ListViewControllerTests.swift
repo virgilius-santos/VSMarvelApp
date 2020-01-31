@@ -91,8 +91,6 @@ class ListViewControllerTests: XCTestCase {
         XCTAssertEqual(size.height, size.width / 3)
     }
 
-    func test_viewDidLoad_viewModel_mustBeRequestData() {}
-
     func test_viewDidLoad_provider_mustBeSeted() {
         XCTAssertNotNil(sut.collectionView.provider)
     }

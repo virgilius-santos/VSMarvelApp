@@ -91,8 +91,6 @@ class CharactersViewControllerTests: XCTestCase {
         XCTAssertEqual(size.height, size.width)
     }
 
-    func test_viewDidLoad_viewModel_mustBeRequestData() {}
-
     func test_viewDidLoad_provider_mustBeSeted() {
         XCTAssertNotNil(sut.collectionView.provider)
     }

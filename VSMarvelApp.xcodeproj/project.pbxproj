@@ -51,7 +51,6 @@
 		18C7FFFE23D6751500F023E6 /* DSRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7FFFD23D6751500F023E6 /* DSRadius.swift */; };
 		18D4A19F23DD955A00DC1146 /* LoadingViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D4A19E23DD955A00DC1146 /* LoadingViewProvider.swift */; };
 		18D4A1A223DDCA5600DC1146 /* DSBrightness.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D4A1A123DDCA5600DC1146 /* DSBrightness.swift */; };
-		18D4A1A823DDE61F00DC1146 /* CharacterViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D4A1A723DDE61F00DC1146 /* CharacterViewProtocol.swift */; };
 		18D4A1AA23DDF3D000DC1146 /* CharacterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D4A1A923DDF3D000DC1146 /* CharacterViewModel.swift */; };
 		18E0521223DD72D200DFD5F4 /* DSViewLockable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E0521123DD72D200DFD5F4 /* DSViewLockable.swift */; };
 		18E2B61F23DCF530007AE6A5 /* CharactersRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E2B61E23DCF530007AE6A5 /* CharactersRepository.swift */; };
@@ -129,7 +128,6 @@
 		18C7FFFF23D675BE00F023E6 /* DSAlpha.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSAlpha.swift; sourceTree = "<group>"; };
 		18D4A19E23DD955A00DC1146 /* LoadingViewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewProvider.swift; sourceTree = "<group>"; };
 		18D4A1A123DDCA5600DC1146 /* DSBrightness.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSBrightness.swift; sourceTree = "<group>"; };
-		18D4A1A723DDE61F00DC1146 /* CharacterViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterViewProtocol.swift; sourceTree = "<group>"; };
 		18D4A1A923DDF3D000DC1146 /* CharacterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterViewModel.swift; sourceTree = "<group>"; };
 		18E0521123DD72D200DFD5F4 /* DSViewLockable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSViewLockable.swift; sourceTree = "<group>"; };
 		18E2B61E23DCF530007AE6A5 /* CharactersRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersRepository.swift; sourceTree = "<group>"; };
@@ -451,7 +449,6 @@
 			children = (
 				18C7FFFB23D6747B00F023E6 /* CharacterViewStyle.swift */,
 				18C7FFF923D673CE00F023E6 /* CharacterViewStyleable.swift */,
-				18D4A1A723DDE61F00DC1146 /* CharacterViewProtocol.swift */,
 				18D4A1A923DDF3D000DC1146 /* CharacterViewModel.swift */,
 				18C7003023DA7C3900F023E6 /* CharactersViewController.swift */,
 				18FC9BE223DCBBDE001DA15A /* CharactersViewModel.swift */,
@@ -783,7 +780,6 @@
 				18C7FFDA23D5472600F023E6 /* DSNavigationController.swift in Sources */,
 				18C7003123DA7C3900F023E6 /* CharactersViewController.swift in Sources */,
 				18C7001523D7D0AE00F023E6 /* ListViewCell.swift in Sources */,
-				18D4A1A823DDE61F00DC1146 /* CharacterViewProtocol.swift in Sources */,
 				18C7FFF023D66D4800F023E6 /* DSWindowStyle.swift in Sources */,
 				18D4A19F23DD955A00DC1146 /* LoadingViewProvider.swift in Sources */,
 				18C7002323DA5E5600F023E6 /* DSDynamicView.swift in Sources */,
