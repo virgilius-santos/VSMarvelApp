@@ -552,11 +552,12 @@
 			buildConfigurationList = 185DC05C23D4E02D0083A6D4 /* Build configuration list for PBXNativeTarget "VSMarvelApp" */;
 			buildPhases = (
 				DF0F30A66551938363B746B2 /* [CP] Check Pods Manifest.lock */,
+				1831973B23E3F7880003632B /* swiftformat */,
+				18C7FFE523D5523400F023E6 /* Swiftgen */,
 				185DC03923D4E0280083A6D4 /* Sources */,
 				185DC03A23D4E0280083A6D4 /* Frameworks */,
 				185DC03B23D4E0280083A6D4 /* Resources */,
 				7C9E83B996AF10E2C1E6789A /* [CP] Embed Pods Frameworks */,
-				18C7FFE523D5523400F023E6 /* Swiftgen */,
 			);
 			buildRules = (
 			);
@@ -571,7 +572,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 185DC05F23D4E02D0083A6D4 /* Build configuration list for PBXNativeTarget "VSMarvelAppTests" */;
 			buildPhases = (
-				1831973923E3F48F0003632B /* SwiftGen */,
 				2DFF1F00473CF45CA59D66AF /* [CP] Check Pods Manifest.lock */,
 				185DC04F23D4E02D0083A6D4 /* Sources */,
 				185DC05023D4E02D0083A6D4 /* Frameworks */,
@@ -649,7 +649,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1831973923E3F48F0003632B /* SwiftGen */ = {
+		1831973B23E3F7880003632B /* swiftformat */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -658,14 +658,14 @@
 			);
 			inputPaths = (
 			);
-			name = SwiftGen;
+			name = swiftformat;
 			outputFileListPaths = (
 			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "$PODS_ROOT/SwiftGen/bin/swiftgen …\n";
+			shellScript = "if which swiftformat >/dev/null; then\n  swiftformat .\nelse\n  echo \"warning: SwiftFormat not installed, download from https://github.com/nicklockwood/SwiftFormat\"\nfi\n";
 		};
 		18C7FFE523D5523400F023E6 /* Swiftgen */ = {
 			isa = PBXShellScriptBuildPhase;

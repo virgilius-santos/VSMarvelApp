@@ -34,6 +34,8 @@ target 'VSMarvelApp' do
   
   pod 'CryptoSwift'                     , '~> 1.3', :inhibit_warnings => true
   
+  pod 'SwiftFormat/CLI'                 , '~> 0.44', :inhibit_warnings => true
+  
   target 'VSMarvelAppTests' do
     inherit! :search_paths
 
