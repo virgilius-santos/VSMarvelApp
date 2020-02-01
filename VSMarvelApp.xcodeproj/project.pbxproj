@@ -59,8 +59,7 @@
 		18FC9BD023DBA906001DA15A /* VSCollectionViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FC9BCF23DBA906001DA15A /* VSCollectionViewControllerTests.swift */; };
 		18FC9BD223DBB118001DA15A /* DSDetailViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FC9BD123DBB118001DA15A /* DSDetailViewTests.swift */; };
 		18FC9BD423DBB851001DA15A /* MainCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FC9BD323DBB851001DA15A /* MainCoordinatorTests.swift */; };
-		18FC9BD723DBC535001DA15A /* GridViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FC9BD623DBC535001DA15A /* GridViewControllerTests.swift */; };
-		18FC9BD923DBCEC6001DA15A /* ListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FC9BD823DBCEC6001DA15A /* ListViewControllerTests.swift */; };
+		18FC9BD723DBC535001DA15A /* CharactersViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FC9BD623DBC535001DA15A /* CharactersViewControllerTests.swift */; };
 		18FC9BDE23DC1786001DA15A /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FC9BDD23DC1786001DA15A /* Character.swift */; };
 		18FC9BE023DC192B001DA15A /* ThumbImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FC9BDF23DC192B001DA15A /* ThumbImage.swift */; };
 		18FC9BE323DCBBDF001DA15A /* CharactersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FC9BE223DCBBDE001DA15A /* CharactersViewModel.swift */; };
@@ -136,8 +135,7 @@
 		18FC9BCF23DBA906001DA15A /* VSCollectionViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VSCollectionViewControllerTests.swift; sourceTree = "<group>"; };
 		18FC9BD123DBB118001DA15A /* DSDetailViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSDetailViewTests.swift; sourceTree = "<group>"; };
 		18FC9BD323DBB851001DA15A /* MainCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinatorTests.swift; sourceTree = "<group>"; };
-		18FC9BD623DBC535001DA15A /* GridViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridViewControllerTests.swift; sourceTree = "<group>"; };
-		18FC9BD823DBCEC6001DA15A /* ListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewControllerTests.swift; sourceTree = "<group>"; };
+		18FC9BD623DBC535001DA15A /* CharactersViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersViewControllerTests.swift; sourceTree = "<group>"; };
 		18FC9BDD23DC1786001DA15A /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 		18FC9BDF23DC192B001DA15A /* ThumbImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbImage.swift; sourceTree = "<group>"; };
 		18FC9BE223DCBBDE001DA15A /* CharactersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersViewModel.swift; sourceTree = "<group>"; };
@@ -492,10 +490,9 @@
 		18FC9BD523DBC502001DA15A /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				18FC9BD623DBC535001DA15A /* CharactersViewControllerTests.swift */,
 				18C7000523D67DB000F023E6 /* GridViewCellTests.swift */,
-				18FC9BD623DBC535001DA15A /* GridViewControllerTests.swift */,
 				18C7001623D7D4C300F023E6 /* ListViewCellTests.swift */,
-				18FC9BD823DBCEC6001DA15A /* ListViewControllerTests.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -818,12 +815,11 @@
 				18C7004223DBA0AE00F023E6 /* AppDelegateTests.swift in Sources */,
 				185C3F5423DFB870004402F3 /* MarvelAPITests.swift in Sources */,
 				18FC9BD023DBA906001DA15A /* VSCollectionViewControllerTests.swift in Sources */,
-				18FC9BD723DBC535001DA15A /* GridViewControllerTests.swift in Sources */,
+				18FC9BD723DBC535001DA15A /* CharactersViewControllerTests.swift in Sources */,
 				18C7FFDF23D549D100F023E6 /* VSNavigationControllerTests.swift in Sources */,
 				18C7FFDD23D5483B00F023E6 /* AppCoordinatorTests.swift in Sources */,
 				18C7000823D6802600F023E6 /* DSNavigationBarTests.swift in Sources */,
 				18C7001723D7D4C300F023E6 /* ListViewCellTests.swift in Sources */,
-				18FC9BD923DBCEC6001DA15A /* ListViewControllerTests.swift in Sources */,
 				18C7002A23DA6F7B00F023E6 /* DetailViewControllerTests.swift in Sources */,
 				18FC9BCE23DBA20F001DA15A /* DSWindowStyleTests.swift in Sources */,
 				18C7000623D67DB000F023E6 /* GridViewCellTests.swift in Sources */,

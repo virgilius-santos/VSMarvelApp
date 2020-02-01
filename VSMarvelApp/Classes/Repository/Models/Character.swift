@@ -2,7 +2,7 @@
 
 import Foundation
 
-struct Character {
+struct Character: Equatable {
     let id: Int
     let name: String
     let bio: String

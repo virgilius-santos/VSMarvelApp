@@ -1,7 +1,7 @@
 
 import Foundation
 
-struct CharacterViewModel {
+struct CharacterViewModel: Equatable {
     var name: String { character.name }
     var path: String { "\(character.thumImage.path)/portrait_xlarge.\(character.thumImage.extension)" }
     var style: CharacterViewStyle { CharacterViewStyle.default }

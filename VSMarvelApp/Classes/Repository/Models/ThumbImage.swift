@@ -1,7 +1,7 @@
 
 import Foundation
 
-struct ThumbImage {
+struct ThumbImage: Equatable {
     var path: String
     let `extension`: String
 }
