@@ -34,7 +34,7 @@ final class LoadingViewProvider {
         )
 
         dataSource = ArrayDataSource<DSLoadingState>(
-            data: [],
+            data: [DSLoadingState.loading],
             identifierMapper: { (_: Int, data: DSLoadingState) in "\(data)" }
         )
 

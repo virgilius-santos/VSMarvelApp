@@ -79,6 +79,7 @@
 
 /* Begin PBXFileReference section */
 		14E70A2FD0925E97D25F1BB6 /* Pods-VSMarvelApp-VSMarvelAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VSMarvelApp-VSMarvelAppTests.debug.xcconfig"; path = "Target Support Files/Pods-VSMarvelApp-VSMarvelAppTests/Pods-VSMarvelApp-VSMarvelAppTests.debug.xcconfig"; sourceTree = "<group>"; };
+		1847677B23E5CADC00046C14 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		1849DBCB23DD853C008B9852 /* CharactersViewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersViewProvider.swift; sourceTree = "<group>"; };
 		1849DBCD23DD91B8008B9852 /* DSLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSLoadingView.swift; sourceTree = "<group>"; };
 		185C3F5323DFB870004402F3 /* MarvelAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelAPITests.swift; sourceTree = "<group>"; };
@@ -179,6 +180,7 @@
 		185DC03423D4E0280083A6D4 = {
 			isa = PBXGroup;
 			children = (
+				1847677B23E5CADC00046C14 /* README.md */,
 				185DC03F23D4E0280083A6D4 /* VSMarvelApp */,
 				185DC05623D4E02D0083A6D4 /* VSMarvelAppTests */,
 				185DC03E23D4E0280083A6D4 /* Products */,

@@ -236,6 +236,6 @@ cocoa-keys: [thiagolioy/tools-pods-tricks](https://medium.com/cocoaacademymag/cr
 
 ### Next Steps  
 - [X] Add screens  
-- [ ] Add travis CI  
+- [X] Add travis CI  
+- [X] Implementing unit tests with RxTest and RxBlocking.
 - [ ] Create code documentation with Jazzy.  
-- [ ] Implementing unit tests with RxTest and RxBlocking.

@@ -91,6 +91,52 @@ class CharactersViewControllerTests: XCTestCase {
         XCTAssertEqual(searchInputs.events, [.next(10, SearchInput(("test", 2)))])
     }
 
+    func test_viewDidLoad_updateResetData() {
+        dataSource.data = [dummyCellVM]
+        (sut.viewModel as? CharactersViewModelMock)?.resetData.onNext(())
+        XCTAssert(dataSource.data.isEmpty)
+    }
+
+    func test_viewDidLoad_updateCellViewModel() {
+        let vm = dummyCellVM
+        dataSource.data = []
+        (sut.viewModel as? CharactersViewModelMock)?.cellViewModel.onNext([vm])
+        XCTAssertFalse(dataSource.data.isEmpty)
+        XCTAssertEqual(dataSource.data[0] as CharacterViewModel, vm)
+    }
+
+    func test_viewDidLoad_updateLoading() {
+        let composedProvider = (sut.collectionView.provider as! ComposedProvider)
+        XCTAssertEqual(composedProvider.sections.count, 2)
+
+        XCTAssert(composedProvider.sections[1] is BasicProvider<DSLoadingState, DSLoadingView>)
+
+        let loadingProvider = composedProvider.sections[1] as! BasicProvider<DSLoadingState, DSLoadingView>
+        let dataSource: ArrayDataSource<DSLoadingState> = loadingProvider.dataSource as! ArrayDataSource<DSLoadingState>
+
+        XCTAssertEqual(dataSource.data, [DSLoadingState.loading])
+
+        (sut.viewModel as? CharactersViewModelMock)?.loading.onNext(DSLoadingState.normal)
+        XCTAssertEqual(composedProvider.sections.count, 1)
+        XCTAssertEqual(dataSource.data, [DSLoadingState.normal])
+
+        (sut.viewModel as? CharactersViewModelMock)?.loading.onNext(DSLoadingState.loading)
+        XCTAssertEqual(composedProvider.sections.count, 2)
+        XCTAssertEqual(dataSource.data, [DSLoadingState.loading])
+
+        (sut.viewModel as? CharactersViewModelMock)?.loading.onNext(DSLoadingState.error)
+        XCTAssertEqual(composedProvider.sections.count, 2)
+        XCTAssertEqual(dataSource.data, [DSLoadingState.error])
+
+        (sut.viewModel as? CharactersViewModelMock)?.loading.onNext(DSLoadingState.normal)
+        XCTAssertEqual(composedProvider.sections.count, 1)
+        XCTAssertEqual(dataSource.data, [DSLoadingState.normal])
+
+        (sut.viewModel as? CharactersViewModelMock)?.loading.onNext(DSLoadingState.error)
+        XCTAssertEqual(composedProvider.sections.count, 2)
+        XCTAssertEqual(dataSource.data, [DSLoadingState.error])
+    }
+
     func test_viewDidLoad_dataSource_mustBeEmpty() {
         XCTAssert(dataSource.data.isEmpty)
     }
@@ -270,7 +316,9 @@ class CharactersViewControllerTests: XCTestCase {
         }
     }
 
-    class CharactersViewModelMock: CharactersViewModel {
+    class CharactersViewModelMock: CharactersViewModel, Equatable {
+        let date = Date().description
+
         var title: String = "title"
         var rightButtonIcon: DSAsset = DSIcon.image10
         var placeholderSearchBar: String = "placeholderSearchBar"
@@ -279,6 +327,10 @@ class CharactersViewControllerTests: XCTestCase {
         var vmCell: CharacterViewModel?
         var `switch`: Bool?
         var rect: CGRect?
+
+        let cellViewModel = PublishSubject<[CharacterViewModel]>()
+        let loading = PublishSubject<DSLoadingState>()
+        let resetData = PublishSubject<Void>()
 
         func goTo(_ vm: CharacterViewModel) {
             vmCell = vm
@@ -294,10 +346,14 @@ class CharactersViewControllerTests: XCTestCase {
         }
 
         func bind(input _: CharactersInput) -> CharactersOutput {
-            .init(cellViewModel: .never(),
-                  loading: .never(),
-                  resetData: .never(),
+            .init(cellViewModel: cellViewModel.asObservable(),
+                  loading: loading.asObservable(),
+                  resetData: resetData.asObservable(),
                   disposable: Disposables.create())
+        }
+
+        static func == (lhs: CharactersViewControllerTests.CharactersViewModelMock, rhs: CharactersViewControllerTests.CharactersViewModelMock) -> Bool {
+            lhs.date == rhs.date
         }
     }
 
