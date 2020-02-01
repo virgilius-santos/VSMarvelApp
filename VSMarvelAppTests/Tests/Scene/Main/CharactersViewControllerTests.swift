@@ -71,6 +71,26 @@ class CharactersViewControllerTests: XCTestCase {
         nav = nil
     }
 
+    func test_searchBarTextObservable() {
+        let scheduler = TestScheduler(initialClock: 0)
+        let disposeBag = DisposeBag()
+        let searchInputs = scheduler.createObserver(SearchInput.self)
+
+        sut.searchBarTextObservable
+            .map { SearchInput($0) }
+            .bind(to: searchInputs)
+            .disposed(by: disposeBag)
+
+        scheduler.createColdObservable([.next(10, ("test", 2))])
+            .subscribe(onNext: { [sut] args in
+                sut?.searchBarText?(args)
+            })
+            .disposed(by: disposeBag)
+        scheduler.start()
+
+        XCTAssertEqual(searchInputs.events, [.next(10, SearchInput(("test", 2)))])
+    }
+
     func test_viewDidLoad_dataSource_mustBeEmpty() {
         XCTAssert(dataSource.data.isEmpty)
     }
@@ -271,6 +291,22 @@ class CharactersViewControllerTests: XCTestCase {
         func cellSize(from rect: CGRect) -> CGSize {
             self.rect = rect
             return CGSize(width: 55, height: 66)
+        }
+
+        func bind(input _: CharactersInput) -> CharactersOutput {
+            .init(cellViewModel: .never(),
+                  loading: .never(),
+                  resetData: .never(),
+                  disposable: Disposables.create())
+        }
+    }
+
+    struct SearchInput: Equatable {
+        let text: String?
+        let filter: Int
+        init(_ value: (text: String?, filter: Int)) {
+            text = value.text
+            filter = value.filter
         }
     }
 }
