@@ -17,6 +17,11 @@ class MainCoordinatorTests: XCTestCase {
               thumImage: ThumbImage(path: "arte.jpg"))
     }
 
+    var dummyCharsCVM: CharactersCollectionViewModel {
+        .init(type: CharactersCollectionViewModel.ViewModelType.list,
+              router: sut)
+    }
+
     override func setUp() {
         nav = .init()
         sut = .init(navController: nav)
@@ -56,13 +61,13 @@ class MainCoordinatorTests: XCTestCase {
     }
 
     func testWhenSwitchToListCalledGridMustBeStarted() {
-        sut.switchToGrid()
+        sut.switchToGrid(dummyCharsCVM)
         XCTAssert(nav?.viewController is CharactersCollectionViewController<GridViewCell>)
         XCTAssertEqual(nav?.type, DSNavigationType.replace)
     }
 
     func testWhenSwitchToGridCalledListMustBeStarted() {
-        sut.switchToList()
+        sut.switchToList(dummyCharsCVM)
         XCTAssert(nav?.viewController is CharactersCollectionViewController<ListViewCell>)
         XCTAssertEqual(nav?.type, DSNavigationType.replace)
     }

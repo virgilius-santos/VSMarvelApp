@@ -18,30 +18,21 @@ final class MainCoordinator: CharactersRouter {
     }
 
     func start() {
-        navController?.navigate(to: listViewController(), using: DSNavigationType.push)
-    }
-
-    func listViewController() -> ListViewController {
         let vm = CharactersCollectionViewModel(type: CharactersCollectionViewModel.ViewModelType.list,
                                                router: self)
         let vc = ListViewController(viewModel: vm)
-        return vc
+        navController?.navigate(to: vc, using: DSNavigationType.push)
     }
 
-    func gridViewController() -> GridViewController {
-        let vm = CharactersCollectionViewModel(type: CharactersCollectionViewModel.ViewModelType.grid,
-                                               router: self)
-        let vc = GridViewController(viewModel: vm)
-        return vc
-    }
-
-    func switchToList() {
-        navController?.navigate(to: listViewController(),
+    func switchToList(_ vm: CharactersCollectionViewModel) {
+        vm.viewModelType = .list
+        navController?.navigate(to: ListViewController(viewModel: vm),
                                 using: DSNavigationType.replace)
     }
 
-    func switchToGrid() {
-        navController?.navigate(to: gridViewController(),
+    func switchToGrid(_ vm: CharactersCollectionViewModel) {
+        vm.viewModelType = .grid
+        navController?.navigate(to: GridViewController(viewModel: vm),
                                 using: DSNavigationType.replace)
     }
 

@@ -69,7 +69,7 @@ class CharactersCollectionViewController<CharacterView: UIView>: DSCollectionVie
                 tapHandler: tapHandler
             )
 
-            finalProvider = ComposedProvider(sections: [cellProvider.provider, loadingProvider.provider])
+            finalProvider = ComposedProvider(sections: [cellProvider.provider])
             collectionView.provider = finalProvider
         }
 

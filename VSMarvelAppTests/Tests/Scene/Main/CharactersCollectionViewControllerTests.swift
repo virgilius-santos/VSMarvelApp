@@ -106,7 +106,10 @@ class CharactersCollectionViewControllerTests: XCTestCase {
 
     func test_viewDidLoad_updateLoading() {
         let composedProvider = (sut.collectionView.provider as! ComposedProvider)
-        XCTAssertEqual(composedProvider.sections.count, 2)
+        XCTAssertEqual(composedProvider.sections.count, 1)
+
+        let vm = (sut.viewModel as? CharactersCollectionViewModelMock)!
+        vm.loading.onNext(LoadingState.loading)
 
         XCTAssert(composedProvider.sections[1] is BasicProvider<LoadingState, LoadingCell>)
 
@@ -115,23 +118,23 @@ class CharactersCollectionViewControllerTests: XCTestCase {
 
         XCTAssertEqual(dataSource.data, [LoadingState.loading])
 
-        (sut.viewModel as? CharactersCollectionViewModelMock)?.loading.onNext(LoadingState.normal)
+        vm.loading.onNext(LoadingState.normal)
         XCTAssertEqual(composedProvider.sections.count, 1)
         XCTAssertEqual(dataSource.data, [LoadingState.normal])
 
-        (sut.viewModel as? CharactersCollectionViewModelMock)?.loading.onNext(LoadingState.loading)
+        vm.loading.onNext(LoadingState.loading)
         XCTAssertEqual(composedProvider.sections.count, 2)
         XCTAssertEqual(dataSource.data, [LoadingState.loading])
 
-        (sut.viewModel as? CharactersCollectionViewModelMock)?.loading.onNext(LoadingState.error)
+        vm.loading.onNext(LoadingState.error)
         XCTAssertEqual(composedProvider.sections.count, 2)
         XCTAssertEqual(dataSource.data, [LoadingState.error])
 
-        (sut.viewModel as? CharactersCollectionViewModelMock)?.loading.onNext(LoadingState.normal)
+        vm.loading.onNext(LoadingState.normal)
         XCTAssertEqual(composedProvider.sections.count, 1)
         XCTAssertEqual(dataSource.data, [LoadingState.normal])
 
-        (sut.viewModel as? CharactersCollectionViewModelMock)?.loading.onNext(LoadingState.error)
+        vm.loading.onNext(LoadingState.error)
         XCTAssertEqual(composedProvider.sections.count, 2)
         XCTAssertEqual(dataSource.data, [LoadingState.error])
     }
@@ -181,13 +184,8 @@ class CharactersCollectionViewControllerTests: XCTestCase {
         XCTAssertEqual(sut.title, "title")
     }
 
-    func test_viewDidLoad_loadingProvider_mustBeSeted() {
-        let provider = (sut.collectionView.provider as! ComposedProvider).sections[1] as! BasicProvider<LoadingState, LoadingCell>
-        sut.view.frame = .init(x: 0, y: 0, width: 600, height: 600)
-        let size = provider.sizeSource.size(at: 9,
-                                            data: LoadingState.loading,
-                                            collectionSize: CGSize(width: 100, height: 100))
-        XCTAssertEqual(size, CGSize(width: 592.0, height: 200))
+    func test_viewDidLoad_loadingProvider_NotBeSeted() {
+        XCTAssertEqual((sut.collectionView.provider as! ComposedProvider).sections.count, 1)
     }
 
     func test_rightButton_click_goToList() {

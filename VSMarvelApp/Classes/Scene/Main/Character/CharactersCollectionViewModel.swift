@@ -3,8 +3,8 @@ import RxSwift
 import UIKit
 
 protocol CharactersRouter {
-    func switchToList()
-    func switchToGrid()
+    func switchToList(_ vm: CharactersCollectionViewModel)
+    func switchToGrid(_ vm: CharactersCollectionViewModel)
     func goToDetail(_ vm: CharacterViewModel)
 }
 
@@ -57,7 +57,7 @@ class CharactersCollectionViewModel: CharactersCollectionViewModelProtocol {
 
     var filterOptionsSearchBar: [String] { [String]() } // ["Title", "Genre", "Rating", "Actor"]
 
-    let viewModelType: ViewModelType
+    var viewModelType: ViewModelType
 
     let router: CharactersRouter
 
@@ -69,9 +69,9 @@ class CharactersCollectionViewModel: CharactersCollectionViewModelProtocol {
     func switchView() {
         switch viewModelType {
         case .grid:
-            router.switchToList()
+            router.switchToList(self)
         case .list:
-            router.switchToGrid()
+            router.switchToGrid(self)
         }
     }
 
