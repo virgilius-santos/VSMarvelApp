@@ -7,9 +7,9 @@ import RxTest
 @testable import VSMarvelApp
 import XCTest
 
-class CharactersViewControllerTests: XCTestCase {
-    typealias ViewController = CharactersViewController<CellView>
-    typealias ViewModel = CharactersViewModelMock
+class CharactersCollectionViewControllerTests: XCTestCase {
+    typealias ViewController = CharactersCollectionViewController<CellView>
+    typealias ViewModel = CharactersCollectionViewModelMock
     typealias CellView = CharacterViewSpy
     typealias CellViewModel = CharacterViewModel
     typealias BasicProviderData = BasicProvider<CellViewModel, CellView>
@@ -46,8 +46,7 @@ class CharactersViewControllerTests: XCTestCase {
         Character(id: 77,
                   name: "name",
                   bio: "bio",
-                  thumImage: ThumbImage(path: "thumImage",
-                                        extension: "extension"))
+                  thumImage: ThumbImage(path: "thumImage.extension"))
     }
 
     var dummyDetailVC: DetailViewController {
@@ -93,14 +92,14 @@ class CharactersViewControllerTests: XCTestCase {
 
     func test_viewDidLoad_updateResetData() {
         dataSource.data = [dummyCellVM]
-        (sut.viewModel as? CharactersViewModelMock)?.resetData.onNext(())
+        (sut.viewModel as? CharactersCollectionViewModelMock)?.resetData.onNext(())
         XCTAssert(dataSource.data.isEmpty)
     }
 
     func test_viewDidLoad_updateCellViewModel() {
         let vm = dummyCellVM
         dataSource.data = []
-        (sut.viewModel as? CharactersViewModelMock)?.cellViewModel.onNext([vm])
+        (sut.viewModel as? CharactersCollectionViewModelMock)?.cellViewModel.onNext([vm])
         XCTAssertFalse(dataSource.data.isEmpty)
         XCTAssertEqual(dataSource.data[0] as CharacterViewModel, vm)
     }
@@ -109,32 +108,32 @@ class CharactersViewControllerTests: XCTestCase {
         let composedProvider = (sut.collectionView.provider as! ComposedProvider)
         XCTAssertEqual(composedProvider.sections.count, 2)
 
-        XCTAssert(composedProvider.sections[1] is BasicProvider<DSLoadingState, DSLoadingView>)
+        XCTAssert(composedProvider.sections[1] is BasicProvider<LoadingState, LoadingCell>)
 
-        let loadingProvider = composedProvider.sections[1] as! BasicProvider<DSLoadingState, DSLoadingView>
-        let dataSource: ArrayDataSource<DSLoadingState> = loadingProvider.dataSource as! ArrayDataSource<DSLoadingState>
+        let loadingProvider = composedProvider.sections[1] as! BasicProvider<LoadingState, LoadingCell>
+        let dataSource: ArrayDataSource<LoadingState> = loadingProvider.dataSource as! ArrayDataSource<LoadingState>
 
-        XCTAssertEqual(dataSource.data, [DSLoadingState.loading])
+        XCTAssertEqual(dataSource.data, [LoadingState.loading])
 
-        (sut.viewModel as? CharactersViewModelMock)?.loading.onNext(DSLoadingState.normal)
+        (sut.viewModel as? CharactersCollectionViewModelMock)?.loading.onNext(LoadingState.normal)
         XCTAssertEqual(composedProvider.sections.count, 1)
-        XCTAssertEqual(dataSource.data, [DSLoadingState.normal])
+        XCTAssertEqual(dataSource.data, [LoadingState.normal])
 
-        (sut.viewModel as? CharactersViewModelMock)?.loading.onNext(DSLoadingState.loading)
+        (sut.viewModel as? CharactersCollectionViewModelMock)?.loading.onNext(LoadingState.loading)
         XCTAssertEqual(composedProvider.sections.count, 2)
-        XCTAssertEqual(dataSource.data, [DSLoadingState.loading])
+        XCTAssertEqual(dataSource.data, [LoadingState.loading])
 
-        (sut.viewModel as? CharactersViewModelMock)?.loading.onNext(DSLoadingState.error)
+        (sut.viewModel as? CharactersCollectionViewModelMock)?.loading.onNext(LoadingState.error)
         XCTAssertEqual(composedProvider.sections.count, 2)
-        XCTAssertEqual(dataSource.data, [DSLoadingState.error])
+        XCTAssertEqual(dataSource.data, [LoadingState.error])
 
-        (sut.viewModel as? CharactersViewModelMock)?.loading.onNext(DSLoadingState.normal)
+        (sut.viewModel as? CharactersCollectionViewModelMock)?.loading.onNext(LoadingState.normal)
         XCTAssertEqual(composedProvider.sections.count, 1)
-        XCTAssertEqual(dataSource.data, [DSLoadingState.normal])
+        XCTAssertEqual(dataSource.data, [LoadingState.normal])
 
-        (sut.viewModel as? CharactersViewModelMock)?.loading.onNext(DSLoadingState.error)
+        (sut.viewModel as? CharactersCollectionViewModelMock)?.loading.onNext(LoadingState.error)
         XCTAssertEqual(composedProvider.sections.count, 2)
-        XCTAssertEqual(dataSource.data, [DSLoadingState.error])
+        XCTAssertEqual(dataSource.data, [LoadingState.error])
     }
 
     func test_viewDidLoad_dataSource_mustBeEmpty() {
@@ -148,10 +147,9 @@ class CharactersViewControllerTests: XCTestCase {
 
     func test_viewDidLoad_viewSource_setup_mustConfigureView() {
         let view = CellView()
-        viewSource.update(view: view, data: dummyCellVM, index: 0)
-        XCTAssertEqual(view.dsLabel.text, "name\n\nbio")
-        XCTAssertNotNil(view.dsImageView.image)
-        XCTAssertEqual(view.dsImageView.heroID, dummyCellVM.path)
+        let vm = dummyCellVM
+        viewSource.update(view: view, data: vm, index: 0)
+        XCTAssertEqual(view.vm, vm)
     }
 
     func test_viewDidLoad_sizeSource_returnSize() {
@@ -184,10 +182,10 @@ class CharactersViewControllerTests: XCTestCase {
     }
 
     func test_viewDidLoad_loadingProvider_mustBeSeted() {
-        let provider = (sut.collectionView.provider as! ComposedProvider).sections[1] as! BasicProvider<DSLoadingState, DSLoadingView>
+        let provider = (sut.collectionView.provider as! ComposedProvider).sections[1] as! BasicProvider<LoadingState, LoadingCell>
         sut.view.frame = .init(x: 0, y: 0, width: 600, height: 600)
         let size = provider.sizeSource.size(at: 9,
-                                            data: DSLoadingState.loading,
+                                            data: LoadingState.loading,
                                             collectionSize: CGSize(width: 100, height: 100))
         XCTAssertEqual(size, CGSize(width: 592.0, height: 200))
     }
@@ -212,7 +210,7 @@ class CharactersViewControllerTests: XCTestCase {
     }
 
     func test_heroWillStartAnimatingTo_withGridViewCell_noToDetailViewController() {
-        let vc = CharactersViewController<GridViewCell>(viewModel: dummyVM)
+        let vc = CharactersCollectionViewController<GridViewCell>(viewModel: dummyVM)
         vc.heroWillStartAnimatingTo(viewController: UIViewController())
         var modifiers: [HeroModifier] {
             vc.collectionView.hero.modifiers!
@@ -222,7 +220,7 @@ class CharactersViewControllerTests: XCTestCase {
     }
 
     func test_heroWillStartAnimatingTo_withGridViewCell_toDetailViewController() {
-        let vc = CharactersViewController<GridViewCell>(viewModel: dummyVM)
+        let vc = CharactersCollectionViewController<GridViewCell>(viewModel: dummyVM)
         vc.heroWillStartAnimatingTo(viewController: dummyDetailVC)
         var modifiers: [HeroModifier] {
             vc.collectionView.hero.modifiers!
@@ -234,7 +232,7 @@ class CharactersViewControllerTests: XCTestCase {
     }
 
     func test_heroWillStartAnimatingFrom_withGridViewCell_noToDetailViewController() {
-        let vc = CharactersViewController<GridViewCell>(viewModel: dummyVM)
+        let vc = CharactersCollectionViewController<GridViewCell>(viewModel: dummyVM)
         vc.heroWillStartAnimatingFrom(viewController: UIViewController())
         var modifiers: [HeroModifier] {
             vc.collectionView.hero.modifiers!
@@ -245,7 +243,7 @@ class CharactersViewControllerTests: XCTestCase {
     }
 
     func test_heroWillStartAnimatingFrom_withGridViewCell_toDetailViewController() {
-        let vc = CharactersViewController<GridViewCell>(viewModel: dummyVM)
+        let vc = CharactersCollectionViewController<GridViewCell>(viewModel: dummyVM)
         vc.heroWillStartAnimatingFrom(viewController: dummyDetailVC)
         var modifiers: [HeroModifier] {
             vc.collectionView.hero.modifiers!
@@ -255,7 +253,7 @@ class CharactersViewControllerTests: XCTestCase {
     }
 
     func test_heroWillStartAnimatingTo_withListViewCell_noToDetailViewController() {
-        let vc = CharactersViewController<ListViewCell>(viewModel: dummyVM)
+        let vc = CharactersCollectionViewController<ListViewCell>(viewModel: dummyVM)
         vc.heroWillStartAnimatingTo(viewController: UIViewController())
         var modifiers: [HeroModifier] {
             vc.collectionView.hero.modifiers!
@@ -265,7 +263,7 @@ class CharactersViewControllerTests: XCTestCase {
     }
 
     func test_heroWillStartAnimatingTo_withListViewCell_toDetailViewController() {
-        let vc = CharactersViewController<ListViewCell>(viewModel: dummyVM)
+        let vc = CharactersCollectionViewController<ListViewCell>(viewModel: dummyVM)
         vc.heroWillStartAnimatingTo(viewController: dummyDetailVC)
         var modifiers: [HeroModifier] {
             vc.collectionView.hero.modifiers!
@@ -275,7 +273,7 @@ class CharactersViewControllerTests: XCTestCase {
     }
 
     func test_heroWillStartAnimatingFrom_withListViewCell_noToDetailViewController() {
-        let vc = CharactersViewController<ListViewCell>(viewModel: dummyVM)
+        let vc = CharactersCollectionViewController<ListViewCell>(viewModel: dummyVM)
         vc.heroWillStartAnimatingFrom(viewController: UIViewController())
         var modifiers: [HeroModifier] {
             vc.collectionView.hero.modifiers!
@@ -285,7 +283,7 @@ class CharactersViewControllerTests: XCTestCase {
     }
 
     func test_heroWillStartAnimatingFrom_withListViewCell_toDetailViewController() {
-        let vc = CharactersViewController<ListViewCell>(viewModel: dummyVM)
+        let vc = CharactersCollectionViewController<ListViewCell>(viewModel: dummyVM)
         vc.heroWillStartAnimatingFrom(viewController: dummyDetailVC)
         var modifiers: [HeroModifier] {
             vc.collectionView.hero.modifiers!
@@ -314,9 +312,19 @@ class CharactersViewControllerTests: XCTestCase {
         func apply(style: CharacterViewStyle) {
             self.style = style
         }
+
+        var vm: CharacterViewModel?
+
+        func setup(_ vm: CharacterViewModel) {
+            self.vm = vm
+        }
+
+        static func cellSize(from _: CGSize) -> CGSize {
+            CGSize(width: 55, height: 66)
+        }
     }
 
-    class CharactersViewModelMock: CharactersViewModel, Equatable {
+    class CharactersCollectionViewModelMock: CharactersCollectionViewModelProtocol, Equatable {
         let date = Date().description
 
         var title: String = "title"
@@ -329,7 +337,7 @@ class CharactersViewControllerTests: XCTestCase {
         var rect: CGRect?
 
         let cellViewModel = PublishSubject<[CharacterViewModel]>()
-        let loading = PublishSubject<DSLoadingState>()
+        let loading = PublishSubject<LoadingState>()
         let resetData = PublishSubject<Void>()
 
         func goTo(_ vm: CharacterViewModel) {
@@ -352,7 +360,7 @@ class CharactersViewControllerTests: XCTestCase {
                   disposable: Disposables.create())
         }
 
-        static func == (lhs: CharactersViewControllerTests.CharactersViewModelMock, rhs: CharactersViewControllerTests.CharactersViewModelMock) -> Bool {
+        static func == (lhs: CharactersCollectionViewControllerTests.CharactersCollectionViewModelMock, rhs: CharactersCollectionViewControllerTests.CharactersCollectionViewModelMock) -> Bool {
             lhs.date == rhs.date
         }
     }

@@ -6,20 +6,22 @@ import RxSwift
 import UIKit
 import VCore
 
-class CharactersViewController<CharacterView: UIView>: DSCollectionViewController, HeroViewControllerDelegate where CharacterView: CharacterViewStyleable {
-    typealias ViewModel = CharactersViewModel
+class CharactersCollectionViewController<CharacterView: UIView>: DSCollectionViewController, HeroViewControllerDelegate where CharacterView: CharacterViewStyleable {
+    typealias ViewModel = CharactersCollectionViewModelProtocol
 
     let viewModel: ViewModel
 
     let scale = HeroModifier.scale(3)
     let delay = HeroModifier.delay(0.2)
 
-    var searchBarTextObservable: Observable<(text: String?, filter: Int)> {
-        Observable<(text: String?, filter: Int)>.create { observer in
-            super.searchBarText = { observer.onNext($0) }
+    lazy var searchBarTextObservable: Observable<(text: String?, filter: Int)> = {
+        Observable<(text: String?, filter: Int)>.create { [weak self] observer in
+            self?.searchBarText = {
+                observer.onNext($0)
+            }
             return Disposables.create()
         }
-    }
+    }()
 
     let disposeBag = DisposeBag()
 
@@ -43,7 +45,7 @@ class CharactersViewController<CharacterView: UIView>: DSCollectionViewControlle
 
         view.backgroundColor = DSColor.secondary.uiColor
 
-        let cellProvider: CharactersViewProvider<CharacterView>
+        let cellProvider: CharactersCollectionViewProvider<CharacterView>
 
         let loadingProvider = LoadingViewProvider(sizeSource: { [weak self] in
             guard let self = self else { return CGSize.zero }
@@ -54,16 +56,15 @@ class CharactersViewController<CharacterView: UIView>: DSCollectionViewControlle
         let finalProvider: ComposedProvider
 
         Layout: do {
-            let sizeSource = { [weak self] () -> CGSize in
-                guard let self = self else { return CGSize.zero }
-                return self.viewModel.cellSize(from: self.view.frame)
+            let sizeSource = { (frame) -> CGSize in
+                CharacterView.cellSize(from: frame)
             }
 
-            let tapHandler: ((CharacterViewModel) -> Void) = { [viewModel] cellVM in
-                viewModel.goTo(cellVM)
+            let tapHandler: ((CharacterViewModel) -> Void) = { [weak self] cellVM in
+                self?.viewModel.goTo(cellVM)
             }
 
-            cellProvider = CharactersViewProvider<CharacterView>(
+            cellProvider = CharactersCollectionViewProvider<CharacterView>(
                 sizeSource: sizeSource,
                 tapHandler: tapHandler
             )
@@ -108,17 +109,17 @@ class CharactersViewController<CharacterView: UIView>: DSCollectionViewControlle
                         if noContainsLooadingProvider {
                             finalProvider.sections.append(loadingProvider.provider)
                         }
-                        loadingProvider.dataSource.data = [DSLoadingState.loading]
+                        loadingProvider.dataSource.data = [LoadingState.loading]
                     case .error:
                         if noContainsLooadingProvider {
                             finalProvider.sections.append(loadingProvider.provider)
                         }
-                        loadingProvider.dataSource.data = [DSLoadingState.error]
+                        loadingProvider.dataSource.data = [LoadingState.error]
                     case .normal:
                         if !noContainsLooadingProvider {
                             finalProvider.sections = [cellProvider.provider]
                         }
-                        loadingProvider.dataSource.data = [DSLoadingState.normal]
+                        loadingProvider.dataSource.data = [LoadingState.normal]
                     }
                 })
                 .disposed(by: disposeBag)
@@ -139,7 +140,7 @@ class CharactersViewController<CharacterView: UIView>: DSCollectionViewControlle
     }
 }
 
-extension CharactersViewController where CharacterView == GridViewCell {
+extension CharactersCollectionViewController where CharacterView == GridViewCell {
     func heroWillStartAnimatingTo(viewController: UIViewController) {
         if viewController is DetailViewController {
             collectionView.hero.modifiers = [scale,
@@ -160,7 +161,7 @@ extension CharactersViewController where CharacterView == GridViewCell {
     }
 }
 
-extension CharactersViewController where CharacterView == ListViewCell {
+extension CharactersCollectionViewController where CharacterView == ListViewCell {
     func heroWillStartAnimatingTo(viewController: UIViewController) {
         if viewController is DetailViewController {
             collectionView.hero.modifiers = [.cascade]

@@ -2,27 +2,85 @@
 import RxSwift
 import UIKit
 
-protocol CharactersViewModel {
+protocol CharactersRouter {
+    func switchToList()
+    func switchToGrid()
+    func goToDetail(_ vm: CharacterViewModel)
+}
+
+protocol CharactersCollectionViewModelProtocol {
     var title: String { get }
     var rightButtonIcon: DSAsset { get }
     var placeholderSearchBar: String { get }
     var filterOptionsSearchBar: [String] { get }
 
-    var repository: CharactersRepositoryProtocol { get }
-
     func bind(input: CharactersInput) -> CharactersOutput
 
     func goTo(_ vm: CharacterViewModel)
     func switchView()
-    func cellSize(from rect: CGRect) -> CGSize
 }
 
-extension CharactersViewModel {
+struct CharactersInput {
+    let text: Observable<(text: String?, filter: Int)>
+    let currentIndex: Observable<Int>
+    let reload: Observable<Void>
+}
+
+struct CharactersOutput {
+    let cellViewModel: Observable<[CharacterViewModel]>
+    let loading: Observable<LoadingState>
+    let resetData: Observable<Void>
+    let disposable: Disposable
+}
+
+class CharactersCollectionViewModel: CharactersCollectionViewModelProtocol {
+    enum ViewModelType {
+        case list, grid
+
+        var icon: DSAsset {
+            switch self {
+            case .grid:
+                return DSIcon.listIcon
+            case .list:
+                return DSIcon.gridIcon
+            }
+        }
+    }
+
+    var rightButtonIcon: DSAsset { viewModelType.icon }
+
     var repository: CharactersRepositoryProtocol { CharactersRepository() }
 
-    func bind(input: CharactersInput) -> CharactersOutput {
-        let loading = BehaviorSubject<DSLoadingState>(value: DSLoadingState.loading)
+    var title: String { "Characters" }
 
+    var placeholderSearchBar: String { "Type something here..." }
+
+    var filterOptionsSearchBar: [String] { [String]() } // ["Title", "Genre", "Rating", "Actor"]
+
+    let viewModelType: ViewModelType
+
+    let router: CharactersRouter
+
+    init(type: ViewModelType, router: CharactersRouter) {
+        viewModelType = type
+        self.router = router
+    }
+
+    func switchView() {
+        switch viewModelType {
+        case .grid:
+            router.switchToList()
+        case .list:
+            router.switchToGrid()
+        }
+    }
+
+    func goTo(_ vm: CharacterViewModel) {
+        router.goToDetail(vm)
+    }
+
+    func bind(input: CharactersInput) -> CharactersOutput {
+        let loading = BehaviorSubject<LoadingState>(value: LoadingState.loading)
         let loadNextPage = PublishSubject<Void>()
         let reloadNextPage = PublishSubject<Void>()
 
@@ -73,7 +131,7 @@ extension CharactersViewModel {
             .subscribe(onNext: { _ in reloadNextPage.onNext(()) })
 
         let disposables = Disposables
-            .create(disposableNextPage, reloadDisposable)
+            .create([disposableNextPage, reloadDisposable])
 
         return CharactersOutput(
             cellViewModel: cellsViewModel,
@@ -83,7 +141,7 @@ extension CharactersViewModel {
         )
     }
 
-    func loadCharacters(loading: BehaviorSubject<DSLoadingState>,
+    func loadCharacters(loading: BehaviorSubject<LoadingState>,
                         number: Int,
                         name: String? = nil) -> Observable<[CharacterViewModel]> {
         repository.getCharacters(id: nil, number: number, name: name)
@@ -93,26 +151,13 @@ extension CharactersViewModel {
             .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .background))
             .observeOn(MainScheduler.instance)
             .do(onSuccess: { _ in
-                loading.onNext(DSLoadingState.normal)
+                loading.onNext(LoadingState.normal)
             },
-                onError: { _ in loading.onNext(DSLoadingState.error) },
+                onError: { _ in loading.onNext(LoadingState.error) },
                 onSubscribed: {
-                loading.onNext(DSLoadingState.loading)
+                loading.onNext(LoadingState.loading)
             })
             .catchErrorJustReturn([])
             .asObservable()
     }
-}
-
-struct CharactersInput {
-    let text: Observable<(text: String?, filter: Int)>
-    let currentIndex: Observable<Int>
-    let reload: Observable<Void>
-}
-
-struct CharactersOutput {
-    let cellViewModel: Observable<[CharacterViewModel]>
-    let loading: Observable<DSLoadingState>
-    let resetData: Observable<Void>
-    let disposable: Disposable
 }

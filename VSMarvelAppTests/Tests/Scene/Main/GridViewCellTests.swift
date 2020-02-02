@@ -34,7 +34,7 @@ class GridViewCellTests: XCTestCase {
         XCTAssertEqual(sut.dsLabel.superview, sut)
     }
 
-    class CollectionCellSpy: UICollectionViewCell, CharacterViewStyleable {
+    class CollectionCellSpy: UIView, CharacterViewStyleable {
         var styleSpy: CharacterViewStyle?
 
         var dsLabel: UILabel = .init()
@@ -42,6 +42,16 @@ class GridViewCellTests: XCTestCase {
 
         func apply(style: CharacterViewStyle) {
             styleSpy = style
+        }
+
+        var vm: CharacterViewModel?
+
+        func setup(_ vm: CharacterViewModel) {
+            self.vm = vm
+        }
+
+        static func cellSize(from _: CGSize) -> CGSize {
+            .zero
         }
     }
 }

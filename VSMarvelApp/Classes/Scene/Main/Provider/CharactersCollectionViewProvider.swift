@@ -4,7 +4,7 @@ import RxCocoa
 import RxSwift
 import UIKit
 
-final class CharactersViewProvider<CharacterView: UIView> where CharacterView: CharacterViewStyleable {
+final class CharactersCollectionViewProvider<CharacterView: UIView> where CharacterView: CharacterViewStyleable {
     let dataSource: ArrayDataSource<CharacterViewModel>
 
     let viewSource: ClosureViewSource<CharacterViewModel, CharacterView>
@@ -16,7 +16,7 @@ final class CharactersViewProvider<CharacterView: UIView> where CharacterView: C
     let provider: BasicProvider<CharacterViewModel, CharacterView>
 
     init(
-        sizeSource: @escaping (() -> CGSize),
+        sizeSource: @escaping ((CGSize) -> CGSize),
         tapHandler: @escaping ((CharacterViewModel) -> Void)
     ) {
         let currentIndex = BehaviorRelay<Int>(value: 0)
@@ -34,8 +34,8 @@ final class CharactersViewProvider<CharacterView: UIView> where CharacterView: C
             identifierMapper: { (_: Int, data: CharacterViewModel) in data.name }
         )
 
-        self.sizeSource = { (_: Int, _: CharacterViewModel, _: CGSize) -> CGSize in
-            sizeSource()
+        self.sizeSource = { (_: Int, _: CharacterViewModel, size: CGSize) -> CGSize in
+            sizeSource(size)
         }
 
         provider = BasicProvider(

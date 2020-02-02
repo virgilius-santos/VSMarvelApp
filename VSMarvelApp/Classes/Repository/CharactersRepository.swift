@@ -36,8 +36,7 @@ final class CharactersRepository: CharactersRepositoryProtocol {
         return Single<MarvelAPI.Response.DataReceived>
             .create { (single) -> Disposable in
 
-                self.api.getCharacters(id: id, queries: queries)
-                { result in
+                self.api.getCharacters(id: id, queries: queries) { result in
 
                     switch result {
                     case let .success(data):

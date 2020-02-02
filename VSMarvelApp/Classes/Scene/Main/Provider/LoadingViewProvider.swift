@@ -5,15 +5,15 @@ import RxSwift
 import UIKit
 
 final class LoadingViewProvider {
-    let dataSource: ArrayDataSource<DSLoadingState>
+    let dataSource: ArrayDataSource<LoadingState>
 
-    let viewSource: ClosureViewSource<DSLoadingState, DSLoadingView>
+    let viewSource: ClosureViewSource<LoadingState, LoadingCell>
 
     let tap: Observable<Void>
 
-    let sizeSource: (Int, DSLoadingState, CGSize) -> CGSize
+    let sizeSource: (Int, LoadingState, CGSize) -> CGSize
 
-    let provider: BasicProvider<DSLoadingState, DSLoadingView>
+    let provider: BasicProvider<LoadingState, LoadingCell>
 
     let disposeBag: DisposeBag
 
@@ -26,19 +26,19 @@ final class LoadingViewProvider {
         let tap = PublishRelay<Void>()
         self.tap = tap.asObservable()
 
-        viewSource = ClosureViewSource<DSLoadingState, DSLoadingView>(
-            viewUpdater: { (view: DSLoadingView, data: DSLoadingState, _: Int) in
+        viewSource = ClosureViewSource<LoadingState, LoadingCell>(
+            viewUpdater: { (view: LoadingCell, data: LoadingState, _: Int) in
                 view.setup(data)
                 view.errorButton.rx.tap.bind(to: tap).disposed(by: disposeBag)
             }
         )
 
-        dataSource = ArrayDataSource<DSLoadingState>(
-            data: [DSLoadingState.loading],
-            identifierMapper: { (_: Int, data: DSLoadingState) in "\(data)" }
+        dataSource = ArrayDataSource<LoadingState>(
+            data: [LoadingState.loading],
+            identifierMapper: { (_: Int, data: LoadingState) in "\(data)" }
         )
 
-        self.sizeSource = { (_: Int, _: DSLoadingState, _: CGSize) -> CGSize in
+        self.sizeSource = { (_: Int, _: LoadingState, _: CGSize) -> CGSize in
             sizeSource()
         }
 

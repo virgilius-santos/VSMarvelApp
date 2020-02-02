@@ -1,42 +1,53 @@
 
+import RxSwift
 import UIKit
+import VCore
 
-typealias GridViewController = CharactersViewController<GridViewCell>
-typealias ListViewController = CharactersViewController<ListViewCell>
+typealias GridViewController = CharactersCollectionViewController<GridViewCell>
+typealias ListViewController = CharactersCollectionViewController<ListViewCell>
 
-final class MainCoordinator {
+final class MainCoordinator: CharactersRouter {
     weak var navController: DSNavigationControllerProtocol?
 
     init(navController: DSNavigationControllerProtocol?) {
         self.navController = navController
     }
 
+    deinit {
+        logger.info("fuii", String(describing: Self.self))
+    }
+
     func start() {
-        let vc = ListViewController(viewModel: ListViewModel(title: "Characters", router: self))
-        navController?.navigate(to: vc, using: DSNavigationType.push)
+        navController?.navigate(to: listViewController(), using: DSNavigationType.push)
     }
-}
 
-extension MainCoordinator: GridRouter {
-    func grid_goTo(_ vm: CharacterViewModel) {
-        let coord = DetailCoordinator(navController: navController, viewModel: vm)
+    func listViewController() -> ListViewController {
+        let vm = CharactersCollectionViewModel(type: CharactersCollectionViewModel.ViewModelType.list,
+                                               router: self)
+        let vc = ListViewController(viewModel: vm)
+        return vc
+    }
+
+    func gridViewController() -> GridViewController {
+        let vm = CharactersCollectionViewModel(type: CharactersCollectionViewModel.ViewModelType.grid,
+                                               router: self)
+        let vc = GridViewController(viewModel: vm)
+        return vc
+    }
+
+    func switchToList() {
+        navController?.navigate(to: listViewController(),
+                                using: DSNavigationType.replace)
+    }
+
+    func switchToGrid() {
+        navController?.navigate(to: gridViewController(),
+                                using: DSNavigationType.replace)
+    }
+
+    func goToDetail(_ vm: CharacterViewModel) {
+        let coord = DetailCoordinator(navController: navController,
+                                      viewModel: vm)
         coord.start()
-    }
-
-    func grid_switchToList() {
-        let vc = ListViewController(viewModel: ListViewModel(title: "Characters", router: self))
-        navController?.navigate(to: vc, using: DSNavigationType.replace)
-    }
-}
-
-extension MainCoordinator: ListRouter {
-    func list_goTo(_ vm: CharacterViewModel) {
-        let coord = DetailCoordinator(navController: navController, viewModel: vm)
-        coord.start()
-    }
-
-    func list_switchToGrid() {
-        let vc = GridViewController(viewModel: GridViewModel(title: "Characters", router: self))
-        navController?.navigate(to: vc, using: DSNavigationType.replace)
     }
 }

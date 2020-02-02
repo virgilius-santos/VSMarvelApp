@@ -14,8 +14,7 @@ class MainCoordinatorTests: XCTestCase {
         .init(id: 0,
               name: "a",
               bio: "b",
-              thumImage: ThumbImage(path: "arte",
-                                    extension: "jpg"))
+              thumImage: ThumbImage(path: "arte.jpg"))
     }
 
     override func setUp() {
@@ -34,37 +33,37 @@ class MainCoordinatorTests: XCTestCase {
 
     func testListViewControllerMustBeStarted() {
         sut.start()
-        XCTAssert(nav?.viewController is CharactersViewController<ListViewCell>)
+        XCTAssert(nav?.viewController is CharactersCollectionViewController<ListViewCell>)
         XCTAssertEqual(nav?.type, DSNavigationType.push)
     }
 
     func testWhenGoToFromGridCalledDetailMustBeStarted() {
-        sut.grid_goTo(dummyGridVM)
+        sut.goToDetail(dummyGridVM)
         XCTAssert(nav?.viewController is DetailViewController)
         XCTAssertEqual(nav?.type, DSNavigationType.push)
         XCTAssertEqual((nav?.viewController as? DetailViewController)?.viewModel.title, "a")
         XCTAssertEqual((nav?.viewController as? DetailViewController)?.viewModel.description, "b")
-        XCTAssertEqual((nav?.viewController as? DetailViewController)?.viewModel.path, "arte/portrait_xlarge.jpg")
+        XCTAssertEqual((nav?.viewController as? DetailViewController)?.viewModel.path, "arte.jpg")
     }
 
     func testWhenGoToFromListCalledDetailMustBeStarted() {
-        sut.list_goTo(dummyGridVM)
+        sut.goToDetail(dummyGridVM)
         XCTAssert(nav?.viewController is DetailViewController)
         XCTAssertEqual(nav?.type, DSNavigationType.push)
         XCTAssertEqual((nav?.viewController as? DetailViewController)?.viewModel.title, "a")
         XCTAssertEqual((nav?.viewController as? DetailViewController)?.viewModel.description, "b")
-        XCTAssertEqual((nav?.viewController as? DetailViewController)?.viewModel.path, "arte/portrait_xlarge.jpg")
+        XCTAssertEqual((nav?.viewController as? DetailViewController)?.viewModel.path, "arte.jpg")
     }
 
     func testWhenSwitchToListCalledGridMustBeStarted() {
-        sut.list_switchToGrid()
-        XCTAssert(nav?.viewController is CharactersViewController<GridViewCell>)
+        sut.switchToGrid()
+        XCTAssert(nav?.viewController is CharactersCollectionViewController<GridViewCell>)
         XCTAssertEqual(nav?.type, DSNavigationType.replace)
     }
 
     func testWhenSwitchToGridCalledListMustBeStarted() {
-        sut.grid_switchToList()
-        XCTAssert(nav?.viewController is CharactersViewController<ListViewCell>)
+        sut.switchToList()
+        XCTAssert(nav?.viewController is CharactersCollectionViewController<ListViewCell>)
         XCTAssertEqual(nav?.type, DSNavigationType.replace)
     }
 }

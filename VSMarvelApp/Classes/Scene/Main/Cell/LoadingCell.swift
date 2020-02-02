@@ -2,13 +2,13 @@
 import SnapKit
 import UIKit
 
-enum DSLoadingState {
+enum LoadingState {
     case loading
     case error
     case normal
 }
 
-final class DSLoadingView: UIView {
+final class LoadingCell: UIView {
     let errorLabel: UILabel = {
         $0.isHidden = true
         $0.numberOfLines = 0
@@ -43,7 +43,7 @@ final class DSLoadingView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func setup(_ state: DSLoadingState) {
+    func setup(_ state: LoadingState) {
         switch state {
         case .loading:
             view(isLock: true)
