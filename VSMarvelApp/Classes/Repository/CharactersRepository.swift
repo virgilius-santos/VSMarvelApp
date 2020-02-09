@@ -4,8 +4,16 @@ import RxSwift
 import VCore
 import VService
 
+typealias CharacterData = [Character]
+
 protocol CharactersRepositoryProtocol {
-    func getCharacters(id: Int?, number: Int, name: String?) -> Single<[Character]>
+    func getCharacters(id: Int?, number: Int, name: String?) -> Single<CharacterData>
+}
+
+extension CharactersRepositoryProtocol {
+    func getCharacters(number: Int, name: String?) -> Single<CharacterData> {
+        getCharacters(id: nil, number: number, name: name)
+    }
 }
 
 final class CharactersRepository: CharactersRepositoryProtocol {
@@ -23,14 +31,14 @@ final class CharactersRepository: CharactersRepositoryProtocol {
         MarvelAPI.QueryKeys.orderBy(type: MarvelAPI.OrderType.name(ascendent: true))
     }
 
-    func getCharacters(id: Int?, number: Int, name: String?) -> Single<[Character]> {
+    func getCharacters(id: Int?, number: Int, name: String?) -> Single<CharacterData> {
         let queries: [MarvelAPI.QueryKeys]
 
         do {
             queries = try getQueries(number: number, name: name)
         } catch {
             logger.error("\(error)")
-            return Single<[Character]>.just([])
+            return Single<CharacterData>.error(error)
         }
 
         return Single<MarvelAPI.Response.DataReceived>
