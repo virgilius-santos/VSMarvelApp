@@ -2,6 +2,8 @@
 import RxSwift
 import UIKit
 
+typealias CharactersViewModelData = [CharacterViewModel]
+
 protocol CharactersRouter {
     func switchToList(_ vm: CharactersCollectionViewModel)
     func switchToGrid(_ vm: CharactersCollectionViewModel)
@@ -61,9 +63,12 @@ class CharactersCollectionViewModel: CharactersCollectionViewModelProtocol {
 
     let router: CharactersRouter
 
+    let pageController = CharactersPageController()
+
     init(type: ViewModelType, router: CharactersRouter) {
         viewModelType = type
         self.router = router
+        pageController.provider = loadCharacters
     }
 
     func switchView() {
@@ -80,83 +85,40 @@ class CharactersCollectionViewModel: CharactersCollectionViewModelProtocol {
     }
 
     func bind(input: CharactersInput) -> CharactersOutput {
-        let loading = BehaviorSubject<LoadingState>(value: LoadingState.loading)
-        let loadNextPage = PublishSubject<Void>()
-        let reloadNextPage = PublishSubject<Void>()
+        let disposableNextIndex = input.currentIndex
+            .bind(to: pageController.currentIndex)
 
-        let searchText = input.text
-            .startWith((text: nil, filter: -1))
+        let disposableNextFilter = input.text
             .map { $0.text }
-            .distinctUntilChanged()
-            .share(replay: 1, scope: .whileConnected)
-
-        let cellsViewModel = searchText
-            .flatMapLatest { searchText in
-
-                loadNextPage
-                    .asObservable()
-                    .startWith(())
-                    .scan(-1) { (pageNumber, _) -> Int in
-                        pageNumber + 1
-                    }
-                    .map { pageNumber in
-                        (searchText, pageNumber)
-                    }
-            }
-            .flatMapLatest { searchText, pageNumber in
-
-                reloadNextPage
-                    .asObservable()
-                    .startWith(())
-                    .map { (searchText, pageNumber) }
-            }
-            .flatMapLatest { [loadCharacters] (searchText, pageNumber) -> Observable<[CharacterViewModel]> in
-                loadCharacters(loading, pageNumber, searchText)
-            }
-
-        let disposableNextPage = searchText
-            .flatMapLatest { _ in
-
-                input.currentIndex
-                    .startWith(0)
-                    .scan(0, accumulator: { ($0 < $1 && $1 % 19 == 0) ? $1 : $0 })
-                    .distinctUntilChanged()
-            }
-            .subscribe(onNext: { _ in loadNextPage.onNext(()) })
-
-        let resetData = searchText
-            .map { _ in }
-
-        let reloadDisposable = input.reload
-            .subscribe(onNext: { _ in reloadNextPage.onNext(()) })
+            .bind(to: pageController.currentFilter)
 
         let disposables = Disposables
-            .create([disposableNextPage, reloadDisposable])
+            .create([
+                disposableNextIndex,
+                disposableNextFilter,
+            ])
 
         return CharactersOutput(
-            cellViewModel: cellsViewModel,
-            loading: loading.asObservable(),
-            resetData: resetData,
+            cellViewModel: pageController.cellsViewModel,
+            loading: pageController.loading,
+            resetData: pageController.resetData,
             disposable: disposables
         )
     }
 
-    func loadCharacters(loading: BehaviorSubject<LoadingState>,
-                        number: Int,
-                        name: String? = nil) -> Observable<[CharacterViewModel]> {
-        repository.getCharacters(id: nil, number: number, name: name)
-            .map { characters in
-                characters.map { character in CharacterViewModel(character: character) }
-            }
+    func loadCharacters(
+        loading: BehaviorSubject<LoadingState>,
+        number: Int,
+        name: String? = nil
+    ) -> Observable<CharactersViewModelData> {
+        repository
+            .getCharacters(number: number, name: name)
+            .map { $0.map { character in CharacterViewModel(character: character) } }
             .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .background))
             .observeOn(MainScheduler.instance)
-            .do(onSuccess: { _ in
-                loading.onNext(LoadingState.normal)
-            },
+            .do(onSuccess: { _ in loading.onNext(LoadingState.normal) },
                 onError: { _ in loading.onNext(LoadingState.error) },
-                onSubscribed: {
-                loading.onNext(LoadingState.loading)
-            })
+                onSubscribed: { loading.onNext(LoadingState.loading) })
             .catchErrorJustReturn([])
             .asObservable()
     }

@@ -71,8 +71,7 @@ final class CharactersRepository: CharactersRepositoryProtocol {
             queries.append(MarvelAPI.QueryKeys.nameStartsWith(string: name))
         }
 
-        let limit = 20
-        let offset = number * limit
+        let offset = number
         if offset < dataReceived.total {
             queries.append(MarvelAPI.QueryKeys.offset(index: offset))
         } else {

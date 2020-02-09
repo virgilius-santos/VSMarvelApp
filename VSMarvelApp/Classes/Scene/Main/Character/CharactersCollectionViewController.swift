@@ -96,7 +96,7 @@ class CharactersCollectionViewController<CharacterView: UIView>: DSCollectionVie
 
             output.cellViewModel
                 .subscribe(onNext: { (listCellVM: [CharacterViewModel]) in
-                    cellProvider.dataSource.data.append(contentsOf: listCellVM)
+                    cellProvider.dataSource.data = listCellVM
                 })
                 .disposed(by: disposeBag)
 
