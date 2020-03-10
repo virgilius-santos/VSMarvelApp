@@ -37,7 +37,7 @@ In my opinion, a Coordinator serves three main purposes:
 
 ### How To Use
 
-[My article explain this implemenatation](https://medium.com/@uniq.nestea/coordinators-simple-approach-f7b077f933ec)
+[My article explain this implementation](https://medium.com/@uniq.nestea/coordinators-simple-approach-f7b077f933ec)
 
 </details>
 
