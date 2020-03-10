@@ -6,8 +6,22 @@ protocol DSNavigationControllerProtocol: AnyObject {
     func navigate(to viewController: UIViewController, using type: DSNavigationType)
 }
 
-enum DSNavigationType {
-    case push, present, replace
+struct DSNavigationType {
+    typealias NavigatorFunctions = ((UINavigationController?, UIViewController) -> Void)
+
+    let completion: NavigatorFunctions
+
+    static let push = DSNavigationType(completion: { nav, vc in
+        nav?.pushViewController(vc, animated: true)
+    })
+
+    static let present = DSNavigationType(completion: { nav, vc in
+        nav?.present(vc, animated: true, completion: nil)
+    })
+
+    static let replace = DSNavigationType(completion: { nav, vc in
+        nav?.visibleViewController?.hero.replaceViewController(with: vc)
+    })
 }
 
 final class DSNavigationController: DSNavigationControllerProtocol {
@@ -21,28 +35,12 @@ final class DSNavigationController: DSNavigationControllerProtocol {
         }
     }
 
-    let navigationFunctions: [DSNavigationType: NavigationFunction]
-
     init(nav: UINavigationController?) {
         self.nav = nav
         nav?.hero.isEnabled = true
-
-        navigationFunctions = [
-            DSNavigationType.push: { [nav] vc in
-                nav?.pushViewController(vc, animated: true)
-            },
-            DSNavigationType.present: { [nav] vc in
-                nav?.present(vc, animated: true, completion: nil)
-            },
-            DSNavigationType.replace: { [nav] vc in
-                nav?.visibleViewController?.hero.replaceViewController(with: vc)
-            },
-        ]
     }
 
     func navigate(to viewController: UIViewController, using type: DSNavigationType) {
-        if let function = navigationFunctions[type] {
-            function(viewController)
-        }
+        type.completion(nav, viewController)
     }
 }

@@ -4,12 +4,6 @@ import UIKit
 
 typealias CharactersViewModelData = [CharacterViewModel]
 
-protocol CharactersRouter {
-    func switchToList(_ vm: CharactersCollectionViewModel)
-    func switchToGrid(_ vm: CharactersCollectionViewModel)
-    func goToDetail(_ vm: CharacterViewModel)
-}
-
 protocol CharactersCollectionViewModelProtocol {
     var title: String { get }
     var rightButtonIcon: DSAsset { get }
@@ -61,27 +55,28 @@ class CharactersCollectionViewModel: CharactersCollectionViewModelProtocol {
 
     var viewModelType: ViewModelType
 
-    let router: CharactersRouter
+    var switchToList: ((_ vm: CharactersCollectionViewModel) -> Void)?
+    var switchToGrid: ((_ vm: CharactersCollectionViewModel) -> Void)?
+    var goToDetail: ((_ vm: CharacterViewModel) -> Void)?
 
     let pageController = CharactersPageController()
 
-    init(type: ViewModelType, router: CharactersRouter) {
+    init(type: ViewModelType) {
         viewModelType = type
-        self.router = router
         pageController.provider = loadCharacters
     }
 
     func switchView() {
         switch viewModelType {
         case .grid:
-            router.switchToList(self)
+            switchToList?(self)
         case .list:
-            router.switchToGrid(self)
+            switchToGrid?(self)
         }
     }
 
     func goTo(_ vm: CharacterViewModel) {
-        router.goToDetail(vm)
+        goToDetail?(vm)
     }
 
     func bind(input: CharactersInput) -> CharactersOutput {

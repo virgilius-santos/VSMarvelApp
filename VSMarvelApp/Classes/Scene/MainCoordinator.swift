@@ -6,7 +6,7 @@ import VCore
 typealias GridViewController = CharactersCollectionViewController<GridViewCell>
 typealias ListViewController = CharactersCollectionViewController<ListViewCell>
 
-final class MainCoordinator: CharactersRouter {
+final class MainCoordinator {
     weak var navController: DSNavigationControllerProtocol?
 
     init(navController: DSNavigationControllerProtocol?) {
@@ -18,27 +18,24 @@ final class MainCoordinator: CharactersRouter {
     }
 
     func start() {
-        let vm = CharactersCollectionViewModel(type: CharactersCollectionViewModel.ViewModelType.list,
-                                               router: self)
+        let vm = CharactersCollectionViewModel(type: CharactersCollectionViewModel.ViewModelType.list)
+        vm.switchToList = { [navController] vm in
+            vm.viewModelType = .list
+            navController?.navigate(to: ListViewController(viewModel: vm),
+                                    using: DSNavigationType.replace)
+        }
+        vm.switchToGrid = { [navController] vm in
+            vm.viewModelType = .grid
+            navController?.navigate(to: GridViewController(viewModel: vm),
+                                    using: DSNavigationType.replace)
+        }
+        vm.goToDetail = { [navController] vm in
+            let coord = DetailCoordinator(navController: navController,
+                                          viewModel: vm)
+            coord.start()
+        }
+
         let vc = ListViewController(viewModel: vm)
         navController?.navigate(to: vc, using: DSNavigationType.push)
-    }
-
-    func switchToList(_ vm: CharactersCollectionViewModel) {
-        vm.viewModelType = .list
-        navController?.navigate(to: ListViewController(viewModel: vm),
-                                using: DSNavigationType.replace)
-    }
-
-    func switchToGrid(_ vm: CharactersCollectionViewModel) {
-        vm.viewModelType = .grid
-        navController?.navigate(to: GridViewController(viewModel: vm),
-                                using: DSNavigationType.replace)
-    }
-
-    func goToDetail(_ vm: CharacterViewModel) {
-        let coord = DetailCoordinator(navController: navController,
-                                      viewModel: vm)
-        coord.start()
     }
 }
