@@ -6,9 +6,14 @@ protocol DSNavigationControllerProtocol: AnyObject {
     func navigate(to viewController: UIViewController, using type: DSNavigationType)
 }
 
-struct DSNavigationType {
+struct DSNavigationType: Equatable {
+    static func == (lhs: DSNavigationType, rhs: DSNavigationType) -> Bool {
+        lhs.id == rhs.id
+    }
+
     typealias NavigatorFunctions = ((UINavigationController?, UIViewController) -> Void)
 
+    let id = UUID().uuidString
     let completion: NavigatorFunctions
 
     static let push = DSNavigationType(completion: { nav, vc in

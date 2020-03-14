@@ -18,13 +18,13 @@ class MainCoordinatorTests: XCTestCase {
     }
 
     var dummyCharsCVM: CharactersCollectionViewModel {
-        .init(type: CharactersCollectionViewModel.ViewModelType.list,
-              router: sut)
+        .init(type: CharactersCollectionViewModel.ViewModelType.list)
     }
 
     override func setUp() {
         nav = .init()
         sut = .init(navController: nav)
+        sut.start()
     }
 
     override func tearDown() {
@@ -37,22 +37,13 @@ class MainCoordinatorTests: XCTestCase {
     }
 
     func testListViewControllerMustBeStarted() {
-        sut.start()
         XCTAssert(nav?.viewController is CharactersCollectionViewController<ListViewCell>)
         XCTAssertEqual(nav?.type, DSNavigationType.push)
     }
 
     func testWhenGoToFromGridCalledDetailMustBeStarted() {
-        sut.goToDetail(dummyGridVM)
-        XCTAssert(nav?.viewController is DetailViewController)
-        XCTAssertEqual(nav?.type, DSNavigationType.push)
-        XCTAssertEqual((nav?.viewController as? DetailViewController)?.viewModel.title, "a")
-        XCTAssertEqual((nav?.viewController as? DetailViewController)?.viewModel.description, "b")
-        XCTAssertEqual((nav?.viewController as? DetailViewController)?.viewModel.path, "arte.jpg")
-    }
-
-    func testWhenGoToFromListCalledDetailMustBeStarted() {
-        sut.goToDetail(dummyGridVM)
+        let vc = nav?.viewController as! CharactersCollectionViewController<ListViewCell>
+        vc.viewModel.goTo(dummyGridVM)
         XCTAssert(nav?.viewController is DetailViewController)
         XCTAssertEqual(nav?.type, DSNavigationType.push)
         XCTAssertEqual((nav?.viewController as? DetailViewController)?.viewModel.title, "a")
@@ -61,13 +52,17 @@ class MainCoordinatorTests: XCTestCase {
     }
 
     func testWhenSwitchToListCalledGridMustBeStarted() {
-        sut.switchToGrid(dummyCharsCVM)
+        let vm = (nav!.viewController as! CharactersCollectionViewController<ListViewCell>)
+            .viewModel as! CharactersCollectionViewModel
+        vm.switchToGrid!(dummyCharsCVM)
         XCTAssert(nav?.viewController is CharactersCollectionViewController<GridViewCell>)
         XCTAssertEqual(nav?.type, DSNavigationType.replace)
     }
 
     func testWhenSwitchToGridCalledListMustBeStarted() {
-        sut.switchToList(dummyCharsCVM)
+        let vm = (nav!.viewController as! CharactersCollectionViewController<ListViewCell>)
+            .viewModel as! CharactersCollectionViewModel
+        vm.switchToList!(dummyCharsCVM)
         XCTAssert(nav?.viewController is CharactersCollectionViewController<ListViewCell>)
         XCTAssertEqual(nav?.type, DSNavigationType.replace)
     }
