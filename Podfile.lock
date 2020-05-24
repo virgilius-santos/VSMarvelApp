@@ -68,7 +68,7 @@ SPEC REPOS:
     - SwiftGen
     - Willow
     - YetAnotherAnimationLibrary
-  https://github.com/virgilius-santos/public-pod-specs:
+  https://github.com/virgilius-santos/public-pod-specs.git:
     - VComponents
     - VCore
     - VService
