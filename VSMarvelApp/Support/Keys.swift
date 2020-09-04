@@ -10,7 +10,7 @@ import CryptoSwift
 import Foundation
 import Keys
 
-private let keys = VSMarvelAppKeys()
+private let keys = VSMarvelAppXcworkspaceKeys()
 
 enum ApiKeys {
     static let marvelApiKey = keys.marvelApiKey

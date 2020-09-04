@@ -20,7 +20,7 @@ open class DSDynamicView: UIView {
         }
     }
 
-    public override init(frame: CGRect) {
+    override public init(frame: CGRect) {
         super.init(frame: frame)
         layer.yaal.perspective.setTo(-1 / 500)
     }
@@ -59,17 +59,17 @@ open class DSDynamicView: UIView {
         }
     }
 
-    open override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    override open func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         touchAnim(touches: touches)
     }
 
-    open override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+    override open func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesMoved(touches, with: event)
         touchAnim(touches: touches)
     }
 
-    open override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+    override open func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesEnded(touches, with: event)
         if tapAnimation {
             yaal.scale.animateTo(1.0, stiffness: 150, damping: 7)
@@ -78,7 +78,7 @@ open class DSDynamicView: UIView {
         }
     }
 
-    open override func touchesCancelled(_ touches: Set<UITouch>?, with event: UIEvent?) {
+    override open func touchesCancelled(_ touches: Set<UITouch>?, with event: UIEvent?) {
         super.touchesCancelled(touches!, with: event)
         if tapAnimation {
             yaal.scale.animateTo(1.0, stiffness: 150, damping: 7)
