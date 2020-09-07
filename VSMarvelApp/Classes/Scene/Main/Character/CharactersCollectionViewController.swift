@@ -6,7 +6,7 @@ import RxSwift
 import UIKit
 import VCore
 
-class CharactersCollectionViewController<CharacterView: UIView>: DSCollectionViewController, HeroViewControllerDelegate where CharacterView: CharacterViewStyleable {
+final class CharactersCollectionViewController<CharacterView: UIView>: DSCollectionViewController, HeroViewControllerDelegate where CharacterView: CharacterViewStyleable {
     typealias ViewModel = CharactersCollectionViewModelProtocol
 
     let viewModel: ViewModel

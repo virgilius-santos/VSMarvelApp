@@ -18,24 +18,52 @@ final class MainCoordinator {
     }
 
     func start() {
-        let vm = CharactersCollectionViewModel(type: CharactersCollectionViewModel.ViewModelType.list)
-        vm.switchToList = { [navController] vm in
-            vm.viewModelType = .list
-            navController?.navigate(to: ListViewController(viewModel: vm),
-                                    using: DSNavigationType.replace)
-        }
-        vm.switchToGrid = { [navController] vm in
-            vm.viewModelType = .grid
-            navController?.navigate(to: GridViewController(viewModel: vm),
-                                    using: DSNavigationType.replace)
-        }
+        let vm = CharactersCollectionViewModel(
+            type: CharactersCollectionViewModel.ViewModelType.list
+        )
+
+        vm.switchAction = switchToGrid
+
         vm.goToDetail = { [navController] vm in
-            let coord = DetailCoordinator(navController: navController,
-                                          viewModel: vm)
+            let coord = DetailCoordinator(
+                navController: navController,
+                viewModel: vm
+            )
             coord.start()
         }
 
-        let vc = ListViewController(viewModel: vm)
-        navController?.navigate(to: vc, using: DSNavigationType.push)
+        navigateToList(vm, using: .push)
+    }
+
+    func switchToGrid(_ vm: CharactersCollectionViewModel) {
+        vm.viewModelType = .grid
+        vm.switchAction = switchToList
+        navigateToGrid(vm)
+    }
+
+    func switchToList(_ vm: CharactersCollectionViewModel) {
+        vm.viewModelType = .list
+        vm.switchAction = switchToGrid
+        navigateToList(vm)
+    }
+
+    func navigateToList(
+        _ vm: CharactersCollectionViewModel,
+        using method: DSNavigationType = .replace
+    ) {
+        navController?.navigate(
+            to: ListViewController(viewModel: vm),
+            using: method
+        )
+    }
+
+    func navigateToGrid(
+        _ vm: CharactersCollectionViewModel,
+        using method: DSNavigationType = .replace
+    ) {
+        navController?.navigate(
+            to: GridViewController(viewModel: vm),
+            using: method
+        )
     }
 }

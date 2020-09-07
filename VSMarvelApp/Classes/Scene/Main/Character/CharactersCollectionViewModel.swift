@@ -29,21 +29,15 @@ struct CharactersOutput {
     let disposable: Disposable
 }
 
-class CharactersCollectionViewModel: CharactersCollectionViewModelProtocol {
-    enum ViewModelType {
-        case list, grid
+final class CharactersCollectionViewModel: CharactersCollectionViewModelProtocol {
+    struct ViewModelType {
+        static let list = ViewModelType(iconToSwitch: DSIcon.gridIcon)
+        static let grid = ViewModelType(iconToSwitch: DSIcon.listIcon)
 
-        var icon: DSAsset {
-            switch self {
-            case .grid:
-                return DSIcon.listIcon
-            case .list:
-                return DSIcon.gridIcon
-            }
-        }
+        let iconToSwitch: DSAsset
     }
 
-    var rightButtonIcon: DSAsset { viewModelType.icon }
+    var rightButtonIcon: DSAsset { viewModelType.iconToSwitch }
 
     var repository: CharactersRepositoryProtocol { CharactersRepository() }
 
@@ -51,7 +45,8 @@ class CharactersCollectionViewModel: CharactersCollectionViewModelProtocol {
 
     var placeholderSearchBar: String { "Type something here..." }
 
-    var filterOptionsSearchBar: [String] { [String]() } // ["Title", "Genre", "Rating", "Actor"]
+    // TODO: Pending ["Title", "Genre", "Rating", "Actor"]
+    var filterOptionsSearchBar: [String] { [String]() }
 
     var viewModelType: ViewModelType
 
@@ -59,20 +54,21 @@ class CharactersCollectionViewModel: CharactersCollectionViewModelProtocol {
     var switchToGrid: ((_ vm: CharactersCollectionViewModel) -> Void)?
     var goToDetail: ((_ vm: CharacterViewModel) -> Void)?
 
+    var switchAction: ((_ vm: CharactersCollectionViewModel) -> Void)?
+
     let pageController = CharactersPageController()
 
-    init(type: ViewModelType) {
+    init(
+        type: ViewModelType,
+        switchAction: ((_ vm: CharactersCollectionViewModel) -> Void)? = nil
+    ) {
         viewModelType = type
+        self.switchAction = switchAction
         pageController.provider = loadCharacters
     }
 
     func switchView() {
-        switch viewModelType {
-        case .grid:
-            switchToList?(self)
-        case .list:
-            switchToGrid?(self)
-        }
+        switchAction?(self)
     }
 
     func goTo(_ vm: CharacterViewModel) {
