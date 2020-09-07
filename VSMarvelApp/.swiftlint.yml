@@ -1,0 +1,77 @@
+disabled_rules: # rule identifiers to exclude from running
+  - block_based_kvo
+  - closing_brace # SwiftFormat - spaceInsideParens
+  - control_statement # SwiftFormat - redundantParens
+  - cyclomatic_complexity
+  - duplicate_imports # SwiftFormat - duplicateImports
+  - empty_enum_arguments # SwiftFormat - unusedArguments
+  - empty_parameters # SwiftFormat - void
+  - function_body_length
+  - identifier_name
+  - implicit_getter # SwiftFormat - redundantGet
+  - leading_whitespace
+  - mark # SwiftFormat - todos
+  - no_space_in_method_call # SwiftFormat - spaceAroundParens
+  - opening_brace # SwiftFormat - braces
+  - private_over_fileprivate # SwiftFormat - redundantFileprivate
+  - redundant_discardable_let # SwiftFormat - redundantLet
+  - redundant_optional_initialization # SwiftFormat - redundantNilInit
+  - redundant_string_enum_value # SwiftFormat - redundantRawValues
+  - redundant_void_return # SwiftFormat - redundantVoidReturnType
+  - syntactic_sugar # SwiftFormat - typeSugar
+  - vertical_whitespace # SwiftFormat - consecutiveBlankLines
+  - trailing_whitespace # SwiftFormat - trailingSpace
+  - trailing_semicolon # SwiftFormat - semicolons
+  - unneeded_break_in_switch # SwiftFormat - redundantBreak
+  - unused_closure_parameter # SwiftFormat - unusedArguments
+  - valid_ibinspectable
+  - void_return # SwiftFormat - void
+opt_in_rules: # some rules are only opt-in
+  - closure_end_indentation
+  - contains_over_filter_count
+  - contains_over_filter_is_empty
+  - contains_over_first_not_nil
+  - contains_over_range_nil_comparison
+  - empty_collection_literal
+  - empty_string
+  - expiring_todo
+  - first_where
+  - force_unwrapping
+  - last_where
+  - legacy_multiple
+  - prohibited_interface_builder
+  - redundant_type_annotation
+  - sorted_first_last
+  - toggle_bool
+  - type_contents_order
+  - unowned_variable_capture
+  - unused_import
+excluded: # paths to ignore during linting. Takes precedence over `included`.
+  - build
+  - DerivedData
+  - docs
+  - Pods
+  - vendor
+  - fastlane
+
+large_tuple:
+  warning: 2
+  error: 15
+
+force_unwrapping:
+  severity: error
+  
+prohibited_interface_builder:
+  severity: error
+
+line_length:
+  warning: 300
+  error: 400
+  ignores_comments: true
+  ignores_urls: true
+  ignores_function_declarations: true
+  ignores_interpolated_strings: true
+
+file_length:
+  warning: 500
+  error: 1200

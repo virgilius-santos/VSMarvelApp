@@ -1,0 +1,21 @@
+--swiftversion 5.0
+--exclude build, DerivedData, docs, Pods, vendor, fastlane
+--disable andOperator
+--disable fileHeader
+--disable indent
+--disable isEmpty
+--disable linebreaks
+--disable numberFormatting
+--disable redundantPattern
+--disable redundantObjc
+--disable spaceAroundGenerics
+--disable spaceAroundBraces
+--disable spaceInsideBraces
+--disable spaceInsideBrackets
+--disable spaceInsideComments
+--disable spaceInsideGenerics
+--disable spaceInsideParens
+--disable strongOutlets
+--disable trailingClosures
+--disable trailingCommas
+--disable wrap

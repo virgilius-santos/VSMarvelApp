@@ -5,6 +5,8 @@ platform :ios, '12.4'
 
 use_frameworks!
 
+project 'VSMarvelApp/VSMarvelApp.xcodeproj'
+
 target 'VSMarvelApp' do
 
   plugin 'cocoapods-keys', {
@@ -26,15 +28,18 @@ target 'VSMarvelApp' do
   
   pod 'CollectionKit'                   , '~> 2.4', :inhibit_warnings => true
   pod "CollectionKit/WobbleAnimator"    , '~> 2.4', :inhibit_warnings => true
-  pod "YetAnotherAnimationLibrary"      , :inhibit_warnings => true
+  pod "YetAnotherAnimationLibrary"                , :inhibit_warnings => true
+  pod "Kingfisher"                                , :inhibit_warnings => true
   
   pod 'RxSwift'                         , '~> 5.0', :inhibit_warnings => true
-  pod 'RxRelay'                         , :inhibit_warnings => true
+  pod 'RxRelay'                                   , :inhibit_warnings => true
   pod 'RxCocoa'                         , '~> 5.0', :inhibit_warnings => true
   
   pod 'CryptoSwift'                     , '~> 1.3', :inhibit_warnings => true
   
-  pod 'SwiftFormat/CLI'                 , '~> 0.44', :inhibit_warnings => true
+  pod 'SwiftFormat/CLI'                 , '0.46.2', :inhibit_warnings => true
+  pod 'SwiftLint'                       , '0.40.1' , :inhibit_warnings => true
+
   
   target 'VSMarvelAppTests' do
     inherit! :search_paths
@@ -47,7 +52,7 @@ end
 post_install do |installer|
   installer.pods_project.targets.each do |target|
     target.build_configurations.each do |config|
-      config.build_settings['SWIFT_VERSION'] = '5.1'
+      config.build_settings['SWIFT_VERSION'] = '5'
     end
   end
 end
