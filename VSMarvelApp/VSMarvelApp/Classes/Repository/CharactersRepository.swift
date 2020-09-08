@@ -17,15 +17,21 @@ extension CharactersRepositoryProtocol {
 }
 
 final class CharactersRepository: CharactersRepositoryProtocol {
-    typealias DataReceived = MarvelAPI.Response.DataReceived
+    typealias DataReceived = MarvelAPI.DataReceived
+
+    enum RepositoryError: Error {
+        case noDataToRequest
+    }
 
     let api = MarvelAPI()
 
-    var dataReceived = DataReceived(offset: 0,
-                                    limit: 20,
-                                    total: 1000,
-                                    count: 0,
-                                    results: [])
+    var dataReceived = DataReceived(
+        offset: 0,
+        limit: 20,
+        total: 1000,
+        count: 0,
+        results: []
+    )
 
     var orderBy: MarvelAPI.QueryKeys {
         MarvelAPI.QueryKeys.orderBy(type: MarvelAPI.OrderType.name(ascendent: true))
@@ -41,13 +47,20 @@ final class CharactersRepository: CharactersRepositoryProtocol {
             return Single<CharacterData>.error(error)
         }
 
-        return Single<MarvelAPI.Response.DataReceived>
+        let request = MarvelAPI.RequestData(id: id, queries: queries)
+
+        if let characters = cache.value(forKey: request) {
+            return .just(characters.map { Character($0) })
+        }
+
+        return Single<MarvelAPI.DataReceived>
             .create { (single) -> Disposable in
 
-                self.api.getCharacters(id: id, queries: queries) { result in
+                self.api.getCharacters(requestData: request) { result in
 
                     switch result {
                     case let .success(data):
+                        cache.insert(data.results, forKey: request)
                         single(.success(data))
                     case let .failure(error):
                         single(.error(error))
@@ -79,9 +92,5 @@ final class CharactersRepository: CharactersRepositoryProtocol {
         }
 
         return queries
-    }
-
-    enum RepositoryError: Error {
-        case noDataToRequest
     }
 }

@@ -16,7 +16,7 @@ final class MarvelAPI {
 
     let session: VSessionProtocol
 
-    let charactersResponse: ((Data) throws -> MarvelAPI.Response.DataReceived) = {
+    let charactersResponse: ((Data) throws -> MarvelAPI.DataReceived) = {
         let response = try MarvelAPI.Response.decode(data: $0)
         return response.data
     }
@@ -26,17 +26,18 @@ final class MarvelAPI {
     }
 
     func getCharacters(
-        id: Int?,
-        queries: [QueryKeys],
-        completion: @escaping ((Result<Response.DataReceived, VSessionError>) -> Void)
+        requestData: RequestData,
+        completion: @escaping ((Result<DataReceived, VSessionError>) -> Void)
     ) {
-        let requestData = getCharactersRequestData(id: id, queries: queries)
+        let request = requestData.request
         let responseData = charactersResponse
-        logger.info(String(describing: requestData.url))
+        logger.info(String(describing: request.url))
 
-        session.request(resquest: requestData,
-                        response: responseData,
-                        errorHandler: nil) { result in
+        session.request(
+            resquest: request,
+            response: responseData,
+            errorHandler: nil
+        ) { result in
             switch result {
             case let .success(data):
                 completion(.success(data))
@@ -44,23 +45,6 @@ final class MarvelAPI {
                 completion(.failure(error))
             }
         }
-    }
-
-    func getCharactersRequestData(id: Int?, queries: [QueryKeys]) -> VRequestData {
-        let keys = queries
-            .map { (queryKeys) -> (key: String, value: String) in queryKeys.value }
-
-        let path: [Any] = (id == nil) ? ["characters"] : ["characters", id ?? 0]
-
-        return VRequestData(
-            urlString: MarvelAPI.baseURL,
-            queryParameters: keys + [
-                ("apikey", ApiKeys.marvelApiKey),
-                ("ts", ApiKeys.ts),
-                ("hash", ApiKeys.hash)
-            ],
-            paths: path
-        )
     }
 
     enum OrderType {
@@ -81,43 +65,84 @@ final class MarvelAPI {
         }
     }
 
-    enum QueryKeys {
-        case nameStartsWith(string: String)
-        case orderBy(type: OrderType)
-        case offset(index: Int)
+    struct QueryKeys: Codable, Hashable {
+        static func nameStartsWith(string: String) -> QueryKeys {
+            .init(key: "nameStartsWith", value: string)
+        }
 
-        var value: (key: String, value: String) {
-            switch self {
-            case let .nameStartsWith(string):
-                return (key: "nameStartsWith", value: string)
-            case let .orderBy(type):
-                return (key: "orderBy", value: type.value)
-            case let .offset(index):
-                return (key: "offset", value: "\(index)")
-            }
+        static func orderBy(type: OrderType) -> QueryKeys {
+            .init(key: "orderBy", value: type.value)
+        }
+
+        static func offset(index: Int) -> QueryKeys {
+            .init(key: "offset", value: "\(index)")
+        }
+
+        let key: String
+        let value: String
+
+        var tupleValue: (key: String, value: String) {
+            (key, value)
         }
     }
 
-    struct Response: Decodable {
-        struct DataReceived: Decodable {
-            let offset: Int
-            let limit: Int
-            let total: Int
-            let count: Int
-            var results: [MarvelAPI.Character]
+    struct RequestData: Codable, Hashable {
+        var request: VRequestData {
+            let keys = queries
+                .map { (queryKeys) -> (key: String, value: String) in queryKeys.tupleValue }
+
+            return VRequestData(
+                urlString: urlString,
+                queryParameters: keys + [
+                    ("apikey", apikey),
+                    ("ts", ts),
+                    ("hash", hash)
+                ],
+                paths: paths
+            )
         }
 
+        let urlString: String
+        let apikey: String
+        let ts: String
+        let hash: String
+        let paths: [String]
+        let queries: [QueryKeys]
+
+        init(id: Int?, queries: [QueryKeys]) {
+            urlString = MarvelAPI.baseURL
+            apikey = ApiKeys.marvelApiKey
+            ts = ApiKeys.ts
+            hash = ApiKeys.hash
+            if let id = id {
+                paths = ["characters", "\(id)"]
+            } else {
+                paths = ["characters"]
+            }
+            self.queries = queries
+        }
+    }
+
+    struct Response: Codable {
         let data: DataReceived
     }
 
-    struct Character: Decodable {
+    struct DataReceived: Codable {
+        let offset: Int
+        let limit: Int
+        let total: Int
+        let count: Int
+        var results: [MarvelAPI.Character]
+    }
+
+    struct Character: Codable {
         let id: Int
         let name: String
         let description: String
         let thumbnail: Thumbnail
     }
 
-    struct Thumbnail: Decodable {
+    struct Thumbnail: Codable {
         let path: String
         let `extension`: String
     }

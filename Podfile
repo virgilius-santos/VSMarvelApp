@@ -10,14 +10,14 @@ project 'VSMarvelApp/VSMarvelApp.xcodeproj'
 target 'VSMarvelApp' do
 
   plugin 'cocoapods-keys', {
-    :project => "VSMarvelApp.xcworkspace",
+    :project => "VSMarvelApp/VSMarvelApp.xcodeproj",
     :target => "VSMarvelApp",
     :keys => [
       "MarvelApiKey",
       "MarvelPrivateKey"
     ]}
 
-  pod "VService"                        , '~> 0.2.6'#, :path => '../VSCommonSwiftLibrary'
+  pod "VService"                        , '~> 0.3'#, :path => '../VSCommonSwiftLibrary'
   pod "VCore"                           , '~> 0.4'#, :path => '../VSCommonSwiftLibrary'
   pod "VComponents"                     , '~> 0.0.2'#, :path => '../VSCommonSwiftLibrary'
   

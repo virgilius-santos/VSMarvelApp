@@ -39,4 +39,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WindowStyleable {
 
         return true
     }
+
+    func applicationWillTerminate(_: UIApplication) {
+        cache.save()
+    }
 }

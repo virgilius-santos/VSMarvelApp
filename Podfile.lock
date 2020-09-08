@@ -28,7 +28,7 @@ PODS:
   - VComponents (0.0.2)
   - VCore (0.4.0):
     - Willow (~> 5.2.1)
-  - VService (0.2.6):
+  - VService (0.3.0):
     - Kingfisher (~> 5.0)
     - VCore (~> 0.3)
   - Willow (5.2.1)
@@ -52,7 +52,7 @@ DEPENDENCIES:
   - SwiftLint (= 0.40.1)
   - VComponents (~> 0.0.2)
   - VCore (~> 0.4)
-  - VService (~> 0.2.6)
+  - VService (~> 0.3)
   - YetAnotherAnimationLibrary
 
 SPEC REPOS:
@@ -98,10 +98,10 @@ SPEC CHECKSUMS:
   SwiftLint: bbfed21bf4451dcbd0f5cdbee44a18e06cf91b12
   VComponents: a3d3e3cd4b8ce7744955db37aa0dfd47c11c8c4b
   VCore: 4230984401ba852e1672dad83584d26c5e57cdf8
-  VService: f8dde604e0298465ffb971774ed560b64e2f4d6c
+  VService: 4308d46bac3e07d9c68130ead3886cf898083322
   Willow: a6310f9aedcb6f4de8c35b94fd3416a660ae9280
   YetAnotherAnimationLibrary: 7f808b10c2d193dd3e82407e722fa60aa0bdff2d
 
-PODFILE CHECKSUM: d2ef45ebdf6d5ef30a9a0f9efd2ea45163a46b8b
+PODFILE CHECKSUM: c5ee9987010af7bf4e1037bc288017d96345f929
 
 COCOAPODS: 1.8.4

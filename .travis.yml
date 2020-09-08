@@ -3,8 +3,8 @@ language:
 osx_image: xcode11.2
 before_install:
 - bundle install
-- bundle exec pod keys set MarvelApiKey $MARVEL_API_PUBLIC VSMarvelApp
-- bundle exec pod keys set MarvelPrivateKey $MARVEL_API_SECRET VSMarvelApp
+- bundle exec pod keys set MarvelApiKey $MARVEL_API_PUBLIC VSMarvelApp.xcworkspace
+- bundle exec pod keys set MarvelPrivateKey $MARVEL_API_SECRET VSMarvelApp.xcworkspace
 - bundle exec pod repo update
 script:
 - bundle exec fastlane scan
