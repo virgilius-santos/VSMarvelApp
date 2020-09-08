@@ -15,12 +15,15 @@ class MarvelAPITests: XCTestCase {
     }
 
     func test_getCharactersRequestData_withId() {
-        let request = sut.getCharactersRequestData(id: 999,
-                                                   queries: [
-                                                       .nameStartsWith(string: "nome"),
-                                                       .offset(index: 80),
-                                                       .orderBy(type: MarvelAPI.OrderType.name(ascendent: false))
-                                                   ])
+        let request = MarvelAPI.RequestData(
+            id: 999,
+            queries: [
+                .nameStartsWith(string: "nome"),
+                .offset(index: 80),
+                .orderBy(type: MarvelAPI.OrderType.name(ascendent: false))
+            ]
+        )
+            .request
         XCTAssertEqual(request.urlString, "https://gateway.marvel.com:443/v1/public")
         XCTAssertEqual(request.paths[0], "characters")
         XCTAssertEqual(request.paths[1], "999")
@@ -36,15 +39,18 @@ class MarvelAPITests: XCTestCase {
     }
 
     func test_getCharactersRequestData_withoutId() {
-        let request = sut.getCharactersRequestData(id: nil,
-                                                   queries: [
-                                                       .nameStartsWith(string: "nome"),
-                                                       .offset(index: 80),
-                                                       .orderBy(type: .name(ascendent: false)),
-                                                       .orderBy(type: .name(ascendent: true)),
-                                                       .orderBy(type: .modified(ascendent: false)),
-                                                       .orderBy(type: .modified(ascendent: true))
-                                                   ])
+        let request = MarvelAPI.RequestData(
+            id: nil,
+            queries: [
+                .nameStartsWith(string: "nome"),
+                .offset(index: 80),
+                .orderBy(type: .name(ascendent: false)),
+                .orderBy(type: .name(ascendent: true)),
+                .orderBy(type: .modified(ascendent: false)),
+                .orderBy(type: .modified(ascendent: true))
+            ]
+        )
+            .request
         XCTAssertEqual(request.urlString, "https://gateway.marvel.com:443/v1/public")
         XCTAssertEqual(request.paths[0], "characters")
         XCTAssertEqual(request.queryParameters?[0].key, "nameStartsWith")
@@ -82,7 +88,8 @@ class MarvelAPITests: XCTestCase {
         let session = SesionMock()
         sut = .init(session: session)
 
-        sut.getCharacters(id: nil, queries: []) { _ in }
+        let request = MarvelAPI.RequestData(id: nil, queries: [])
+        sut.getCharacters(requestData: request) { _ in }
 
         XCTAssertNotNil(session.resquestSpy)
         XCTAssertNotNil(session.responseSpy)
@@ -93,10 +100,11 @@ class MarvelAPITests: XCTestCase {
     func test_request_resultError() throws {
         let session = SesionMock()
         sut = .init(session: session)
-        var resultData: Result<MarvelAPI.Response.DataReceived, VSessionError>?
+        var resultData: Result<MarvelAPI.DataReceived, VSessionError>?
 
+        let request = MarvelAPI.RequestData(id: nil, queries: [])
         let exp = expectation(description: "request")
-        sut.getCharacters(id: nil, queries: [])
+        sut.getCharacters(requestData: request)
             { result in
                 resultData = result
                 exp.fulfill()
@@ -108,7 +116,7 @@ class MarvelAPITests: XCTestCase {
         XCTAssertNotNil(session.completionSpy)
 
         let err = VSessionError(.generic)
-        let completion = try XCTUnwrap(session.completionSpy as? ((Result<MarvelAPI.Response.DataReceived, VSessionError>) -> Void))
+        let completion = try XCTUnwrap(session.completionSpy as? ((Result<MarvelAPI.DataReceived, VSessionError>) -> Void))
         completion(.failure(err))
 
         waitForExpectations(timeout: 5, handler: nil)
@@ -123,10 +131,11 @@ class MarvelAPITests: XCTestCase {
     func test_request_resultSuccess() throws {
         let session = SesionMock()
         sut = .init(session: session)
-        var resultData: Result<MarvelAPI.Response.DataReceived, VSessionError>?
+        var resultData: Result<MarvelAPI.DataReceived, VSessionError>?
 
+        let request = MarvelAPI.RequestData(id: nil, queries: [])
         let exp = expectation(description: "request")
-        sut.getCharacters(id: nil, queries: [])
+        sut.getCharacters(requestData: request)
             { result in
                 resultData = result
                 exp.fulfill()
@@ -137,13 +146,15 @@ class MarvelAPITests: XCTestCase {
         XCTAssertNil(session.errorHandlerSpy)
         XCTAssertNotNil(session.completionSpy)
 
-        let data = MarvelAPI.Response.DataReceived(offset: 10,
-                                                   limit: 20,
-                                                   total: 30,
-                                                   count: 40,
-                                                   results: [])
+        let data = MarvelAPI.DataReceived(
+            offset: 10,
+            limit: 20,
+            total: 30,
+            count: 40,
+            results: []
+        )
 
-        let completion = try XCTUnwrap(session.completionSpy as? ((Result<MarvelAPI.Response.DataReceived, VSessionError>) -> Void))
+        let completion = try XCTUnwrap(session.completionSpy as? ((Result<MarvelAPI.DataReceived, VSessionError>) -> Void))
         completion(.success(data))
 
         waitForExpectations(timeout: 5, handler: nil)
@@ -169,7 +180,7 @@ extension MarvelAPITests {
         var completionSpy: Any?
 
         var sessionError: VSessionError?
-        var dataReceived: MarvelAPI.Response.DataReceived?
+        var dataReceived: MarvelAPI.DataReceived?
 
         func request<DataReceived>(resquest requestData: VRequestData,
                                    response responseData: @escaping ((Data) throws -> DataReceived),

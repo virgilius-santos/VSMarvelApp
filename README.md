@@ -48,6 +48,7 @@ In my opinion, a Coordinator serves three main purposes:
 * ✅ **UITests:** 0
 * ✅ **Devices:** iPhone 5s, iPhone11.
 * ✅ **iOS:** 12.4+.
+* ✅ **Cache:** using cache for data requested.
 
 🌟 💯 All tests passed using above configurations. 🌟
 
