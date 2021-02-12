@@ -17,42 +17,50 @@ target 'VSMarvelApp' do
       "MarvelPrivateKey"
     ]}
 
-  pod "VService"                        , '~> 0.3'#, :path => '../VSCommonSwiftLibrary'
-  pod "VCore"                           , '~> 0.4'#, :path => '../VSCommonSwiftLibrary'
-  pod "VComponents"                     , '~> 0.0.2'#, :path => '../VSCommonSwiftLibrary'
+  pod "VService"
+  pod "VCore"
+  pod "VComponents"
   
-  pod 'SwiftGen'                        , '~> 6.0', :inhibit_warnings => true
-  pod 'SnapKit'                         , '~> 5.0', :inhibit_warnings => true
+  pod 'SwiftGen'
+  pod 'SnapKit'
   
-  pod 'Hero'                            , '~> 1.5', :inhibit_warnings => true
+  pod 'Hero'
   
-  pod 'CollectionKit'                   , '~> 2.4', :inhibit_warnings => true
-  pod "CollectionKit/WobbleAnimator"    , '~> 2.4', :inhibit_warnings => true
-  pod "YetAnotherAnimationLibrary"                , :inhibit_warnings => true
-  pod "Kingfisher"                                , :inhibit_warnings => true
+  pod 'CollectionKit'
+  pod "CollectionKit/WobbleAnimator"
+  pod "YetAnotherAnimationLibrary"
+  pod "Kingfisher"
   
-  pod 'RxSwift'                         , '~> 5.0', :inhibit_warnings => true
-  pod 'RxRelay'                                   , :inhibit_warnings => true
-  pod 'RxCocoa'                         , '~> 5.0', :inhibit_warnings => true
+  pod 'RxSwift'
+  pod 'RxRelay'
+  pod 'RxCocoa'
   
-  pod 'CryptoSwift'                     , '~> 1.3', :inhibit_warnings => true
+  pod 'CryptoSwift'
   
-  pod 'SwiftFormat/CLI'                 , '0.46.2', :inhibit_warnings => true
-  pod 'SwiftLint'                       , '0.40.1' , :inhibit_warnings => true
+  pod 'SwiftFormat/CLI'
+  pod 'SwiftLint'
 
   
   target 'VSMarvelAppTests' do
     inherit! :search_paths
 
-    pod 'RxTest'                        , '~> 5.0', :inhibit_warnings => true
-    pod 'RxBlocking'                    , '~> 5.0', :inhibit_warnings => true
+    pod 'RxTest'                      
+    pod 'RxBlocking'                  
   end
 end
 
 post_install do |installer|
-  installer.pods_project.targets.each do |target|
-    target.build_configurations.each do |config|
-      config.build_settings['SWIFT_VERSION'] = '5'
+    installer.pods_project.build_configurations.each do |config|
+        config.build_settings.delete('CODE_SIGNING_ALLOWED')
+        config.build_settings.delete('CODE_SIGNING_REQUIRED')
     end
-  end
+    
+    installer.pods_project.targets.each do |target|
+        target.build_configurations.each do |config|
+            config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '12.4'
+            config.build_settings['ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES'] = 'YES'
+            config.build_settings['SWIFT_VERSION'] = '5'
+            config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '12.4'
+      end
+    end
 end

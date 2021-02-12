@@ -110,12 +110,12 @@ final class CharactersCollectionViewModel: CharactersCollectionViewModelProtocol
         repository
             .getCharacters(number: number, name: name)
             .map { $0.map { character in CharacterViewModel(character: character) } }
-            .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .background))
-            .observeOn(MainScheduler.instance)
+            .subscribe(on: ConcurrentDispatchQueueScheduler(qos: .background))
+            .observe(on: MainScheduler.instance)
             .do(onSuccess: { _ in loading.onNext(LoadingState.normal) },
                 onError: { _ in loading.onNext(LoadingState.error) },
                 onSubscribed: { loading.onNext(LoadingState.loading) })
-            .catchErrorJustReturn([])
+            .catchAndReturn([])
             .asObservable()
     }
 }
