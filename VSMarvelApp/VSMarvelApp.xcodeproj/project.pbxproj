@@ -63,6 +63,8 @@
 		18E0521223DD72D200DFD5F4 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E0521123DD72D200DFD5F4 /* UIViewExtensions.swift */; };
 		18E2B61F23DCF530007AE6A5 /* CharactersRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E2B61E23DCF530007AE6A5 /* CharactersRepository.swift */; };
 		18E2B62223DCFD14007AE6A5 /* MarvelAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E2B62123DCFD14007AE6A5 /* MarvelAPI.swift */; };
+		18F83B5D25D81F2F000C5189 /* AppContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F83B5C25D81F2F000C5189 /* AppContainer.swift */; };
+		18F83B6325D821C0000C5189 /* Inject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F83B6225D821C0000C5189 /* Inject.swift */; };
 		18FC9BCE23DBA20F001DA15A /* DSWindowStyleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FC9BCD23DBA20F001DA15A /* DSWindowStyleTests.swift */; };
 		18FC9BD023DBA906001DA15A /* VSCollectionViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FC9BCF23DBA906001DA15A /* VSCollectionViewControllerTests.swift */; };
 		18FC9BD223DBB118001DA15A /* DetailViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FC9BD123DBB118001DA15A /* DetailViewTests.swift */; };
@@ -146,6 +148,8 @@
 		18E0521123DD72D200DFD5F4 /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		18E2B61E23DCF530007AE6A5 /* CharactersRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersRepository.swift; sourceTree = "<group>"; };
 		18E2B62123DCFD14007AE6A5 /* MarvelAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelAPI.swift; sourceTree = "<group>"; };
+		18F83B5C25D81F2F000C5189 /* AppContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContainer.swift; sourceTree = "<group>"; };
+		18F83B6225D821C0000C5189 /* Inject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Inject.swift; sourceTree = "<group>"; };
 		18FC9BCD23DBA20F001DA15A /* DSWindowStyleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DSWindowStyleTests.swift; sourceTree = "<group>"; };
 		18FC9BCF23DBA906001DA15A /* VSCollectionViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VSCollectionViewControllerTests.swift; sourceTree = "<group>"; };
 		18FC9BD123DBB118001DA15A /* DetailViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewTests.swift; sourceTree = "<group>"; };
@@ -242,11 +246,12 @@
 			isa = PBXGroup;
 			children = (
 				185DC06423D4E3C00083A6D4 /* Info.plist */,
+				18F83B5C25D81F2F000C5189 /* AppContainer.swift */,
 				18C7FFD423D5456600F023E6 /* AppCoordinator.swift */,
 				185DC06523D4E3C00083A6D4 /* AppDelegate.swift */,
+				18B75B0125D7A09F00FF6598 /* AppFactory.swift */,
 				18C7FFCC23D52BC700F023E6 /* Keys.swift */,
 				1823A7C025D789B900015C17 /* Typealias.swift */,
-				18B75B0125D7A09F00FF6598 /* AppFactory.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -404,6 +409,7 @@
 				18C7002223DA5E5600F023E6 /* DSDynamicView.swift */,
 				18C7FFD923D5472600F023E6 /* DSNavigationController.swift */,
 				18B75AEB25D79E2300FF6598 /* Coordinator.swift */,
+				18F83B6225D821C0000C5189 /* Inject.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -801,6 +807,7 @@
 			files = (
 				18E2B62223DCFD14007AE6A5 /* MarvelAPI.swift in Sources */,
 				18B75AFE25D7A02500FF6598 /* MainFactory.swift in Sources */,
+				18F83B5D25D81F2F000C5189 /* AppContainer.swift in Sources */,
 				18B75AF425D79E9F00FF6598 /* CharactersFactory.swift in Sources */,
 				18FC9BE323DCBBDF001DA15A /* CharactersCollectionViewModel.swift in Sources */,
 				18C7000223D6768200F023E6 /* DSShadow.swift in Sources */,
@@ -842,6 +849,7 @@
 				18C7002523DA64A000F023E6 /* DSCollectionViewController.swift in Sources */,
 				18C7FFD123D5344000F023E6 /* DSColor.swift in Sources */,
 				1823A7C125D789B900015C17 /* Typealias.swift in Sources */,
+				18F83B6325D821C0000C5189 /* Inject.swift in Sources */,
 				18C7FFEB23D553E300F023E6 /* DSIcon.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

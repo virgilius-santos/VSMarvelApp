@@ -103,15 +103,30 @@ final class CoordinatorSpy: NSObject, Coordinator{
     }
 }
 
-final class FactorySpy: AppFactory, MainFactory, CharactersFactory, DetailFactory {
+final class FactorySpy: AppFactory, MainFactory, CharactersFactory {
     var navControllers: [DSNavigationControllerProtocol?] = []
     var viewControllers: [UIViewController] = []
     var characterVMs: [CharacterViewModel] = []
     var coordinatorSpies: [CoordinatorSpy] = []
-    var routers: [DetailCoordinator] = .init()
+    var routers: [Coordinator?] = .init()
     var switchActions: [SwitchAction] = .init()
     var goToDetails: [GoToDetail] = .init()
     var charactersCVMs: [CharactersCollectionViewModel] = .init()
+
+    lazy var detailFactory = DetailFactory(
+        makeCoordinator: { [weak self] nav, vm in
+            self?.characterVMs.append(vm)
+            self?.navControllers.append(nav)
+            self?.coordinatorSpies.append(.init())
+            return self?.coordinatorSpies.last ?? .init()
+        },
+        makeViewController: { [weak self] coord, vm in
+            self?.characterVMs.append(vm)
+            self?.routers.append(coord)
+            self?.viewControllers.append(.init())
+            return self?.viewControllers.first ?? .init()
+        }
+    )
 
     func makeApp(navController: DSNavigationControllerProtocol?) -> Coordinator {
         navControllers.append(navController)

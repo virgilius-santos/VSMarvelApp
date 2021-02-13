@@ -14,7 +14,7 @@ final class MainFactoryImpl: MainFactory {
         MainCoordinator(
             navController: navController,
             viewControllerFactory: CharactersFactoryImpl(),
-            coordinator: DetailFactoryImpl()
+            coordinator: DetailFactory()
         )
     }
 }

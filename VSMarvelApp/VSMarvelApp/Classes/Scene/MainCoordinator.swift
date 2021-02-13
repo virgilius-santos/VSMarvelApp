@@ -13,7 +13,7 @@ final class MainCoordinator: Coordinator {
     convenience init(
         navController: DSNavigationControllerProtocol?,
         viewControllerFactory: CharactersFactory,
-        coordinator: DetailFactory
+        coordinator: DetailFactory = .init()
     ) {
         self.init(
             navController: navController,
@@ -23,10 +23,7 @@ final class MainCoordinator: Coordinator {
                 navController?.navigate(to: vc, using: .replace)
             },
             goToDetail: { [navController] vm in
-                let coord = coordinator.makeDetail(
-                    navController: navController,
-                    viewModel: vm
-                )
+                let coord = coordinator.makeCoordinator(navController, vm)
                 coord.start()
             }
         )

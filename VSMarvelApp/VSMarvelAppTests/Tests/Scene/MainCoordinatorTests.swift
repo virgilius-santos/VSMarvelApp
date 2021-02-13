@@ -71,8 +71,7 @@ extension MainCoordinatorTests {
 
         let sut: Sut = .init(
             navController: nav,
-            viewControllerFactory: factory,
-            coordinator: factory
+            viewControllerFactory: factory
         )
 
         return (sut, (
