@@ -10,7 +10,7 @@ project 'VSMarvelApp/VSMarvelApp.xcodeproj'
 target 'VSMarvelApp' do
 
   plugin 'cocoapods-keys', {
-    :project => "VSMarvelApp/VSMarvelApp.xcodeproj",
+    :project => "VSMarvelApp",
     :target => "VSMarvelApp",
     :keys => [
       "MarvelApiKey",
