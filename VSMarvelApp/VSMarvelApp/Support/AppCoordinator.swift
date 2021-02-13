@@ -1,16 +1,17 @@
-
 import UIKit
 
 final class AppCoordinator: Coordinator {
-    weak var navController: DSNavigationControllerProtocol?
-    @Inject private var coordinator: MainFactory
+    var navController: DSNavigationControllerProtocol
+    @Inject private var mainFactory: MainFactory
 
-    init(navController: DSNavigationControllerProtocol?) {
-        self.navController = navController
+    init(window: UIWindow?) {
+        let nav = UINavigationController()
+        window?.rootViewController = nav
+        navController = DSNavigationController(nav: nav)
     }
 
     func start() {
-        let coord = coordinator.makeCoordinator(navController)
+        let coord = mainFactory.makeCoordinator(navController)
         coord.start()
     }
 }

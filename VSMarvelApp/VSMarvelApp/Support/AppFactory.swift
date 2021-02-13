@@ -1,12 +1,20 @@
 
-import Foundation
+import UIKit
 
-protocol AppFactory {
-    func makeApp(navController: DSNavigationControllerProtocol?) -> Coordinator
-}
+final class AppFactory {
+    typealias CoordinatorFunction = (
+        _ window: UIWindow?
+    ) -> Coordinator
 
-final class AppFactoryImpl: AppFactory {
-    func makeApp(navController: DSNavigationControllerProtocol?) -> Coordinator {
-        AppCoordinator(navController: navController)
+    var makeCoordinator: CoordinatorFunction
+
+    init(makeCoordinator: @escaping CoordinatorFunction) {
+        self.makeCoordinator = makeCoordinator
+    }
+
+    convenience init() {
+        self.init(makeCoordinator: {
+            AppCoordinator(window: $0)
+        })
     }
 }

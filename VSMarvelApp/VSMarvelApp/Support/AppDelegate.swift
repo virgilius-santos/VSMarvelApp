@@ -1,36 +1,20 @@
-//
-//  AppDelegate.swift
-//  VSMarvelApp
-//
-//  Created by Virgilius Santos on 19/01/20.
-//  Copyright © 2020 Virgilius Santos. All rights reserved.
-//
 
 import Hero
 import UIKit
 import VCore
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, WindowStyleable {
+final class AppDelegate: UIResponder, UIApplicationDelegate, WindowStyleable {
     var window: UIWindow?
-    var navController: DSNavigationController?
     var coordinator: Coordinator?
 
     func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-
         Hero.shared.containerColor = DSColor.secondary.uiColor
 
-        let nav = UINavigationController()
-        let window = UIWindow(frame: UIScreen.main.bounds)
-        window.rootViewController = nav
-        window.apply(style: .default)
-
-        let navController = DSNavigationController(nav: nav)
-        let coordinator = AppFactoryImpl().makeApp(navController: navController)
+        let window = appContainer.resolve(UIWindow.self)
+        let coordinator = appContainer.resolve(AppFactory.self).makeCoordinator(window)
 
         self.window = window
-        self.navController = navController
         self.coordinator = coordinator
 
         coordinator.start()

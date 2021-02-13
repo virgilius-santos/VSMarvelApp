@@ -103,9 +103,10 @@ final class CoordinatorSpy: NSObject, Coordinator{
     }
 }
 
-final class FactorySpy: AppFactory {
+final class FactorySpy {
     var navControllers: [DSNavigationControllerProtocol?] = []
     var viewControllers: [UIViewController] = []
+    var windows: [UIWindow?] = []
     var characterVMs: [CharacterViewModel] = []
     var coordinatorSpies: [CoordinatorSpy] = []
     var routers: [Coordinator?] = .init()
@@ -148,6 +149,12 @@ final class FactorySpy: AppFactory {
         return self?.coordinatorSpies.last ?? .init()
     }
 
+    lazy var app = AppFactory { [weak self] windows in
+        self?.windows.append(windows)
+        self?.coordinatorSpies.append(.init())
+        return self?.coordinatorSpies.last ?? .init()
+    }
+
     init() {
         appContainer.container.register(CharactersFactory.self, factory: { [character] _ in
             character
@@ -159,6 +166,10 @@ final class FactorySpy: AppFactory {
 
         appContainer.container.register(MainFactory.self, factory: { [main] _ in
             main
+        })
+
+        appContainer.container.register(AppFactory.self, factory: { [app] _ in
+            app
         })
     }
 

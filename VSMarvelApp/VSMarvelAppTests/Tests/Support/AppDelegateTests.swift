@@ -33,13 +33,15 @@ class AppDelegateTests: XCTestCase {
     }
 
     func testNavControllerMustBeStarted() {
+        let factory = FactorySpy()
         _ = sut.application(UIApplication.shared, didFinishLaunchingWithOptions: nil)
-        XCTAssertNotNil(sut.navController)
+        XCTAssertNotNil(factory.windows[0])
+        XCTAssertNotNil(factory.coordinatorSpies[0])
     }
 
     func testCoordinatorMustReceiveNavController() {
         _ = sut.application(UIApplication.shared, didFinishLaunchingWithOptions: nil)
-        XCTAssertEqual(sut.navController?.nav, ((sut.coordinator as? AppCoordinator)?.navController as? DSNavigationController)?.nav)
+        XCTAssertEqual(sut.window?.rootViewController, ((sut.coordinator as? AppCoordinator)?.navController as? DSNavigationController)?.nav)
     }
 
     func testCoordinatorMustBeStarted() {
