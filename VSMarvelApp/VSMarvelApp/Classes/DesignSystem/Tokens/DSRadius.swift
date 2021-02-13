@@ -1,7 +1,7 @@
 
 import UIKit
 
-struct DSRadius {
+struct DSRadius: Equatable {
     let value: CGFloat
 
     static let high = DSRadius(value: 16)
