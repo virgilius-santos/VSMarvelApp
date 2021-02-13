@@ -26,7 +26,7 @@ final class DetailView: UIView {
         imageView.setImage(with: viewModel.path, placeholder: DSImage.placeholder.image)
         imageView.heroID = viewModel.path
     }
-    
+
     private func setupLayout() {
         Scroll: do {
             addSubview(scroll)
