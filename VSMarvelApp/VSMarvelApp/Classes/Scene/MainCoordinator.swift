@@ -3,48 +3,53 @@ import RxSwift
 import UIKit
 import VCore
 
-final class MainCoordinator {
+final class MainCoordinator: Coordinator {
     weak var navController: DSNavigationControllerProtocol?
+    let viewControllerFactory: ViewControllerFactory
 
-    init(navController: DSNavigationControllerProtocol?) {
-        self.navController = navController
+    let switchAction: SwitchAction
+    let goToDetail: GoToDetail
+
+    convenience init(
+        navController: DSNavigationControllerProtocol?,
+        viewControllerFactory: ViewControllerFactory,
+        coordinator: CoordinatorFactory
+    ) {
+        self.init(
+            navController: navController,
+            viewControllerFactory: viewControllerFactory,
+            switchAction: { [navController, viewControllerFactory] vm in
+                let vc = viewControllerFactory.makeCharactersViewController(viewModel: vm)
+                navController?.navigate(to: vc, using: .replace)
+            },
+            goToDetail: { [navController] vm in
+                let coord = coordinator.makeDetail(
+                    navController: navController,
+                    viewModel: vm
+                )
+                coord.start()
+            }
+        )
     }
 
-    deinit {
-        logger.info("fuii", String(describing: Self.self))
+    init(
+        navController: DSNavigationControllerProtocol?,
+        viewControllerFactory: ViewControllerFactory,
+        switchAction: @escaping SwitchAction,
+        goToDetail: @escaping GoToDetail
+    ) {
+        self.navController = navController
+        self.viewControllerFactory = viewControllerFactory
+        self.switchAction = switchAction
+        self.goToDetail = goToDetail
     }
 
     func start() {
-        let vm = CharactersCollectionViewModel(
-            type: CharactersCollectionViewModel.ViewModelType.list
+        let vc = viewControllerFactory.makeCharactersViewController(
+            switchAction: switchAction,
+            goToDetail: goToDetail
         )
 
-        vm.switchAction = { [navController] vm in
-
-            let vc: UIViewController
-            switch vm.viewModelType {
-            case .list:
-                vm.viewModelType = .grid
-                vc = GridViewController(viewModel: vm)
-            default:
-                vm.viewModelType = .list
-                vc = ListViewController(viewModel: vm)
-            }
-
-            navController?.navigate(to: vc, using: .replace)
-        }
-
-        vm.goToDetail = { [navController] vm in
-            let coord = DetailCoordinator(
-                navController: navController,
-                viewModel: vm
-            )
-            coord.start()
-        }
-
-        navController?.navigate(
-            to: ListViewController(viewModel: vm),
-            using: .push
-        )
+        navController?.navigate(to: vc, using: .push)
     }
 }

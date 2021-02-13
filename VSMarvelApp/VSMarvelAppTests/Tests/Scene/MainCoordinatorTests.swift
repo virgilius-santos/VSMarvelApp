@@ -11,49 +11,43 @@ class MainCoordinatorTests: XCTestCase {
 
     func testNavigationMustBeSeted() {
         let (sut, _) = makeSut()
+
+        sut.start()
+
         XCTAssertNotNil(sut.navController)
     }
 
     func testListViewControllerMustBeStarted() {
-        let (_, fields) = makeSut()
-        XCTAssert(fields.nav.viewController is ListViewController)
+        let (sut, fields) = makeSut()
+
+        sut.start()
+
+        XCTAssertEqual(fields.nav.viewControllers.first, fields.viewControllerFactory.viewControler2)
+        XCTAssertNotNil(fields.viewControllerFactory.switchAction)
+        XCTAssertNotNil(fields.viewControllerFactory.goToDetail)
         XCTAssertEqual(fields.nav.type, DSNavigationType.push)
     }
 
     func testWhenGoToFromGridCalledDetailMustBeStarted() throws {
-        let (_, fields) = makeSut()
+        let (sut, fields) = makeSut()
 
-        let listVC = try XCTUnwrap(fields.nav.viewController as? ListViewController)
-        listVC.viewModel.goTo(fields.characterViewModel)
+        sut.start()
+        fields.viewControllerFactory.goToDetail?(.dummy)
 
-        XCTAssertEqual(fields.nav.type, DSNavigationType.push)
-
-        let detailVC = try XCTUnwrap(fields.nav.viewController as? DetailViewController)
-        XCTAssertEqual(detailVC.viewModel.title, fields.character.name)
-        XCTAssertEqual(detailVC.viewModel.description, fields.character.bio)
-        XCTAssertEqual(detailVC.viewModel.path, fields.character.thumImage.path)
+        let factory = fields.coordSpy
+        XCTAssertEqual(factory.navControllers.first as? DSNavigationControllerSpy, fields.nav)
+        XCTAssertEqual(factory.coordinatorSpy?.startCalled, true)
+        XCTAssertEqual(factory.characterVM, .dummy)
     }
 
-    func testWhenSwitchToListCalledGridMustBeStarted() throws {
-        let (_, fields) = makeSut()
+    func testWhenSwitchActionIsCalledViewControllerMustBeShowed() throws {
+        let (sut, fields) = makeSut()
 
-        let listVC = try XCTUnwrap(fields.nav.viewController as? ListViewController)
-        let viewModel = try XCTUnwrap(listVC.viewModel as? CharactersCollectionViewModel)
-        viewModel.switchAction?(viewModel)
+        sut.start()
+        fields.viewControllerFactory.switchAction?(.dummy)
 
-        XCTAssert(fields.nav.viewController is GridViewController)
-        XCTAssertEqual(fields.nav.type, DSNavigationType.replace)
-    }
-
-    func testWhenSwitchToGridCalledListMustBeStarted() throws {
-        let (_, fields) = makeSut()
-
-        let listVC = try XCTUnwrap(fields.nav.viewController as? ListViewController)
-        let viewModel = try XCTUnwrap(listVC.viewModel as? CharactersCollectionViewModel)
-        viewModel.switchAction?(viewModel)
-        viewModel.switchAction?(viewModel)
-
-        XCTAssert(fields.nav.viewController is ListViewController)
+        XCTAssertEqual(fields.nav.viewControllers[1], fields.viewControllerFactory.viewControler3)
+        XCTAssert(fields.viewControllerFactory.charactersCVM === CharactersCollectionViewModel.dummy)
         XCTAssertEqual(fields.nav.type, DSNavigationType.replace)
     }
 }
@@ -64,21 +58,34 @@ extension MainCoordinatorTests {
     typealias Fields = (
         nav: DSNavigationControllerSpy,
         characterViewModel: CharacterViewModel,
-        character: Character
+        character: Character,
+        viewControllerFactory: ViewControllerFactorySpy,
+        coordSpy: CoordinatorFactorySpy
     )
 
     func makeSut(type _: CharactersCollectionViewModel.ViewModelType = .list) -> (sut: Sut, fields: Fields) {
         let character = Character.dummy
         let characterViewModel = CharacterViewModel.dummy
+        let viewControllerFactory = ViewControllerFactorySpy()
+        viewControllerFactory.viewControler2 = .init()
+        viewControllerFactory.viewControler3 = .init()
 
         let nav: DSNavigationControllerSpy = .init()
-        let sut: Sut = .init(navController: nav)
-        sut.start()
+        let coordSpy = CoordinatorFactorySpy()
+        coordSpy.coordinatorSpy = .init()
+
+        let sut: Sut = .init(
+            navController: nav,
+            viewControllerFactory: viewControllerFactory,
+            coordinator: coordSpy
+        )
 
         return (sut, (
             nav,
             characterViewModel,
-            character
+            character,
+            viewControllerFactory,
+            coordSpy
         ))
     }
 }

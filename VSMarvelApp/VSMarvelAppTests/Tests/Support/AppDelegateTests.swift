@@ -22,7 +22,7 @@ class AppDelegateTests: XCTestCase {
     func testWindowMustBeStartedAndReceiveNavigationController() {
         _ = sut.application(UIApplication.shared, didFinishLaunchingWithOptions: nil)
         XCTAssertNotNil(sut.window)
-        XCTAssertEqual(sut.window?.rootViewController, (sut.coordinator?.navController as? DSNavigationController)?.nav)
+        XCTAssertEqual(sut.window?.rootViewController, ((sut.coordinator as? AppCoordinator)?.navController as? DSNavigationController)?.nav)
     }
 
     func testStyleMustBeApply() {
@@ -39,7 +39,7 @@ class AppDelegateTests: XCTestCase {
 
     func testCoordinatorMustReceiveNavController() {
         _ = sut.application(UIApplication.shared, didFinishLaunchingWithOptions: nil)
-        XCTAssertEqual(sut.navController?.nav, (sut.coordinator?.navController as? DSNavigationController)?.nav)
+        XCTAssertEqual(sut.navController?.nav, ((sut.coordinator as? AppCoordinator)?.navController as? DSNavigationController)?.nav)
     }
 
     func testCoordinatorMustBeStarted() {

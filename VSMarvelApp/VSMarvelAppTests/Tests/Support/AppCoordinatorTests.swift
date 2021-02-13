@@ -10,22 +10,29 @@ final class AppCoordinatorTests: XCTestCase {
     }
 
     func testStartCalled() {
-        let (sut, spy) = makeSut()
+        let (sut, fields) = makeSut()
+        let factory = fields.coordFactorySpy
+
         sut.start()
-        XCTAssertNotNil(spy.viewController)
-        XCTAssertEqual(spy.type, DSNavigationType.push)
+        XCTAssertEqual(factory.navControllers.first as? DSNavigationControllerSpy, fields.spy)
+        XCTAssertEqual(factory.coordinatorSpy?.startCalled, true)
     }
 }
 
 extension AppCoordinatorTests {
     typealias Sut = AppCoordinator
-    typealias Fields = DSNavigationControllerSpy
+    typealias Fields = (
+        spy: DSNavigationControllerSpy,
+        coordFactorySpy: CoordinatorFactorySpy
+    )
 
     func makeSut() -> (sut: Sut, fields: Fields) {
         let spy = DSNavigationControllerSpy()
+        let coordFactorySpy = CoordinatorFactorySpy()
+        coordFactorySpy.coordinatorSpy = .init()
 
-        let sut: Sut = .init(navController: spy)
+        let sut: Sut = .init(navController: spy, coordinator: coordFactorySpy)
 
-        return (sut, spy)
+        return (sut, (spy, coordFactorySpy))
     }
 }

@@ -14,7 +14,7 @@ import VCore
 class AppDelegate: UIResponder, UIApplicationDelegate, WindowStyleable {
     var window: UIWindow?
     var navController: DSNavigationController?
-    var coordinator: AppCoordinator?
+    var coordinator: Coordinator?
 
     func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WindowStyleable {
         applyWindow(style: .default, in: window)
 
         let navController = DSNavigationController(nav: nav)
-        let coordinator = AppCoordinator(navController: navController)
+        let coordinator = CoordinatorFactoryImpl().makeApp(navController: navController)
 
         self.window = window
         self.navController = navController
