@@ -63,7 +63,7 @@ final class CharactersRepository: CharactersRepositoryProtocol {
                         cache.insert(data.results, forKey: request)
                         single(.success(data))
                     case let .failure(error):
-                        single(.error(error))
+                        single(.failure(error))
                     }
                 }
 

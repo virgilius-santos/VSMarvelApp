@@ -104,8 +104,7 @@ class MarvelAPITests: XCTestCase {
 
         let request = MarvelAPI.RequestData(id: nil, queries: [])
         let exp = expectation(description: "request")
-        sut.getCharacters(requestData: request)
-            { result in
+        sut.getCharacters(requestData: request) { result in
                 resultData = result
                 exp.fulfill()
         }
@@ -135,8 +134,7 @@ class MarvelAPITests: XCTestCase {
 
         let request = MarvelAPI.RequestData(id: nil, queries: [])
         let exp = expectation(description: "request")
-        sut.getCharacters(requestData: request)
-            { result in
+        sut.getCharacters(requestData: request) { result in
                 resultData = result
                 exp.fulfill()
         }
