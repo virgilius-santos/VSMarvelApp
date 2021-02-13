@@ -19,7 +19,7 @@ struct CharacterViewStyle: Equatable {
         cornerRadius: DSRadius.medium,
         shadow: nil,
         textAlignment: .left,
-        numberOfLines: 1
+        numberOfLines: 0
     )
 
     let titleColor: DSColor
