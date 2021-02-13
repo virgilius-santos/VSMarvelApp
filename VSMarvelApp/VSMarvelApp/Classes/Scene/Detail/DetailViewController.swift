@@ -2,9 +2,10 @@
 import UIKit
 import VCore
 
-class DetailViewController: UIViewController {
+final class DetailViewController: UIViewController {
     let detailView = DetailView(frame: UIScreen.main.bounds)
-    let viewModel: DetailViewModel
+
+    private let viewModel: DetailViewModel
 
     init(viewModel: DetailViewModel) {
         self.viewModel = viewModel
@@ -19,7 +20,6 @@ class DetailViewController: UIViewController {
 
     override func loadView() {
         view = detailView
-        detailView.setupLayout()
     }
 
     override func viewDidLoad() {

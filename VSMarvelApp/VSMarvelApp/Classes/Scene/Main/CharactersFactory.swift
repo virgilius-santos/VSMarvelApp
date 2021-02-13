@@ -37,12 +37,9 @@ final class CharactersFactory {
                 return vc
             },
             makeViewController: { switchAction, goToDetail in
-                let vm = CharactersCollectionViewModel(
-                    type: CharactersCollectionViewModel.ViewModelType.list
-                )
 
+                let vm = CharactersCollectionViewModel(type: .list)
                 vm.switchAction = switchAction
-
                 vm.goToDetail = goToDetail
 
                 return ListViewController(viewModel: vm)
