@@ -6,15 +6,12 @@ final class DetailCoordinator {
     weak var navController: DSNavigationControllerProtocol?
     let viewModel: CharacterViewModel
 
-    init(navController: DSNavigationControllerProtocol?,
-         viewModel: CharacterViewModel)
-    {
+    init(
+        navController: DSNavigationControllerProtocol?,
+        viewModel: CharacterViewModel
+    ) {
         self.navController = navController
         self.viewModel = viewModel
-    }
-
-    deinit {
-        logger.info("fui...")
     }
 
     func start() {

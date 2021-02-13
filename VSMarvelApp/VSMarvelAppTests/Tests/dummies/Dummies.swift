@@ -3,7 +3,7 @@ import UIKit
 import VService
 @testable import VSMarvelApp
 
-final class DSNavigationControllerSpy: DSNavigationControllerProtocol {
+final class DSNavigationControllerSpy: NSObject, DSNavigationControllerProtocol {
     var viewController: UIViewController?
     var type: DSNavigationType?
 
