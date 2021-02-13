@@ -1,16 +1,20 @@
 
 import Foundation
 
-protocol MainFactory {
-    func makeMain(
-        navController: DSNavigationControllerProtocol?
+final class MainFactory {
+    typealias CoordinatorFunction = (
+        _ navController: DSNavigationControllerProtocol?
     ) -> Coordinator
-}
 
-final class MainFactoryImpl: MainFactory {
-    func makeMain(
-        navController: DSNavigationControllerProtocol?
-    ) -> Coordinator {
-        MainCoordinator(navController: navController)
+    var makeCoordinator: CoordinatorFunction
+
+    init(makeCoordinator: @escaping CoordinatorFunction) {
+        self.makeCoordinator = makeCoordinator
+    }
+
+    convenience init() {
+        self.init(makeCoordinator: {
+            MainCoordinator(navController: $0)
+        })
     }
 }

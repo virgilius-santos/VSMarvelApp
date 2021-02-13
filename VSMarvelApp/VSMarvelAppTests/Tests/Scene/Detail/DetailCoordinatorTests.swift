@@ -34,10 +34,6 @@ extension DetailCoordinatorTests {
         let nav: DSNavigationControllerSpy = .init()
         let factory = FactorySpy()
 
-        appContainer.container.register(DetailFactory.self, factory: { _ in
-            factory.detail
-        })
-
         let sut: Sut = .init(
             navController: nav,
             viewModel: .dummy

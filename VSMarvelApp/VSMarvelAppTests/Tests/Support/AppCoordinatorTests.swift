@@ -28,10 +28,10 @@ extension AppCoordinatorTests {
 
     func makeSut() -> (sut: Sut, fields: Fields) {
         let spy = DSNavigationControllerSpy()
-        let coordFactorySpy = FactorySpy()
+        let factory = FactorySpy()
 
-        let sut: Sut = .init(navController: spy, coordinator: coordFactorySpy)
+        let sut: Sut = .init(navController: spy)
 
-        return (sut, (spy, coordFactorySpy))
+        return (sut, (spy, factory))
     }
 }

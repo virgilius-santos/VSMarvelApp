@@ -3,20 +3,14 @@ import UIKit
 
 final class AppCoordinator: Coordinator {
     weak var navController: DSNavigationControllerProtocol?
-    let coordinator: MainFactory
+    @Inject private var coordinator: MainFactory
 
-    init(
-        navController: DSNavigationControllerProtocol?,
-        coordinator: MainFactory
-    ) {
+    init(navController: DSNavigationControllerProtocol?) {
         self.navController = navController
-        self.coordinator = coordinator
     }
 
     func start() {
-        let coord = coordinator.makeMain(
-            navController: navController
-        )
+        let coord = coordinator.makeCoordinator(navController)
         coord.start()
     }
 }
