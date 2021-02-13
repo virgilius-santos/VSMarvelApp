@@ -1,6 +1,6 @@
 language:
 - swift
-osx_image: xcode11.2
+osx_image: xcode12.4
 before_install:
 - bundle install
 - bundle exec pod keys set MarvelApiKey $MARVEL_API_PUBLIC VSMarvelApp.xcworkspace
