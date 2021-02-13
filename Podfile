@@ -39,7 +39,8 @@ target 'VSMarvelApp' do
   
   pod 'SwiftFormat/CLI'
   pod 'SwiftLint'
-
+  
+  pod 'Swinject'
   
   target 'VSMarvelAppTests' do
     inherit! :search_paths
