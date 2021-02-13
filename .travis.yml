@@ -2,6 +2,7 @@ language: swift
 osx_image: xcode12.4
 xcode_sdk: iphonesimulator14.4
 before_install:
+- xcrun simctl list
 - bundle install
 - bundle exec pod keys set MarvelApiKey $MARVEL_API_PUBLIC VSMarvelApp.xcworkspace
 - bundle exec pod keys set MarvelPrivateKey $MARVEL_API_SECRET VSMarvelApp.xcworkspace
