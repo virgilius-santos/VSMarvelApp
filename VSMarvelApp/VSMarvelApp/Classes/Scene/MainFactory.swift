@@ -11,10 +11,6 @@ final class MainFactoryImpl: MainFactory {
     func makeMain(
         navController: DSNavigationControllerProtocol?
     ) -> Coordinator {
-        MainCoordinator(
-            navController: navController,
-            viewControllerFactory: CharactersFactoryImpl(),
-            coordinator: DetailFactory()
-        )
+        MainCoordinator(navController: navController)
     }
 }

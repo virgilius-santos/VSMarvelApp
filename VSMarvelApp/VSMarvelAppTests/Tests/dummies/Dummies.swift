@@ -103,7 +103,7 @@ final class CoordinatorSpy: NSObject, Coordinator{
     }
 }
 
-final class FactorySpy: AppFactory, MainFactory, CharactersFactory {
+final class FactorySpy: AppFactory, MainFactory {
     var navControllers: [DSNavigationControllerProtocol?] = []
     var viewControllers: [UIViewController] = []
     var characterVMs: [CharacterViewModel] = []
@@ -113,7 +113,7 @@ final class FactorySpy: AppFactory, MainFactory, CharactersFactory {
     var goToDetails: [GoToDetail] = .init()
     var charactersCVMs: [CharactersCollectionViewModel] = .init()
 
-    lazy var detailFactory = DetailFactory(
+    lazy var detail = DetailFactory(
         makeCoordinator: { [weak self] nav, vm in
             self?.characterVMs.append(vm)
             self?.navControllers.append(nav)
@@ -124,7 +124,21 @@ final class FactorySpy: AppFactory, MainFactory, CharactersFactory {
             self?.characterVMs.append(vm)
             self?.routers.append(coord)
             self?.viewControllers.append(.init())
-            return self?.viewControllers.first ?? .init()
+            return self?.viewControllers.last ?? .init()
+        }
+    )
+
+    lazy var character = CharactersFactory(
+        rebuildViewController: { [weak self] vm in
+            self?.charactersCVMs.append(vm)
+            self?.viewControllers.append(.init())
+            return self?.viewControllers.last ?? .init()
+        },
+        makeViewController: { [weak self] switchAction, goToDetail in
+            self?.switchActions.append(switchAction)
+            self?.goToDetails.append(goToDetail)
+            self?.viewControllers.append(.init())
+            return self?.viewControllers.last ?? .init()
         }
     )
 
@@ -138,32 +152,5 @@ final class FactorySpy: AppFactory, MainFactory, CharactersFactory {
         navControllers.append(navController)
         coordinatorSpies.append(.init())
         return coordinatorSpies.last!
-    }
-
-    func makeDetail(navController: DSNavigationControllerProtocol?, viewModel: CharacterViewModel) -> Coordinator {
-        characterVMs.append(viewModel)
-        navControllers.append(navController)
-        coordinatorSpies.append(.init())
-        return coordinatorSpies.last!
-    }
-
-    func makeDetail(viewModel: CharacterViewModel, router: DetailCoordinator) -> UIViewController {
-        characterVMs.append(viewModel)
-        routers.append(router)
-        viewControllers.append(.init())
-        return viewControllers.first!
-    }
-
-    func makeCharacters(switchAction: @escaping SwitchAction, goToDetail: @escaping GoToDetail) -> UIViewController {
-        switchActions.append(switchAction)
-        goToDetails.append(goToDetail)
-        viewControllers.append(.init())
-        return viewControllers.first!
-    }
-
-    func makeCharacters(viewModel: CharactersCollectionViewModel) -> UIViewController {
-        charactersCVMs.append(viewModel)
-        viewControllers.append(.init())
-        return viewControllers.first!
     }
 }

@@ -35,7 +35,7 @@ extension DetailCoordinatorTests {
         let factory = FactorySpy()
 
         appContainer.container.register(DetailFactory.self, factory: { _ in
-            factory.detailFactory
+            factory.detail
         })
 
         let sut: Sut = .init(

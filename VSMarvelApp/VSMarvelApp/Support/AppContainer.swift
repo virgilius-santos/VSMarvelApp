@@ -24,6 +24,7 @@ final class AppContainer {
             })
 
             $0.register(DetailFactory.self, factory: { _ in DetailFactory() })
+            $0.register(CharactersFactory.self, factory: { _ in CharactersFactory() })
 
             return $0
         }(Container()))

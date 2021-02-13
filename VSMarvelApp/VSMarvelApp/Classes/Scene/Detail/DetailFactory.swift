@@ -29,9 +29,11 @@ final class DetailFactory {
                 DetailCoordinator(navController: $0, viewModel: $1)
             },
             makeViewController: {
-                var detail = DetailViewModel(title: $1.name,
-                                             description: $1.bio,
-                                             path: $1.path)
+                var detail = DetailViewModel(
+                    title: $1.name,
+                    description: $1.bio,
+                    path: $1.path
+                )
                 detail.router = $0
                 return DetailViewController(viewModel: detail)
             }

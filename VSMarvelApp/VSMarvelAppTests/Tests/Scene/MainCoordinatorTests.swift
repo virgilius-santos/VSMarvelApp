@@ -9,15 +9,7 @@ class MainCoordinatorTests: XCTestCase {
         }
     }
 
-    func testNavigationMustBeSeted() {
-        let (sut, _) = makeSut()
-
-        sut.start()
-
-        XCTAssertNotNil(sut.navController)
-    }
-
-    func testListViewControllerMustBeStarted() {
+    func testViewControllerMustBeStarted() {
         let (sut, fields) = makeSut()
 
         sut.start()
@@ -28,7 +20,7 @@ class MainCoordinatorTests: XCTestCase {
         XCTAssertEqual(fields.nav.type, DSNavigationType.push)
     }
 
-    func testWhenGoToFromGridCalledDetailMustBeStarted() throws {
+    func testWhenGoToDetailCalledViewControllerMustBeStarted() throws {
         let (sut, fields) = makeSut()
 
         sut.start()
@@ -57,27 +49,25 @@ extension MainCoordinatorTests {
 
     typealias Fields = (
         nav: DSNavigationControllerSpy,
-        characterViewModel: CharacterViewModel,
-        character: Character,
         factory: FactorySpy
     )
 
-    func makeSut(type _: CharactersCollectionViewModel.ViewModelType = .list) -> (sut: Sut, fields: Fields) {
-        let character = Character.dummy
-        let characterViewModel = CharacterViewModel.dummy
-
+    func makeSut() -> (sut: Sut, fields: Fields) {
         let nav: DSNavigationControllerSpy = .init()
         let factory = FactorySpy()
 
-        let sut: Sut = .init(
-            navController: nav,
-            viewControllerFactory: factory
-        )
+        appContainer.container.register(CharactersFactory.self, factory: { _ in
+            factory.character
+        })
+
+        appContainer.container.register(DetailFactory.self, factory: { _ in
+            factory.detail
+        })
+
+        let sut: Sut = .init(navController: nav)
 
         return (sut, (
             nav,
-            characterViewModel,
-            character,
             factory
         ))
     }

@@ -1,45 +1,52 @@
 
 import UIKit
 
-protocol CharactersFactory {
-    func makeCharacters(
-        switchAction: @escaping SwitchAction,
-        goToDetail: @escaping GoToDetail
+final class CharactersFactory {
+    typealias RebuildViewControllerFunction = (
+        _ viewModel: CharactersCollectionViewModel
     ) -> UIViewController
 
-    func makeCharacters(
-        viewModel: CharactersCollectionViewModel
+    typealias ViewControllerFunction = (
+        _ switchAction: @escaping SwitchAction,
+        _ goToDetail: @escaping GoToDetail
     ) -> UIViewController
-}
 
-final class CharactersFactoryImpl: CharactersFactory {
-    func makeCharacters(
-        switchAction: @escaping SwitchAction,
-        goToDetail: @escaping GoToDetail
-    ) -> UIViewController {
-        let vm = CharactersCollectionViewModel(
-            type: CharactersCollectionViewModel.ViewModelType.list
-        )
+    var rebuildViewController: RebuildViewControllerFunction
+    var makeViewController: ViewControllerFunction
 
-        vm.switchAction = switchAction
-
-        vm.goToDetail = goToDetail
-
-        return ListViewController(viewModel: vm)
+    init(
+        rebuildViewController: @escaping RebuildViewControllerFunction,
+        makeViewController: @escaping ViewControllerFunction
+    ) {
+        self.rebuildViewController = rebuildViewController
+        self.makeViewController = makeViewController
     }
 
-    func makeCharacters(
-        viewModel: CharactersCollectionViewModel
-    ) -> UIViewController {
-        let vc: UIViewController
-        switch viewModel.viewModelType {
-        case .list:
-            viewModel.viewModelType = .grid
-            vc = GridViewController(viewModel: viewModel)
-        default:
-            viewModel.viewModelType = .list
-            vc = ListViewController(viewModel: viewModel)
-        }
-        return vc
+    convenience init() {
+        self.init(
+            rebuildViewController: { viewModel in
+                let vc: UIViewController
+                switch viewModel.viewModelType {
+                case .list:
+                    viewModel.viewModelType = .grid
+                    vc = GridViewController(viewModel: viewModel)
+                default:
+                    viewModel.viewModelType = .list
+                    vc = ListViewController(viewModel: viewModel)
+                }
+                return vc
+            },
+            makeViewController: { switchAction, goToDetail in
+                let vm = CharactersCollectionViewModel(
+                    type: CharactersCollectionViewModel.ViewModelType.list
+                )
+
+                vm.switchAction = switchAction
+
+                vm.goToDetail = goToDetail
+
+                return ListViewController(viewModel: vm)
+            }
+        )
     }
 }
