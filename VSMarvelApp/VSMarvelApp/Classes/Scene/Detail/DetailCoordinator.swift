@@ -5,12 +5,12 @@ import VCore
 final class DetailCoordinator: Coordinator {
     weak var navController: DSNavigationControllerProtocol?
     let viewModel: CharacterViewModel
-    let viewControllerFactory: ViewControllerFactory
+    let viewControllerFactory: DetailFactory
 
     init(
         navController: DSNavigationControllerProtocol?,
         viewModel: CharacterViewModel,
-        viewControllerFactory: ViewControllerFactory
+        viewControllerFactory: DetailFactory
     ) {
         self.navController = navController
         self.viewModel = viewModel
@@ -18,7 +18,7 @@ final class DetailCoordinator: Coordinator {
     }
 
     func start() {
-        let vc = viewControllerFactory.makeDetailViewController(
+        let vc = viewControllerFactory.makeDetail(
             viewModel: viewModel,
             router: self
         )

@@ -1,36 +1,19 @@
 
 import UIKit
 
-protocol ViewControllerFactory {
-    func makeDetailViewController(
-        viewModel: CharacterViewModel,
-        router: DetailCoordinator
-    ) -> UIViewController
-
-    func makeCharactersViewController(
+protocol CharactersFactory {
+    func makeCharacters(
         switchAction: @escaping SwitchAction,
         goToDetail: @escaping GoToDetail
     ) -> UIViewController
 
-    func makeCharactersViewController(
+    func makeCharacters(
         viewModel: CharactersCollectionViewModel
     ) -> UIViewController
 }
 
-final class ViewControllerFactoryImpl: ViewControllerFactory {
-    func makeDetailViewController(
-        viewModel: CharacterViewModel,
-        router: DetailCoordinator
-    ) -> UIViewController {
-        var detail = DetailViewModel(title: viewModel.name,
-                                     description: viewModel.bio,
-                                     path: viewModel.path)
-        detail.router = router
-        let vc = DetailViewController(viewModel: detail)
-        return vc
-    }
-
-    func makeCharactersViewController(
+final class CharactersFactoryImpl: CharactersFactory {
+    func makeCharacters(
         switchAction: @escaping SwitchAction,
         goToDetail: @escaping GoToDetail
     ) -> UIViewController {
@@ -45,7 +28,7 @@ final class ViewControllerFactoryImpl: ViewControllerFactory {
         return ListViewController(viewModel: vm)
     }
 
-    func makeCharactersViewController(
+    func makeCharacters(
         viewModel: CharactersCollectionViewModel
     ) -> UIViewController {
         let vc: UIViewController

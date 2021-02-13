@@ -22,9 +22,9 @@ class DetailCoordinatorTests: XCTestCase {
 
         sut.start()
 
-        XCTAssertEqual(fields.nav.viewControllers.first, fields.viewControllerFactory.viewControler1)
-        XCTAssert(sut === fields.viewControllerFactory.router)
-        XCTAssertEqual(.dummy, fields.viewControllerFactory.characterVM)
+        XCTAssertEqual(fields.nav.viewControllers.first, fields.factory.viewControllers.first)
+        XCTAssert(sut === fields.factory.routers.first)
+        XCTAssertEqual(.dummy, fields.factory.characterVMs.first)
         XCTAssertEqual(fields.nav.type, DSNavigationType.push)
     }
 }
@@ -35,24 +35,23 @@ extension DetailCoordinatorTests {
     typealias Fields = (
         nav: DSNavigationControllerSpy,
         characterViewModel: CharacterViewModel,
-        viewControllerFactory: ViewControllerFactorySpy
+        factory: FactorySpy
     )
 
     func makeSut(type _: CharactersCollectionViewModel.ViewModelType = .list) -> (sut: Sut, fields: Fields) {
         let nav: DSNavigationControllerSpy = .init()
-        let viewControllerFactory = ViewControllerFactorySpy()
-        viewControllerFactory.viewControler1 = .init()
+        let factory = FactorySpy()
 
         let sut: Sut = .init(
             navController: nav,
             viewModel: .dummy,
-            viewControllerFactory: viewControllerFactory
+            viewControllerFactory: factory
         )
 
         return (sut, (
             nav,
             .dummy,
-            viewControllerFactory
+            factory
         ))
     }
 }

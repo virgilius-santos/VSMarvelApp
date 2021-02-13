@@ -3,11 +3,11 @@ import UIKit
 
 final class AppCoordinator: Coordinator {
     weak var navController: DSNavigationControllerProtocol?
-    let coordinator: CoordinatorFactory
+    let coordinator: MainFactory
 
     init(
         navController: DSNavigationControllerProtocol?,
-        coordinator: CoordinatorFactory
+        coordinator: MainFactory
     ) {
         self.navController = navController
         self.coordinator = coordinator

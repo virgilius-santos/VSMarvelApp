@@ -11,7 +11,6 @@
 		1820FE9A25D7703B008B517A /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1820FE9925D7703B008B517A /* Helpers.swift */; };
 		1823A7BB25D7846B00015C17 /* DetailCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1823A7BA25D7846B00015C17 /* DetailCoordinatorTests.swift */; };
 		1823A7C125D789B900015C17 /* Typealias.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1823A7C025D789B900015C17 /* Typealias.swift */; };
-		1823A7C525D789E100015C17 /* ViewControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1823A7C425D789E100015C17 /* ViewControllerFactory.swift */; };
 		1849DBCC23DD853C008B9852 /* CharactersCollectionViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1849DBCB23DD853C008B9852 /* CharactersCollectionViewProvider.swift */; };
 		1849DBCE23DD91B8008B9852 /* LoadingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1849DBCD23DD91B8008B9852 /* LoadingCell.swift */; };
 		185590652507127800B2F112 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185590642507127800B2F112 /* Cache.swift */; };
@@ -20,7 +19,11 @@
 		185DC06723D4E3C00083A6D4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185DC06523D4E3C00083A6D4 /* AppDelegate.swift */; };
 		18881A7B23EFE15A00B47138 /* CharactersPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18881A7A23EFE15A00B47138 /* CharactersPageController.swift */; };
 		189EC8AD23DFD1B3008ECECE /* Characters.json in Resources */ = {isa = PBXBuildFile; fileRef = 189EC8AC23DFD1B3008ECECE /* Characters.json */; };
-		18B75AE825D795CD00FF6598 /* CoordinatorFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B75AE725D795CD00FF6598 /* CoordinatorFactory.swift */; };
+		18B75AEC25D79E2300FF6598 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B75AEB25D79E2300FF6598 /* Coordinator.swift */; };
+		18B75AF425D79E9F00FF6598 /* CharactersFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B75AF325D79E9F00FF6598 /* CharactersFactory.swift */; };
+		18B75AFA25D79F3200FF6598 /* DetailFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B75AF925D79F3200FF6598 /* DetailFactory.swift */; };
+		18B75AFE25D7A02500FF6598 /* MainFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B75AFD25D7A02500FF6598 /* MainFactory.swift */; };
+		18B75B0225D7A09F00FF6598 /* AppFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B75B0125D7A09F00FF6598 /* AppFactory.swift */; };
 		18C7000023D675BE00F023E6 /* DSAlpha.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7FFFF23D675BE00F023E6 /* DSAlpha.swift */; };
 		18C7000223D6768200F023E6 /* DSShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7000123D6768200F023E6 /* DSShadow.swift */; };
 		18C7000623D67DB000F023E6 /* GridViewCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7000523D67DB000F023E6 /* GridViewCellTests.swift */; };
@@ -87,7 +90,6 @@
 		1820FE9925D7703B008B517A /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		1823A7BA25D7846B00015C17 /* DetailCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCoordinatorTests.swift; sourceTree = "<group>"; };
 		1823A7C025D789B900015C17 /* Typealias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typealias.swift; sourceTree = "<group>"; };
-		1823A7C425D789E100015C17 /* ViewControllerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerFactory.swift; sourceTree = "<group>"; };
 		1849DBCB23DD853C008B9852 /* CharactersCollectionViewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersCollectionViewProvider.swift; sourceTree = "<group>"; };
 		1849DBCD23DD91B8008B9852 /* LoadingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingCell.swift; sourceTree = "<group>"; };
 		185590642507127800B2F112 /* Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
@@ -101,7 +103,11 @@
 		185DC06523D4E3C00083A6D4 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18881A7A23EFE15A00B47138 /* CharactersPageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersPageController.swift; sourceTree = "<group>"; };
 		189EC8AC23DFD1B3008ECECE /* Characters.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Characters.json; sourceTree = "<group>"; };
-		18B75AE725D795CD00FF6598 /* CoordinatorFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorFactory.swift; sourceTree = "<group>"; };
+		18B75AEB25D79E2300FF6598 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		18B75AF325D79E9F00FF6598 /* CharactersFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersFactory.swift; sourceTree = "<group>"; };
+		18B75AF925D79F3200FF6598 /* DetailFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailFactory.swift; sourceTree = "<group>"; };
+		18B75AFD25D7A02500FF6598 /* MainFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFactory.swift; sourceTree = "<group>"; };
+		18B75B0125D7A09F00FF6598 /* AppFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFactory.swift; sourceTree = "<group>"; };
 		18C7000123D6768200F023E6 /* DSShadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSShadow.swift; sourceTree = "<group>"; };
 		18C7000523D67DB000F023E6 /* GridViewCellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridViewCellTests.swift; sourceTree = "<group>"; };
 		18C7000723D6802600F023E6 /* DSNavigationBarTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSNavigationBarTests.swift; sourceTree = "<group>"; };
@@ -235,11 +241,12 @@
 		185DC06223D4E2B00083A6D4 /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				185DC06423D4E3C00083A6D4 /* Info.plist */,
 				18C7FFD423D5456600F023E6 /* AppCoordinator.swift */,
 				185DC06523D4E3C00083A6D4 /* AppDelegate.swift */,
-				185DC06423D4E3C00083A6D4 /* Info.plist */,
 				18C7FFCC23D52BC700F023E6 /* Keys.swift */,
 				1823A7C025D789B900015C17 /* Typealias.swift */,
+				18B75B0125D7A09F00FF6598 /* AppFactory.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -276,8 +283,7 @@
 				18C7002623DA676D00F023E6 /* Detail */,
 				18C7002F23DA7C0A00F023E6 /* Main */,
 				18C7003823DAE9D000F023E6 /* MainCoordinator.swift */,
-				1823A7C425D789E100015C17 /* ViewControllerFactory.swift */,
-				18B75AE725D795CD00FF6598 /* CoordinatorFactory.swift */,
+				18B75AFD25D7A02500FF6598 /* MainFactory.swift */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
@@ -295,6 +301,7 @@
 			isa = PBXGroup;
 			children = (
 				18C7002D23DA712500F023E6 /* DetailCoordinator.swift */,
+				18B75AF925D79F3200FF6598 /* DetailFactory.swift */,
 				18C7000C23D69EEB00F023E6 /* DetailView.swift */,
 				18C7002723DA678800F023E6 /* DetailViewController.swift */,
 				18C7002B23DA710000F023E6 /* DetailViewModel.swift */,
@@ -308,6 +315,7 @@
 				18D4A1AB23DE0E7200DC1146 /* Character */,
 				18D4A1A023DD956B00DC1146 /* Provider */,
 				18E2B61C23DCF46E007AE6A5 /* Cell */,
+				18B75AF325D79E9F00FF6598 /* CharactersFactory.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -395,6 +403,7 @@
 				18C7002423DA64A000F023E6 /* DSCollectionViewController.swift */,
 				18C7002223DA5E5600F023E6 /* DSDynamicView.swift */,
 				18C7FFD923D5472600F023E6 /* DSNavigationController.swift */,
+				18B75AEB25D79E2300FF6598 /* Coordinator.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -791,11 +800,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				18E2B62223DCFD14007AE6A5 /* MarvelAPI.swift in Sources */,
+				18B75AFE25D7A02500FF6598 /* MainFactory.swift in Sources */,
+				18B75AF425D79E9F00FF6598 /* CharactersFactory.swift in Sources */,
 				18FC9BE323DCBBDF001DA15A /* CharactersCollectionViewModel.swift in Sources */,
 				18C7000223D6768200F023E6 /* DSShadow.swift in Sources */,
 				18FC9BDE23DC1786001DA15A /* Character.swift in Sources */,
 				18C7FFFC23D6747B00F023E6 /* CharacterViewStyle.swift in Sources */,
 				18C7000F23D6A38200F023E6 /* DSSpacing.swift in Sources */,
+				18B75AFA25D79F3200FF6598 /* DetailFactory.swift in Sources */,
+				18B75B0225D7A09F00FF6598 /* AppFactory.swift in Sources */,
 				1849DBCE23DD91B8008B9852 /* LoadingCell.swift in Sources */,
 				18C7000D23D69EEB00F023E6 /* DetailView.swift in Sources */,
 				18C7000023D675BE00F023E6 /* DSAlpha.swift in Sources */,
@@ -810,8 +823,8 @@
 				18FC9BE023DC192B001DA15A /* ThumbImage.swift in Sources */,
 				18C7002E23DA712500F023E6 /* DetailCoordinator.swift in Sources */,
 				18E2B61F23DCF530007AE6A5 /* CharactersRepository.swift in Sources */,
+				18B75AEC25D79E2300FF6598 /* Coordinator.swift in Sources */,
 				18C7FFFA23D673CE00F023E6 /* CharacterViewStyleable.swift in Sources */,
-				1823A7C525D789E100015C17 /* ViewControllerFactory.swift in Sources */,
 				18D4A1A223DDCA5600DC1146 /* DSBrightness.swift in Sources */,
 				18C7002C23DA710000F023E6 /* DetailViewModel.swift in Sources */,
 				18C7002823DA678800F023E6 /* DetailViewController.swift in Sources */,
@@ -827,7 +840,6 @@
 				1849DBCC23DD853C008B9852 /* CharactersCollectionViewProvider.swift in Sources */,
 				18D4A1AA23DDF3D000DC1146 /* CharacterViewModel.swift in Sources */,
 				18C7002523DA64A000F023E6 /* DSCollectionViewController.swift in Sources */,
-				18B75AE825D795CD00FF6598 /* CoordinatorFactory.swift in Sources */,
 				18C7FFD123D5344000F023E6 /* DSColor.swift in Sources */,
 				1823A7C125D789B900015C17 /* Typealias.swift in Sources */,
 				18C7FFEB23D553E300F023E6 /* DSIcon.swift in Sources */,

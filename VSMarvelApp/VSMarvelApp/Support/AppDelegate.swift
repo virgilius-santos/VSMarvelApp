@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WindowStyleable {
         applyWindow(style: .default, in: window)
 
         let navController = DSNavigationController(nav: nav)
-        let coordinator = CoordinatorFactoryImpl().makeApp(navController: navController)
+        let coordinator = AppFactoryImpl().makeApp(navController: navController)
 
         self.window = window
         self.navController = navController

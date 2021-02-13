@@ -96,34 +96,6 @@ class UINavigationControllerSpy: UINavigationController {
     }
 }
 
-final class ViewControllerFactorySpy: NSObject, ViewControllerFactory {
-    var characterVM: CharacterViewModel?
-    var charactersCVM: CharactersCollectionViewModel?
-    var viewControler1: UIViewController?
-    var viewControler2: UIViewController?
-    var viewControler3: UIViewController?
-    weak var router: DetailCoordinator?
-    var switchAction: SwitchAction?
-    var goToDetail: GoToDetail?
-
-    func makeDetailViewController(viewModel: CharacterViewModel, router: DetailCoordinator) -> UIViewController {
-        characterVM = viewModel
-        self.router = router
-        return viewControler1 ?? .init()
-    }
-
-    func makeCharactersViewController(switchAction: @escaping SwitchAction, goToDetail: @escaping GoToDetail) -> UIViewController {
-        self.switchAction = switchAction
-        self.goToDetail = goToDetail
-        return viewControler2 ?? .init()
-    }
-
-    func makeCharactersViewController(viewModel: CharactersCollectionViewModel) -> UIViewController {
-        charactersCVM = viewModel
-        return viewControler3 ?? .init()
-    }
-}
-
 final class CoordinatorSpy: NSObject, Coordinator{
     var startCalled: Bool?
     func start() {
@@ -131,23 +103,52 @@ final class CoordinatorSpy: NSObject, Coordinator{
     }
 }
 
-final class CoordinatorFactorySpy: CoordinatorFactory {
+final class FactorySpy: AppFactory, MainFactory, CharactersFactory, DetailFactory {
     var navControllers: [DSNavigationControllerProtocol?] = []
-    var coordinatorSpy: CoordinatorSpy?
-    var characterVM: CharacterViewModel?
+    var viewControllers: [UIViewController] = []
+    var characterVMs: [CharacterViewModel] = []
+    var coordinatorSpies: [CoordinatorSpy] = []
+    var routers: [DetailCoordinator] = .init()
+    var switchActions: [SwitchAction] = .init()
+    var goToDetails: [GoToDetail] = .init()
+    var charactersCVMs: [CharactersCollectionViewModel] = .init()
+
     func makeApp(navController: DSNavigationControllerProtocol?) -> Coordinator {
         navControllers.append(navController)
-        return coordinatorSpy ?? .init()
+        coordinatorSpies.append(.init())
+        return coordinatorSpies.last!
     }
 
     func makeMain(navController: DSNavigationControllerProtocol?) -> Coordinator {
         navControllers.append(navController)
-        return coordinatorSpy ?? .init()
+        coordinatorSpies.append(.init())
+        return coordinatorSpies.last!
     }
 
     func makeDetail(navController: DSNavigationControllerProtocol?, viewModel: CharacterViewModel) -> Coordinator {
-        characterVM = viewModel
+        characterVMs.append(viewModel)
         navControllers.append(navController)
-        return coordinatorSpy ?? .init()
+        coordinatorSpies.append(.init())
+        return coordinatorSpies.last!
+    }
+
+    func makeDetail(viewModel: CharacterViewModel, router: DetailCoordinator) -> UIViewController {
+        characterVMs.append(viewModel)
+        routers.append(router)
+        viewControllers.append(.init())
+        return viewControllers.first!
+    }
+
+    func makeCharacters(switchAction: @escaping SwitchAction, goToDetail: @escaping GoToDetail) -> UIViewController {
+        switchActions.append(switchAction)
+        goToDetails.append(goToDetail)
+        viewControllers.append(.init())
+        return viewControllers.first!
+    }
+
+    func makeCharacters(viewModel: CharactersCollectionViewModel) -> UIViewController {
+        charactersCVMs.append(viewModel)
+        viewControllers.append(.init())
+        return viewControllers.first!
     }
 }

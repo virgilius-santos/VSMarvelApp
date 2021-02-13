@@ -5,21 +5,21 @@ import VCore
 
 final class MainCoordinator: Coordinator {
     weak var navController: DSNavigationControllerProtocol?
-    let viewControllerFactory: ViewControllerFactory
+    let viewControllerFactory: CharactersFactory
 
     let switchAction: SwitchAction
     let goToDetail: GoToDetail
 
     convenience init(
         navController: DSNavigationControllerProtocol?,
-        viewControllerFactory: ViewControllerFactory,
-        coordinator: CoordinatorFactory
+        viewControllerFactory: CharactersFactory,
+        coordinator: DetailFactory
     ) {
         self.init(
             navController: navController,
             viewControllerFactory: viewControllerFactory,
             switchAction: { [navController, viewControllerFactory] vm in
-                let vc = viewControllerFactory.makeCharactersViewController(viewModel: vm)
+                let vc = viewControllerFactory.makeCharacters(viewModel: vm)
                 navController?.navigate(to: vc, using: .replace)
             },
             goToDetail: { [navController] vm in
@@ -34,7 +34,7 @@ final class MainCoordinator: Coordinator {
 
     init(
         navController: DSNavigationControllerProtocol?,
-        viewControllerFactory: ViewControllerFactory,
+        viewControllerFactory: CharactersFactory,
         switchAction: @escaping SwitchAction,
         goToDetail: @escaping GoToDetail
     ) {
@@ -45,7 +45,7 @@ final class MainCoordinator: Coordinator {
     }
 
     func start() {
-        let vc = viewControllerFactory.makeCharactersViewController(
+        let vc = viewControllerFactory.makeCharacters(
             switchAction: switchAction,
             goToDetail: goToDetail
         )
