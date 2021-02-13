@@ -12,16 +12,11 @@ import XCTest
 
 class DSWindowStyleTests: XCTestCase {
     func testApplyStyle() {
-        let appDelegate: AppDelegate = .init()
         let sut: UIWindow = .init()
 
-        appDelegate.applyWindow(style: DSWindowStyle.default, in: sut)
+        sut.apply(style: DSWindowStyle.default)
 
         XCTAssertEqual(sut.tintColor, Asset.Colors.text.color)
         XCTAssertEqual(sut.backgroundColor, Asset.Colors.secondary.color)
-    }
-
-    class AppDelegate: NSObject, UIApplicationDelegate, WindowStyleable {
-        var window: UIWindow? = .init(frame: .zero)
     }
 }
