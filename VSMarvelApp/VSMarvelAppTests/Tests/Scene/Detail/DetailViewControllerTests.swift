@@ -3,38 +3,30 @@
 import XCTest
 
 final class DetailViewControllerTests: XCTestCase {
-    func testSetData() {
-        let (sut, fields) = makeSut()
+    func testRetainCycle() {
+        XCTAssertNotRetainCycle {
+            makeSut().sut
+        }
+    }
 
-        XCTAssertEqual(sut.title, fields.viewModel.title)
-        XCTAssertEqual(sut.detailView.descriptionLabel.text, fields.viewModel.description)
+    func testSetData() {
+        let (sut, viewModel) = makeSut()
+
+        XCTAssertEqual(sut.title, viewModel.title)
+        XCTAssertEqual(sut.detailView.descriptionLabel.text, viewModel.description)
         XCTAssertNotNil(sut.detailView.imageView.image)
-        XCTAssertEqual(sut.detailView.imageView.heroID, fields.viewModel.path)
+        XCTAssertEqual(sut.detailView.imageView.heroID, viewModel.path)
     }
 }
 
 extension DetailViewControllerTests {
     typealias Sut = DetailViewController
-    typealias Fields = (
-        viewModel: DetailViewModel,
-        ()
-    )
+    typealias Fields = DetailViewModel
 
     func makeSut() -> (sut: Sut, fields: Fields) {
         let sut: Sut = .init(viewModel: .dummy)
         _ = sut.view
 
-        return ( sut, (
-            .dummy,
-            ()
-        ))
+        return ( sut, .dummy)
     }
-}
-
-extension DetailViewModel {
-    static let dummy = DetailViewModel(
-        title: "Spider-Man",
-        description: "Teste",
-        path: "arte"
-    )
 }

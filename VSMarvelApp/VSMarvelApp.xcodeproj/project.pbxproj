@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1820FE9425D76EED008B517A /* Dummies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1820FE9325D76EED008B517A /* Dummies.swift */; };
+		1820FE9A25D7703B008B517A /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1820FE9925D7703B008B517A /* Helpers.swift */; };
 		1849DBCC23DD853C008B9852 /* CharactersCollectionViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1849DBCB23DD853C008B9852 /* CharactersCollectionViewProvider.swift */; };
 		1849DBCE23DD91B8008B9852 /* LoadingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1849DBCD23DD91B8008B9852 /* LoadingCell.swift */; };
 		185590652507127800B2F112 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185590642507127800B2F112 /* Cache.swift */; };
@@ -77,6 +79,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1820FE9325D76EED008B517A /* Dummies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dummies.swift; sourceTree = "<group>"; };
+		1820FE9925D7703B008B517A /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		1849DBCB23DD853C008B9852 /* CharactersCollectionViewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersCollectionViewProvider.swift; sourceTree = "<group>"; };
 		1849DBCD23DD91B8008B9852 /* LoadingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingCell.swift; sourceTree = "<group>"; };
 		185590642507127800B2F112 /* Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
@@ -164,6 +168,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1820FE9225D76ED3008B517A /* dummies */ = {
+			isa = PBXGroup;
+			children = (
+				1820FE9325D76EED008B517A /* Dummies.swift */,
+				1820FE9925D7703B008B517A /* Helpers.swift */,
+			);
+			path = dummies;
+			sourceTree = "<group>";
+		};
 		185C3F5223DFB854004402F3 /* Repository */ = {
 			isa = PBXGroup;
 			children = (
@@ -377,6 +390,7 @@
 		18C7FFDB23D5480D00F023E6 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				1820FE9225D76ED3008B517A /* dummies */,
 				18C7004023DBA05000F023E6 /* DesignSystem */,
 				185C3F5223DFB854004402F3 /* Repository */,
 				189EC8AB23DFD194008ECECE /* Resources */,
@@ -812,12 +826,14 @@
 				18FC9BD223DBB118001DA15A /* DetailViewTests.swift in Sources */,
 				18FC9BD423DBB851001DA15A /* MainCoordinatorTests.swift in Sources */,
 				18C7004223DBA0AE00F023E6 /* AppDelegateTests.swift in Sources */,
+				1820FE9425D76EED008B517A /* Dummies.swift in Sources */,
 				185C3F5423DFB870004402F3 /* MarvelAPITests.swift in Sources */,
 				18FC9BD023DBA906001DA15A /* VSCollectionViewControllerTests.swift in Sources */,
 				18FC9BD723DBC535001DA15A /* CharactersCollectionViewControllerTests.swift in Sources */,
 				18C7FFDF23D549D100F023E6 /* VSNavigationControllerTests.swift in Sources */,
 				18C7FFDD23D5483B00F023E6 /* AppCoordinatorTests.swift in Sources */,
 				18C7000823D6802600F023E6 /* DSNavigationBarTests.swift in Sources */,
+				1820FE9A25D7703B008B517A /* Helpers.swift in Sources */,
 				18C7001723D7D4C300F023E6 /* ListViewCellTests.swift in Sources */,
 				18C7002A23DA6F7B00F023E6 /* DetailViewControllerTests.swift in Sources */,
 				18FC9BCE23DBA20F001DA15A /* DSWindowStyleTests.swift in Sources */,

@@ -3,6 +3,12 @@
 import XCTest
 
 class MainCoordinatorTests: XCTestCase {
+    func testRetainCycle() {
+        XCTAssertNotRetainCycle {
+            makeSut().sut
+        }
+    }
+
     func testNavigationMustBeSeted() {
         let (sut, _) = makeSut()
         XCTAssertNotNil(sut.navController)
@@ -62,14 +68,8 @@ extension MainCoordinatorTests {
     )
 
     func makeSut(type _: CharactersCollectionViewModel.ViewModelType = .list) -> (sut: Sut, fields: Fields) {
-        let characterMock = Character(
-            id: 0,
-            name: "a",
-            bio: "b",
-            thumImage: ThumbImage(path: "arte.jpg")
-        )
-
-        let characterViewModel = CharacterViewModel(character: characterMock)
+        let character = Character.dummy
+        let characterViewModel = CharacterViewModel.dummy
 
         let nav: DSNavigationControllerSpy = .init()
         let sut: Sut = .init(navController: nav)
@@ -78,7 +78,7 @@ extension MainCoordinatorTests {
         return (sut, (
             nav,
             characterViewModel,
-            characterMock
+            character
         ))
     }
 }
