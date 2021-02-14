@@ -3,7 +3,7 @@ import CollectionKit
 import SnapKit
 import UIKit
 
-class DSCollectionViewController: UIViewController, DSNavigationBarStyleable, DSNavigationBarConfigurable, UISearchBarDelegate {
+class DSCollectionViewController: UIViewController, UISearchBarDelegate {
     let collectionView = CollectionView()
 
     var provider: Provider? {
