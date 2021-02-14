@@ -6,5 +6,5 @@ struct DetailViewModel {
     let description: String
     let path: String
 
-    var router: DetailCoordinator? // could be a protocol
+    var router: Coordinator? // could be a protocol
 }

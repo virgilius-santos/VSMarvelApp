@@ -17,6 +17,12 @@ class VSCollectionViewControllerTests: XCTestCase {
         sut = nil
     }
 
+    func testRetainCycle() {
+        XCTAssertNotRetainCycle {
+            DSCollectionViewController()
+        }
+    }
+
     func testProviderSet() {
         let provider = SimpleViewProvider()
         XCTAssertNil(sut.collectionView.provider)

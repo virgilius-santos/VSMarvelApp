@@ -1,7 +1,7 @@
 
 import UIKit
 
-struct DSAlpha {
+struct DSAlpha: Equatable {
     let value: CGFloat
 
     static let full = DSAlpha(value: 1)

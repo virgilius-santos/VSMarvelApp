@@ -86,7 +86,7 @@ class MarvelAPITests: XCTestCase {
 
     func test_request_infoPassed() {
         let session = SesionMock()
-        sut = .init(session: session)
+        sut = MarvelAPI(session: session)
 
         let request = MarvelAPI.RequestData(id: nil, queries: [])
         sut.getCharacters(requestData: request) { _ in }
@@ -99,7 +99,7 @@ class MarvelAPITests: XCTestCase {
 
     func test_request_resultError() throws {
         let session = SesionMock()
-        sut = .init(session: session)
+        sut = MarvelAPI(session: session)
         var resultData: Result<MarvelAPI.DataReceived, VSessionError>?
 
         let request = MarvelAPI.RequestData(id: nil, queries: [])
@@ -129,7 +129,7 @@ class MarvelAPITests: XCTestCase {
 
     func test_request_resultSuccess() throws {
         let session = SesionMock()
-        sut = .init(session: session)
+        sut = MarvelAPI(session: session)
         var resultData: Result<MarvelAPI.DataReceived, VSessionError>?
 
         let request = MarvelAPI.RequestData(id: nil, queries: [])
@@ -165,34 +165,6 @@ class MarvelAPITests: XCTestCase {
             XCTAssertEqual(data.total, dataReceived.total)
         } else {
             XCTFail("deveria apresentar um sucesso")
-        }
-    }
-}
-
-extension MarvelAPITests {
-    class SesionMock: VSessionProtocol {
-        var cancelSpy: Bool?
-        var resquestSpy: VRequestData?
-        var responseSpy: Any?
-        var errorHandlerSpy: CustomErrorHandler?
-        var completionSpy: Any?
-
-        var sessionError: VSessionError?
-        var dataReceived: MarvelAPI.DataReceived?
-
-        func request<DataReceived>(resquest requestData: VRequestData,
-                                   response responseData: @escaping ((Data) throws -> DataReceived),
-                                   errorHandler: CustomErrorHandler?,
-                                   completion: ((Result<DataReceived, VSessionError>) -> Void)?)
-        {
-            resquestSpy = requestData
-            responseSpy = responseData
-            errorHandlerSpy = errorHandler
-            completionSpy = completion
-        }
-
-        func cancel() {
-            cancelSpy = true
         }
     }
 }

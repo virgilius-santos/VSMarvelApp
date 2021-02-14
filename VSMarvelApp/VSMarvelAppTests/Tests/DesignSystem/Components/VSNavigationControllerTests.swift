@@ -3,34 +3,6 @@
 @testable import VSMarvelApp
 import XCTest
 
-class UINavigationControllerSpy: UINavigationController {
-    var viewController: UIViewController?
-    var animated: Bool?
-
-    var viewControllerToPresent: UIViewController?
-    var flag: Bool?
-
-    var vsVC: UIViewController?
-
-    override var visibleViewController: UIViewController? {
-        get {
-            vsVC = UIViewController()
-            return vsVC
-        }
-        set {}
-    }
-
-    override func pushViewController(_ viewController: UIViewController, animated: Bool) {
-        self.viewController = viewController
-        self.animated = animated
-    }
-
-    override func present(_ viewControllerToPresent: UIViewController, animated flag: Bool, completion _: (() -> Void)? = nil) {
-        self.viewControllerToPresent = viewControllerToPresent
-        self.flag = flag
-    }
-}
-
 class VSNavigationControllerTests: XCTestCase {
     var spy: UINavigationControllerSpy!
     var sut: DSNavigationController!
@@ -43,6 +15,12 @@ class VSNavigationControllerTests: XCTestCase {
     override func tearDown() {
         sut = nil
         spy = nil
+    }
+
+    func testRetainCycle() {
+        XCTAssertNotRetainCycle {
+            DSNavigationController(nav: UINavigationControllerSpy())
+        }
     }
 
     func testPushNavigation() {

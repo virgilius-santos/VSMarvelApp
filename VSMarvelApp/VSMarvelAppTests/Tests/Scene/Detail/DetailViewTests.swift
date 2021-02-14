@@ -3,21 +3,28 @@
 import XCTest
 
 class DetailViewTests: XCTestCase {
-    var sut: DetailView!
-
-    override func setUp() {
-        sut = .init()
-        let vm = DetailViewModel(title: "um", description: "dois", path: "arte")
-        sut.setup(viewModel: vm)
-    }
-
-    override func tearDown() {
-        sut = nil
+    func testRetainCycle() {
+        XCTAssertNotRetainCycle {
+            makeSut().sut
+        }
     }
 
     func testViewModelSeted() {
-        XCTAssertEqual(sut.descriptionLabel.text, "dois")
+        let (sut, vm) = makeSut()
+        XCTAssertEqual(sut.descriptionLabel.text, vm.description)
         XCTAssertNotNil(sut.imageView.image)
-        XCTAssertEqual(sut.imageView.heroID, "arte")
+        XCTAssertEqual(sut.imageView.heroID, vm.path)
+    }
+}
+
+extension DetailViewTests {
+    typealias Sut = DetailView
+    typealias Fields = DetailViewModel
+
+    func makeSut() -> (sut: Sut, fields: Fields) {
+        let sut: Sut = .init()
+        sut.setup(viewModel: .dummy)
+
+        return ( sut, .dummy)
     }
 }

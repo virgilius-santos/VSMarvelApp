@@ -2,7 +2,7 @@
 import UIKit
 import VCore
 
-enum DSColor: CaseIterable {
+enum DSColor: CaseIterable, Equatable {
     case primary, text, secondary, textDarker
 
     var uiColor: UIColor {

@@ -109,7 +109,14 @@ final class CharactersCollectionViewModel: CharactersCollectionViewModelProtocol
     ) -> Observable<CharactersViewModelData> {
         repository
             .getCharacters(number: number, name: name)
-            .map { $0.map { character in CharacterViewModel(character: character) } }
+            .map { $0.map { character in
+                CharacterViewModel(
+                    character: character,
+                    label: character.name,
+                    style: .grid
+                )
+            }
+            }
             .subscribe(on: ConcurrentDispatchQueueScheduler(qos: .background))
             .observe(on: MainScheduler.instance)
             .do(onSuccess: { _ in loading.onNext(LoadingState.normal) },

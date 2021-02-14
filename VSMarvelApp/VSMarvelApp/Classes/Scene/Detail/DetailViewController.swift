@@ -2,9 +2,10 @@
 import UIKit
 import VCore
 
-class DetailViewController: UIViewController {
-    let detailView = DetailView()
-    let viewModel: DetailViewModel
+final class DetailViewController: UIViewController {
+    let detailView = DetailView(frame: UIScreen.main.bounds)
+
+    private let viewModel: DetailViewModel
 
     init(viewModel: DetailViewModel) {
         self.viewModel = viewModel
@@ -17,21 +18,12 @@ class DetailViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    deinit {
-        logger.info("fuii", String(describing: Self.self))
+    override func loadView() {
+        view = detailView
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        Layout: do {
-            view.backgroundColor = DSColor.secondary.uiColor
-            view.addSubview(detailView)
-            detailView.snp.makeConstraints {
-                $0.edges.equalTo(self.view)
-            }
-            detailView.setupLayout()
-        }
 
         Data: do {
             title = viewModel.title

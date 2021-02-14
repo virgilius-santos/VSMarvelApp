@@ -3,51 +3,43 @@
 import XCTest
 
 class MainCoordinatorTests: XCTestCase {
-    func testNavigationMustBeSeted() {
-        let (sut, _) = makeSut()
-        XCTAssertNotNil(sut.navController)
+    func testRetainCycle() {
+        XCTAssertNotRetainCycle {
+            makeSut().sut
+        }
     }
 
-    func testListViewControllerMustBeStarted() {
-        let (_, fields) = makeSut()
-        XCTAssert(fields.nav.viewController is ListViewController)
+    func testViewControllerMustBeStarted() {
+        let (sut, fields) = makeSut()
+
+        sut.start()
+
+        XCTAssertEqual(fields.nav.viewControllers.first, fields.factory.viewControllers.first)
+        XCTAssertNotNil(fields.factory.switchActions.first)
+        XCTAssertNotNil(fields.factory.goToDetails.first)
         XCTAssertEqual(fields.nav.type, DSNavigationType.push)
     }
 
-    func testWhenGoToFromGridCalledDetailMustBeStarted() throws {
-        let (_, fields) = makeSut()
+    func testWhenGoToDetailCalledViewControllerMustBeStarted() throws {
+        let (sut, fields) = makeSut()
 
-        let listVC = try XCTUnwrap(fields.nav.viewController as? ListViewController)
-        listVC.viewModel.goTo(fields.characterViewModel)
+        sut.start()
+        fields.factory.goToDetails.first?(.dummy)
 
-        XCTAssertEqual(fields.nav.type, DSNavigationType.push)
-
-        let detailVC = try XCTUnwrap(fields.nav.viewController as? DetailViewController)
-        XCTAssertEqual(detailVC.viewModel.title, fields.character.name)
-        XCTAssertEqual(detailVC.viewModel.description, fields.character.bio)
-        XCTAssertEqual(detailVC.viewModel.path, fields.character.thumImage.path)
+        let factory = fields.factory
+        XCTAssertEqual(factory.navControllers.first as? DSNavigationControllerSpy, fields.nav)
+        XCTAssertEqual(factory.coordinatorSpies.first?.startCalled, true)
+        XCTAssertEqual(factory.characterVMs.first, .dummy)
     }
 
-    func testWhenSwitchToListCalledGridMustBeStarted() throws {
-        let (_, fields) = makeSut()
+    func testWhenSwitchActionIsCalledViewControllerMustBeShowed() throws {
+        let (sut, fields) = makeSut()
 
-        let listVC = try XCTUnwrap(fields.nav.viewController as? ListViewController)
-        let viewModel = try XCTUnwrap(listVC.viewModel as? CharactersCollectionViewModel)
-        viewModel.switchAction?(viewModel)
+        sut.start()
+        fields.factory.switchActions.first?(.dummy)
 
-        XCTAssert(fields.nav.viewController is GridViewController)
-        XCTAssertEqual(fields.nav.type, DSNavigationType.replace)
-    }
-
-    func testWhenSwitchToGridCalledListMustBeStarted() throws {
-        let (_, fields) = makeSut()
-
-        let listVC = try XCTUnwrap(fields.nav.viewController as? ListViewController)
-        let viewModel = try XCTUnwrap(listVC.viewModel as? CharactersCollectionViewModel)
-        viewModel.switchAction?(viewModel)
-        viewModel.switchAction?(viewModel)
-
-        XCTAssert(fields.nav.viewController is ListViewController)
+        XCTAssertEqual(fields.nav.viewControllers[1], fields.factory.viewControllers[1])
+        XCTAssert(fields.factory.charactersCVMs.first === CharactersCollectionViewModel.dummy)
         XCTAssertEqual(fields.nav.type, DSNavigationType.replace)
     }
 }
@@ -57,28 +49,18 @@ extension MainCoordinatorTests {
 
     typealias Fields = (
         nav: DSNavigationControllerSpy,
-        characterViewModel: CharacterViewModel,
-        character: Character
+        factory: FactorySpy
     )
 
-    func makeSut(type _: CharactersCollectionViewModel.ViewModelType = .list) -> (sut: Sut, fields: Fields) {
-        let characterMock = Character(
-            id: 0,
-            name: "a",
-            bio: "b",
-            thumImage: ThumbImage(path: "arte.jpg")
-        )
-
-        let characterViewModel = CharacterViewModel(character: characterMock)
-
+    func makeSut() -> (sut: Sut, fields: Fields) {
         let nav: DSNavigationControllerSpy = .init()
+        let factory = FactorySpy()
+
         let sut: Sut = .init(navController: nav)
-        sut.start()
 
         return (sut, (
             nav,
-            characterViewModel,
-            characterMock
+            factory
         ))
     }
 }

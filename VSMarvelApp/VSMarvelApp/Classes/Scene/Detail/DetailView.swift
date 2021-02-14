@@ -9,7 +9,25 @@ final class DetailView: UIView {
     let imageView = UIImageView()
     let descriptionLabel = UILabel()
 
-    func setupLayout() {
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+
+        setupLayout()
+    }
+
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+
+        setupLayout()
+    }
+
+    func setup(viewModel: DetailViewModel) {
+        descriptionLabel.text = viewModel.description
+        imageView.setImage(with: viewModel.path, placeholder: DSImage.placeholder.image)
+        imageView.heroID = viewModel.path
+    }
+
+    private func setupLayout() {
         Scroll: do {
             addSubview(scroll)
             scroll.snp.makeConstraints {
@@ -49,11 +67,5 @@ final class DetailView: UIView {
                 $0.bottom.lessThanOrEqualTo(self.contentView)
             }
         }
-    }
-
-    func setup(viewModel: DetailViewModel) {
-        descriptionLabel.text = viewModel.description
-        imageView.setImage(with: viewModel.path, placeholder: DSImage.placeholder.image)
-        imageView.heroID = viewModel.path
     }
 }

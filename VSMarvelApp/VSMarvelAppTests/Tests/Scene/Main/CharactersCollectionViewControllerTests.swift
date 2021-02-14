@@ -39,7 +39,7 @@ class CharactersCollectionViewControllerTests: XCTestCase {
     }
 
     var dummyCellVM: CellViewModel {
-        CellViewModel(character: dummyCharacter)
+        .dummy
     }
 
     var dummyCharacter: Character {
@@ -145,7 +145,7 @@ class CharactersCollectionViewControllerTests: XCTestCase {
 
     func test_viewDidLoad_dataSource_dataIdentifier_mustBeCharacterName() {
         dataSource.data = [dummyCellVM]
-        XCTAssertEqual(dataSource.identifier(at: 0), "name")
+        XCTAssertEqual(dataSource.identifier(at: 0), "a")
     }
 
     func test_viewDidLoad_viewSource_setup_mustConfigureView() {

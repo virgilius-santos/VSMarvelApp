@@ -2,26 +2,31 @@
 @testable import VSMarvelApp
 import XCTest
 
-class DetailViewControllerTests: XCTestCase {
-    var sut: DetailViewController!
-
-    override func setUp() {
-        sut = .init(viewModel: vmMock)
-        _ = sut.view
-    }
-
-    override func tearDown() {
-        sut = nil
+final class DetailViewControllerTests: XCTestCase {
+    func testRetainCycle() {
+        XCTAssertNotRetainCycle {
+            makeSut().sut
+        }
     }
 
     func testSetData() {
-        XCTAssertEqual(sut.title, "Spider-Man")
-        XCTAssertEqual(sut.detailView.descriptionLabel.text, "Teste")
-        XCTAssertNotNil(sut.detailView.imageView.image)
-        XCTAssertEqual(sut.detailView.imageView.heroID, "arte")
-    }
+        let (sut, viewModel) = makeSut()
 
-    let vmMock = DetailViewModel(title: "Spider-Man",
-                                 description: "Teste",
-                                 path: "arte")
+        XCTAssertEqual(sut.title, viewModel.title)
+        XCTAssertEqual(sut.detailView.descriptionLabel.text, viewModel.description)
+        XCTAssertNotNil(sut.detailView.imageView.image)
+        XCTAssertEqual(sut.detailView.imageView.heroID, viewModel.path)
+    }
+}
+
+extension DetailViewControllerTests {
+    typealias Sut = DetailViewController
+    typealias Fields = DetailViewModel
+
+    func makeSut() -> (sut: Sut, fields: Fields) {
+        let sut: Sut = .init(viewModel: .dummy)
+        _ = sut.view
+
+        return ( sut, .dummy)
+    }
 }

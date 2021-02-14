@@ -14,7 +14,7 @@ class GridViewCellTests: XCTestCase {
     }
 
     func testApplyStyle() {
-        sut.apply(style: CharacterViewStyle.default)
+        sut.apply(style: CharacterViewStyle.grid)
 
         XCTAssertEqual(sut.layer.shadowColor, Asset.Colors.secondary.color.cgColor)
         XCTAssertEqual(sut.layer.shadowOpacity, 0)

@@ -10,9 +10,9 @@ struct DSWindowStyle {
                                          backgroundColor: DSColor.secondary)
 }
 
-extension WindowStyleable where Self: UIApplicationDelegate {
-    func applyWindow(style: DSWindowStyle, in window: UIWindow) {
-        window.backgroundColor = style.backgroundColor.uiColor
-        window.tintColor = style.tintColor.uiColor
+extension UIWindow {
+    func apply(style: DSWindowStyle) {
+        backgroundColor = style.backgroundColor.uiColor
+        tintColor = style.tintColor.uiColor
     }
 }

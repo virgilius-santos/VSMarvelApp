@@ -25,6 +25,7 @@ PODS:
   - SwiftFormat/CLI (0.47.11)
   - SwiftGen (6.4.0)
   - SwiftLint (0.42.0)
+  - Swinject (2.7.1)
   - VComponents (0.0.2)
   - VCore (0.4.0):
     - Willow (~> 5.2.1)
@@ -50,6 +51,7 @@ DEPENDENCIES:
   - SwiftFormat/CLI
   - SwiftGen
   - SwiftLint
+  - Swinject
   - VComponents
   - VCore
   - VService
@@ -70,6 +72,7 @@ SPEC REPOS:
     - SwiftFormat
     - SwiftGen
     - SwiftLint
+    - Swinject
     - Willow
     - YetAnotherAnimationLibrary
   https://github.com/virgilius-santos/public-pod-specs.git:
@@ -96,12 +99,13 @@ SPEC CHECKSUMS:
   SwiftFormat: 6f2fd4689e09959ba5b690ab950279e33eb6441e
   SwiftGen: 67860cc7c3cfc2ed25b9b74cfd55495fc89f9108
   SwiftLint: 4fa9579c63416865179bc416f0a92d55f009600d
+  Swinject: ddf78b8486dd9b71a667b852cad919ab4484478e
   VComponents: a3d3e3cd4b8ce7744955db37aa0dfd47c11c8c4b
   VCore: 4230984401ba852e1672dad83584d26c5e57cdf8
   VService: 4308d46bac3e07d9c68130ead3886cf898083322
   Willow: a6310f9aedcb6f4de8c35b94fd3416a660ae9280
   YetAnotherAnimationLibrary: 7f808b10c2d193dd3e82407e722fa60aa0bdff2d
 
-PODFILE CHECKSUM: 38f98b71971ab2f3337008d1ccf0da000cff4f71
+PODFILE CHECKSUM: fae1d710f5af35318920a1d4e289dc5cee74a542
 
 COCOAPODS: 1.10.1
