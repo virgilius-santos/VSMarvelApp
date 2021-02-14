@@ -19,7 +19,9 @@ extension CharactersCollectionViewModel {
 
 extension CharacterViewModel {
     static let dummy = CharacterViewModel(
-        character: .dummy
+        character: .dummy,
+        label: "dummy",
+        style: .list
     )
 }
 

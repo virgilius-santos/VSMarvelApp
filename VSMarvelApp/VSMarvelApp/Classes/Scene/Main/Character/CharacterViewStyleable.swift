@@ -24,7 +24,7 @@ extension CharacterViewStyleable where Self: UIView{
         dsLabel.text = vm.label
     }
 
-    private func apply(style: CharacterViewStyle) {
+    func apply(style: CharacterViewStyle) {
         apply(shadow: style.shadow)
 
         layer.cornerRadius = style.cornerRadius.value
