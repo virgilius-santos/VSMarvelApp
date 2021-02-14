@@ -39,10 +39,6 @@ final class CharactersCollectionViewController<CharacterView: UIView>: DSCollect
         fatalError("init(coder:) has not been implemented")
     }
 
-    deinit {
-        logger.info("fuii", String(describing: Self.self))
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
