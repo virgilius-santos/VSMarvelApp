@@ -17,7 +17,8 @@ protocol CharactersCollectionViewModelProtocol {
 }
 
 struct CharactersInput {
-    let text: Observable<(text: String?, filter: Int)>
+    let searchClick: Observable<Void>
+    let text: Observable<String?>
     let currentIndex: Observable<Int>
     let reload: Observable<Void>
 }
@@ -84,8 +85,8 @@ final class CharactersCollectionViewModel: CharactersCollectionViewModelProtocol
         let disposableNextIndex = input.currentIndex
             .bind(to: pageController.currentIndex)
 
-        let disposableNextFilter = input.text
-            .map { $0.text }
+        let disposableNextFilter = input.searchClick
+            .withLatestFrom(input.text)
             .bind(to: pageController.currentFilter)
 
         let disposables = Disposables
