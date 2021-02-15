@@ -29,7 +29,6 @@ final class CharactersPageController {
         let sharedFilter = currentFilter
             .share(replay: 1, scope: .whileConnected)
             .distinctUntilChanged()
-            .debug("sharedFilter")
 
         sharedFilter
             .map { _ in }

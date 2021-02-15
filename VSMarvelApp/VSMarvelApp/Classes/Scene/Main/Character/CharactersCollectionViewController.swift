@@ -17,15 +17,6 @@ final class CharactersCollectionViewController<CharacterView: UIView>: DSCollect
     let scale = HeroModifier.scale(3)
     let delay = HeroModifier.delay(0.2)
 
-    lazy var searchBarTextObservable: Observable<(text: String?, filter: Int)> = {
-        Observable<(text: String?, filter: Int)>.create { [weak self] observer in
-            self?.searchBarText = {
-                observer.onNext($0)
-            }
-            return Disposables.create()
-        }
-    }()
-
     let disposeBag = DisposeBag()
 
     init(viewModel: ViewModel) {
@@ -73,13 +64,11 @@ final class CharactersCollectionViewController<CharacterView: UIView>: DSCollect
         }
 
         SearchBar: do {
-            let searchController = addSearchBar(placeholder: viewModel.placeholderSearchBar,
-                                                scopeButtonTitles: viewModel.filterOptionsSearchBar)
-            searchController.searchBar.delegate = self
-
-            configureRightButton(with: viewModel.rightButtonIcon.image,
-                                 target: self,
-                                 action: #selector(rightButtonAction))
+            configureRightButton(
+                with: viewModel.rightButtonIcon.image,
+                target: self,
+                action: #selector(rightButtonAction)
+            )
         }
 
         Data: do {
@@ -87,9 +76,27 @@ final class CharactersCollectionViewController<CharacterView: UIView>: DSCollect
         }
 
         Rx: do {
-            let input = CharactersInput(text: searchBarTextObservable,
-                                        currentIndex: cellProvider.currentIndex,
-                                        reload: loadingProvider.tap)
+            let searchController = addSearchBar(
+                placeholder: viewModel.placeholderSearchBar,
+                scopeButtonTitles: viewModel.filterOptionsSearchBar
+            )
+
+            let bookmarkButtonClicked = searchController.searchBar
+                .rx
+                .searchButtonClicked
+                .asObservable()
+
+            let text = searchController.searchBar
+                .rx
+                .text
+                .asObservable()
+
+            let input = CharactersInput(
+                searchClick: bookmarkButtonClicked,
+                text: text,
+                currentIndex: cellProvider.currentIndex,
+                reload: loadingProvider.tap
+            )
 
             let output = viewModel.bind(input: input)
 
