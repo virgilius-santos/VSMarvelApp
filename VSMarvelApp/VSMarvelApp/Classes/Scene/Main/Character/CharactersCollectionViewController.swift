@@ -35,15 +35,17 @@ final class CharactersCollectionViewController<CharacterView: UIView>: DSCollect
 
         view.backgroundColor = DSColor.secondary.uiColor
 
+        let finalProvider: ComposedProvider
+        
         let cellProvider: CharactersCollectionViewProvider<CharacterView>
 
         let loadingProvider = LoadingViewProvider(sizeSource: { [weak self] in
             guard let self = self else { return CGSize.zero }
-            return CGSize(width: self.view.frame.width - 2 * DSSpacing.xxSmall.value,
-                          height: self.view.frame.width / 3)
+            return CGSize(
+                width: self.view.frame.width - 2 * DSSpacing.xxSmall.value,
+                height: self.view.frame.width / 3
+            )
         })
-
-        let finalProvider: ComposedProvider
 
         Layout: do {
             let sizeSource = { (frame) -> CGSize in
@@ -63,19 +65,17 @@ final class CharactersCollectionViewController<CharacterView: UIView>: DSCollect
             collectionView.provider = finalProvider
         }
 
-        SearchBar: do {
-            configureRightButton(
-                with: viewModel.rightButtonIcon.image,
-                target: self,
-                action: #selector(rightButtonAction)
-            )
-        }
-
         Data: do {
             title = viewModel.title
         }
 
         Rx: do {
+            let rightButton = configureRightButton(
+                with: viewModel.rightButtonIcon.image
+            )
+
+            let rightButtonClick = rightButton.rx.tap.asObservable()
+
             let searchController = addSearchBar(
                 placeholder: viewModel.placeholderSearchBar,
                 scopeButtonTitles: viewModel.filterOptionsSearchBar
@@ -92,6 +92,7 @@ final class CharactersCollectionViewController<CharacterView: UIView>: DSCollect
                 .asObservable()
 
             let input = CharactersInput(
+                rightButtonClick: rightButtonClick,
                 searchClick: bookmarkButtonClicked,
                 text: text,
                 currentIndex: cellProvider.currentIndex,
@@ -139,10 +140,6 @@ final class CharactersCollectionViewController<CharacterView: UIView>: DSCollect
             output.disposable
                 .disposed(by: disposeBag)
         }
-    }
-
-    @objc func rightButtonAction() {
-        viewModel.switchView()
     }
 }
 
