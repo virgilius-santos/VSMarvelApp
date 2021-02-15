@@ -30,22 +30,6 @@ class VSCollectionViewControllerTests: XCTestCase {
         XCTAssertNotNil(sut.collectionView.provider)
     }
 
-    func testInputSearchBarText() {
-        var text: String?
-
-        let expectation = self.expectation(description: "searchBarText")
-        sut.searchBarText = { args in
-            text = args.text
-            XCTAssertEqual(text, "TExt")
-            expectation.fulfill()
-        }
-
-        let searchBar = UISearchBar()
-        searchBar.text = "TExt"
-        sut.searchBarSearchButtonClicked(searchBar)
-        wait(for: [expectation], timeout: 3)
-    }
-
     func test() {
         if let navBar = sut.navigationController?.navigationBar {
             XCTAssertEqual(navBar.barTintColor, DSColor.primary.uiColor)
