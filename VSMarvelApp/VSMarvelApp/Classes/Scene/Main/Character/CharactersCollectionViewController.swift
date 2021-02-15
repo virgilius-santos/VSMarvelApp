@@ -36,7 +36,7 @@ final class CharactersCollectionViewController<CharacterView: UIView>: DSCollect
         view.backgroundColor = DSColor.secondary.uiColor
 
         let finalProvider: ComposedProvider
-        
+
         let cellProvider: CharactersCollectionViewProvider<CharacterView>
 
         let loadingProvider = LoadingViewProvider(sizeSource: { [weak self] in

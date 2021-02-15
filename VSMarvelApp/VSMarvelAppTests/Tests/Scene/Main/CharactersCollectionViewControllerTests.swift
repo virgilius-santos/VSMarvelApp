@@ -70,26 +70,6 @@ class CharactersCollectionViewControllerTests: XCTestCase {
         nav = nil
     }
 
-    func test_searchBarTextObservable() {
-        let scheduler = TestScheduler(initialClock: 0)
-        let disposeBag = DisposeBag()
-        let searchInputs = scheduler.createObserver(SearchInput.self)
-
-        sut.searchBarTextObservable
-            .map { SearchInput($0) }
-            .bind(to: searchInputs)
-            .disposed(by: disposeBag)
-
-        scheduler.createColdObservable([.next(10, ("test", 2))])
-            .subscribe(onNext: { [sut] args in
-                sut?.searchBarText?(args)
-            })
-            .disposed(by: disposeBag)
-        scheduler.start()
-
-        XCTAssertEqual(searchInputs.events, [.next(10, SearchInput(("test", 2)))])
-    }
-
     func test_viewDidLoad_updateResetData() {
         dataSource.data = [dummyCellVM]
         (sut.viewModel as? CharactersCollectionViewModelMock)?.resetData.onNext(())
@@ -173,7 +153,6 @@ class CharactersCollectionViewControllerTests: XCTestCase {
         let searchBar = search?.searchBar
         XCTAssertEqual(searchBar?.placeholder, "placeholderSearchBar")
         XCTAssertEqual(searchBar?.scopeButtonTitles, ["filterOptionsSearchBar"])
-        XCTAssert((searchBar?.delegate as? ViewController) === sut)
     }
 
     func test_viewDidLoad_rightButton_mustBeSeted() {
@@ -186,14 +165,6 @@ class CharactersCollectionViewControllerTests: XCTestCase {
 
     func test_viewDidLoad_loadingProvider_NotBeSeted() {
         XCTAssertEqual((sut.collectionView.provider as! ComposedProvider).sections.count, 1)
-    }
-
-    func test_rightButton_click_goToList() {
-        let bt = sut.navigationItem.rightBarButtonItem
-        UIApplication.shared.sendAction(bt!.action!,
-                                        to: bt!.target, from: self, for: nil)
-
-        XCTAssertTrue(vm.switch!)
     }
 
     func test_cell_tap_goToDetail() {
