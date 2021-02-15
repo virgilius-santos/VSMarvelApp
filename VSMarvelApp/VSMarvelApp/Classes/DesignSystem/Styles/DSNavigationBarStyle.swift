@@ -21,12 +21,14 @@ extension UIViewController {
         }
     }
 
-    func configureRightButton(with icon: UIImage, target: Any, action: Selector) {
-        navigationItem.rightBarButtonItem = UIBarButtonItem(
+    func configureRightButton(with icon: UIImage) -> UIBarButtonItem {
+        let button = UIBarButtonItem(
             image: icon,
             style: UIBarButtonItem.Style.plain,
-            target: target,
-            action: action
+            target: nil,
+            action: nil
         )
+        navigationItem.rightBarButtonItem = button
+        return button
     }
 }
