@@ -17,15 +17,6 @@ final class CharactersCollectionViewController<CharacterView: UIView>: DSCollect
     let scale = HeroModifier.scale(3)
     let delay = HeroModifier.delay(0.2)
 
-    lazy var searchBarTextObservable: Observable<(text: String?, filter: Int)> = {
-        Observable<(text: String?, filter: Int)>.create { [weak self] observer in
-            self?.searchBarText = {
-                observer.onNext($0)
-            }
-            return Disposables.create()
-        }
-    }()
-
     let disposeBag = DisposeBag()
 
     init(viewModel: ViewModel) {
@@ -39,24 +30,22 @@ final class CharactersCollectionViewController<CharacterView: UIView>: DSCollect
         fatalError("init(coder:) has not been implemented")
     }
 
-    deinit {
-        logger.info("fuii", String(describing: Self.self))
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
         view.backgroundColor = DSColor.secondary.uiColor
 
+        let finalProvider: ComposedProvider
+
         let cellProvider: CharactersCollectionViewProvider<CharacterView>
 
         let loadingProvider = LoadingViewProvider(sizeSource: { [weak self] in
             guard let self = self else { return CGSize.zero }
-            return CGSize(width: self.view.frame.width - 2 * DSSpacing.xxSmall.value,
-                          height: self.view.frame.width / 3)
+            return CGSize(
+                width: self.view.frame.width - 2 * DSSpacing.xxSmall.value,
+                height: self.view.frame.width / 3
+            )
         })
-
-        let finalProvider: ComposedProvider
 
         Layout: do {
             let sizeSource = { (frame) -> CGSize in
@@ -76,24 +65,39 @@ final class CharactersCollectionViewController<CharacterView: UIView>: DSCollect
             collectionView.provider = finalProvider
         }
 
-        SearchBar: do {
-            let searchController = addSearchBar(placeholder: viewModel.placeholderSearchBar,
-                                                scopeButtonTitles: viewModel.filterOptionsSearchBar)
-            searchController.searchBar.delegate = self
-
-            configureRightButton(with: viewModel.rightButtonIcon.image,
-                                 target: self,
-                                 action: #selector(rightButtonAction))
-        }
-
         Data: do {
             title = viewModel.title
         }
 
         Rx: do {
-            let input = CharactersInput(text: searchBarTextObservable,
-                                        currentIndex: cellProvider.currentIndex,
-                                        reload: loadingProvider.tap)
+            let rightButton = configureRightButton(
+                with: viewModel.rightButtonIcon.image
+            )
+
+            let rightButtonClick = rightButton.rx.tap.asObservable()
+
+            let searchController = addSearchBar(
+                placeholder: viewModel.placeholderSearchBar,
+                scopeButtonTitles: viewModel.filterOptionsSearchBar
+            )
+
+            let bookmarkButtonClicked = searchController.searchBar
+                .rx
+                .searchButtonClicked
+                .asObservable()
+
+            let text = searchController.searchBar
+                .rx
+                .text
+                .asObservable()
+
+            let input = CharactersInput(
+                rightButtonClick: rightButtonClick,
+                searchClick: bookmarkButtonClicked,
+                text: text,
+                currentIndex: cellProvider.currentIndex,
+                reload: loadingProvider.tap
+            )
 
             let output = viewModel.bind(input: input)
 
@@ -136,10 +140,6 @@ final class CharactersCollectionViewController<CharacterView: UIView>: DSCollect
             output.disposable
                 .disposed(by: disposeBag)
         }
-    }
-
-    @objc func rightButtonAction() {
-        viewModel.switchView()
     }
 }
 

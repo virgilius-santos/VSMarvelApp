@@ -3,15 +3,17 @@ import CollectionKit
 import SnapKit
 import UIKit
 
-class DSCollectionViewController: UIViewController, DSNavigationBarStyleable, DSNavigationBarConfigurable, UISearchBarDelegate {
-    let collectionView = CollectionView()
+class DSCollectionViewController: UIViewController {
+    let collectionView = CollectionView(frame: UIScreen.main.bounds)
 
     var provider: Provider? {
         get { collectionView.provider }
         set { collectionView.provider = newValue }
     }
 
-    var searchBarText: (((text: String?, filter: Int)) -> Void)?
+    override func loadView() {
+        view = collectionView
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,23 +21,5 @@ class DSCollectionViewController: UIViewController, DSNavigationBarStyleable, DS
         NavBar: do {
             apply(style: .default)
         }
-
-        Collection: do {
-            view.addSubview(collectionView)
-            collectionView.snp.makeConstraints {
-                $0.edges.equalTo(self.view.safeAreaLayoutGuide)
-            }
-        }
-    }
-
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        collectionView.frame = view.bounds
-    }
-
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        let text = searchBar.text
-        let index = searchBar.selectedScopeButtonIndex
-        searchBarText?((text, index))
     }
 }

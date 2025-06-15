@@ -9,22 +9,12 @@
 @testable import VSMarvelApp
 import XCTest
 
-class DSNavigationBarStyleTests: XCTestCase {
-    var nav: UINavigationController!
-    var sut: ViewControllerSpy!
-
-    override func setUp() {
-        sut = .init()
-        nav = .init(rootViewController: sut)
-    }
-
-    override func tearDown() {
-        sut = nil
-        nav = nil
-    }
-
+final class DSNavigationBarStyleTests: XCTestCase {
     func testApplyStyle() {
-        sut.apply(style: DSNavigationBarStyle.default)
+        let vc = UIViewController()
+        let nav: UINavigationController = .init(rootViewController: vc)
+
+        vc.apply(style: DSNavigationBarStyle.default)
 
         let navBar = nav.navigationBar
         XCTAssertEqual(navBar.barTintColor, Asset.Colors.primary.color)
@@ -32,25 +22,12 @@ class DSNavigationBarStyleTests: XCTestCase {
     }
 
     func testConfiguration() {
-        sut.configureRightButton(
-            with: DSIcon.gridIcon.image,
-            target: sut as Any,
-            action: #selector(ViewControllerSpy.tapAction)
+        let vc = UIViewController()
+        let button = vc.configureRightButton(
+            with: DSIcon.gridIcon.image
         )
-        _ = sut.view
 
-        let button = sut.navigationItem.rightBarButtonItem
-        XCTAssertEqual(button?.style, .plain)
-        XCTAssertEqual(button?.image, DSIcon.gridIcon.image)
-
-        _ = button?.target?.perform(button?.action, with: nil)
-        XCTAssert(sut.tapped)
-    }
-
-    class ViewControllerSpy: UIViewController, DSNavigationBarStyleable, DSNavigationBarConfigurable {
-        var tapped = false
-        @objc func tapAction() {
-            tapped = true
-        }
+        XCTAssertEqual(button.style, .plain)
+        XCTAssertEqual(button.image, DSIcon.gridIcon.image)
     }
 }

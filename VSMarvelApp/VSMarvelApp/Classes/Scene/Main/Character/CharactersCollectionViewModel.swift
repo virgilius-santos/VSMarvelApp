@@ -1,4 +1,5 @@
 
+import RxCocoa
 import RxSwift
 import UIKit
 
@@ -13,11 +14,12 @@ protocol CharactersCollectionViewModelProtocol {
     func bind(input: CharactersInput) -> CharactersOutput
 
     func goTo(_ vm: CharacterViewModel)
-    func switchView()
 }
 
 struct CharactersInput {
-    let text: Observable<(text: String?, filter: Int)>
+    let rightButtonClick: Observable<Void>
+    let searchClick: Observable<Void>
+    let text: Observable<String?>
     let currentIndex: Observable<Int>
     let reload: Observable<Void>
 }
@@ -72,10 +74,6 @@ final class CharactersCollectionViewModel: CharactersCollectionViewModelProtocol
         pageController.provider = loadCharacters
     }
 
-    func switchView() {
-        switchAction?(self)
-    }
-
     func goTo(_ vm: CharacterViewModel) {
         goToDetail?(vm)
     }
@@ -84,14 +82,21 @@ final class CharactersCollectionViewModel: CharactersCollectionViewModelProtocol
         let disposableNextIndex = input.currentIndex
             .bind(to: pageController.currentIndex)
 
-        let disposableNextFilter = input.text
-            .map { $0.text }
+        let disposableNextFilter = input.searchClick
+            .withLatestFrom(input.text)
             .bind(to: pageController.currentFilter)
+
+        let disposableRightClick = input.rightButtonClick
+            .subscribe(onNext: { [weak self] in
+                guard let self = self else { return }
+                self.switchAction?(self)
+            })
 
         let disposables = Disposables
             .create([
                 disposableNextIndex,
-                disposableNextFilter
+                disposableNextFilter,
+                disposableRightClick
             ])
 
         return CharactersOutput(
